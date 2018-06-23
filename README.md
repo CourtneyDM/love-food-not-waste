@@ -1,2 +1,3 @@
-# waste-not
+# Waste Not
+
 Bringing awareness to food waste
