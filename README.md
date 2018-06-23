@@ -1,3 +1,3 @@
 # Waste Not
 
-Bringing awareness to food waste
+Bringing awareness to food waste in Dallas, Texas
