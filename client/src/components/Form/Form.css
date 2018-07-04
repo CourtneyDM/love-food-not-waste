@@ -1,0 +1,15 @@
+.signup {
+    display: flex;
+    flex-flow: column;
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+button {
+    margin-top: 5%;
+}
+
+input {
+    margin-bottom: 10px;
+}

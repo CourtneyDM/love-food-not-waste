@@ -1,0 +1,11 @@
+.section {
+    width: 30%;
+    margin: auto;
+    margin-top: 5%;    
+}
+
+.content {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 3%;
+}
