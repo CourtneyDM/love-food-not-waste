@@ -1,4 +1,6 @@
 // Import Dependencies
+require( 'dotenv' ).config();
+
 const bodyParser = require( 'body-parser' );
 const express = require( 'express' );
 
@@ -14,5 +16,7 @@ app.use( bodyParser.json() );
 
 // Start Server...
 app.listen( PORT, () => console.log( `Express server listening on PORT ${PORT}` ) );
+
+console.log( process.env.REACT_APP_X_MASHAPE_KEY );
 
 // TODO: Setup server to connect to database - MySQL? Mongoose?
