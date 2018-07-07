@@ -1,0 +1,18 @@
+.card-deck{
+    width: 90%;
+    margin: 0 auto;
+}
+.card {
+    margin-top: 30px;
+}
+
+.card-header{
+    color: white;
+     background-color: #D89510;
+     font-family: 'Fredericka the Great', cursive;
+     font-size: 26px;
+     padding-top: 6px;
+     height: 50px;
+ }
+
+

@@ -1,9 +1,23 @@
 import React from 'react';
-// import HomePageContent from './pages/HomePageContent';
-import Dashboard from './pages/Dashboard';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Wrapper } from './components/Wrapper';
+import Jumbotron from './components/Jumbotron';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
 
-const App = () => <Dashboard />
+
+
+const App = () => (
+    <Router>
+      <Wrapper>
+       <Jumbotron />
+            <Navbar />
+       <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
+        </Wrapper>
+    </Router>
+)
 
 export default App;
 
-// TODO: Setup React Router to handle routes for the dashboard, signup and login pages
