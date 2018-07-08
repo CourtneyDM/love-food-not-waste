@@ -1,24 +1,16 @@
-.foodImage {
-    background-image: url('/assets/images/food.jpg');
-    opacity: .5;
-    min-height: 35vh;
-    width: 100%;
-    background-size: cover;
-    position: -30px;
+#logo {
+    width: 22vw;
+    margin: 20px;
+}  
+
+.jumbotron-fluid {
+    position: relative;
 }
 
-#logoText {
-    font-family: 'Fredericka the Great', cursive;
-    font-size: 6vw;
-    color: black;
-    border: 1.5pt solid black;
-    padding: 25px 50px;
-    display: inline;
-    position: absolute;
-    top: 5%;
-    left: 31vw;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone; 
-    -webkit-text-stroke-width: .7px;
-    -webkit-text-stroke-color: black;
-}  
+
+
+@media (max-width: 576px) { 
+    #logo {
+        width: 70vw;
+    }
+ }
