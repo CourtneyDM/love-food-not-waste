@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from '../../components/Card';
+import { CardBasic } from '../../components/Card';
 
 
 export default class InventoryItem extends Component {
@@ -21,9 +21,9 @@ export default class InventoryItem extends Component {
 
     render() {
         return (
-            <Card
+            <CardBasic
                 header={ this.props.itemName }
-                text={ this.props.itemBrandName }>{ this.props.children }</Card>
+                text={ this.props.itemBrandName }>{ this.props.children }</CardBasic>
         );
     }
 }
