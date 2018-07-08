@@ -2,11 +2,15 @@
     width: 90%;
     margin: 0 auto;
     margin-bottom: 25px;
+    overflow: auto;
 }
 .card {
     margin-top: 30px;
 }
 
+.card-body {
+    overflow: hidden;
+}
 .card-header-image{
     color: white;
      background-color: #B7060E;
@@ -19,6 +23,16 @@
  .card-header-basic{
      border: none;
      background-color: white;
+     font-size: 24px;
+     font-family: 'Roboto',sans-serif;
+     
  }
+
+#foodWaste {
+    float: left;
+    border-radius: 5px;
+    margin: 0px 15px 15px 0px;
+}
+
 
 

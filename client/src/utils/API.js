@@ -33,12 +33,12 @@ export default {
     // Save a food item to inventory
     saveFoodItem: foodData => {
         console.log( 'saving to inventory...' );
-        return axios.post( '/api/inventory', foodData );
+        return axios.post( '/api/Inventory', foodData );
     },
 
     getInventory: () => {
         console.log( 'getting inventory...' );
-        return axios.get('/api/inventory');
+        return axios.get('/api/Inventory');
     },
 
     deleteFoodItem: id => {

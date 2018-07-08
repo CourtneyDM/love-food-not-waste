@@ -2,11 +2,11 @@
     "name": "client",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://localhost:3001",
     "dependencies": {
         "axios": "^0.18.0",
         "dotenv": "^6.0.0",
         "momentjs": "^2.0.0",
+        "rc-table": "^6.1.15",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
         "react-router-dom": "^4.3.1",

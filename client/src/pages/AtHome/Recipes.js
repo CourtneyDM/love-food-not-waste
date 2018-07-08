@@ -8,7 +8,6 @@ class Recipes extends Component {
                 <CardDeck>
                     <CardBasic
                         header='Test'>
-                        <p>This is where you can search for recipes</p>
                     </CardBasic>
                 </CardDeck>
             </div>
