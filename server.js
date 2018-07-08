@@ -10,6 +10,21 @@ const app = express();
 // Configure PORT
 const PORT = process.env.PORT || 3001;
 
+// Setup connection to MongoDB
+const databaseUri = 'mongodb://localhost:27017/wasteNot';
+
+if ( process.env.MONGODB_URI ) {
+    mongoose.connect( process.env.MONGODB_URI );
+}
+else {
+    mongoose.connect( databaseUri, { useNewUrlParser: true } );
+    // mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/wasteNot', { useNewUrlParser: true } );
+}
+
+const db = mongoose.connection;
+db.on( 'error', err => console.log( `Mongoose error: ${err}` ) );
+db.once( 'open', () => console.log( 'Mongoose connection successful.' ) );
+
 // Configure Body-Parser
 app.use( bodyParser.urlencoded( { extended: true } ) );
 app.use( bodyParser.json() );
@@ -21,10 +36,6 @@ if ( process.env.NODE_ENV === 'production' ) {
 
 // Configure routes
 app.use( routes );
-
-// Setup connection to MongoDB
-// mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/wasteNot', { useNewUrlParser: true } );
-mongoose.connect( 'mongodb://localhost:27017/wasteNot', { useNewUrlParser: true } );
 
 // Start Server...
 app.listen( PORT, () => console.log( `Express server listening on PORT ${PORT}` ) );
