@@ -28,6 +28,7 @@ export class SignUpForm extends Component {
     handleClick = event => {
         event.preventDefault();
         alert( 'Clicked' );
+        // TODO: create functionality to handle form submission
     }
 
     handleInputChange = event => {
