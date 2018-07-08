@@ -2,7 +2,16 @@ import React from 'react';
 
 export const Input = props => (
     <React.Fragment>
-        <label htmlFor={ props.id }>{ props.label }</label>
-        <input type={ props.type } className={ props.className } id={ props.id } />
+        <div className='form-group'>
+            <label htmlFor={ props.name }>{ props.label }</label>
+            <input
+                name={ props.name }
+                type={ props.type }
+                className={ props.className }
+                placeholder={ props.placeholder }
+                onChange={ props.onChange } />
+        </div>
+
+
     </React.Fragment>
 );
