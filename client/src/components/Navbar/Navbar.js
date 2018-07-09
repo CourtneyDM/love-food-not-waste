@@ -19,8 +19,8 @@ const Navbar = () => (
          What's the Problem?
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="/Inventory">Food Waste</a>
-          <a className="dropdown-item" href="/Recipes">Hunger</a>
+          <a className="dropdown-item" href="/Educate/FoodWaste">Food Waste</a>
+          <a className="dropdown-item" href="/Educate/Hunger">Hunger</a>
         </div>
       </li>
 
@@ -40,8 +40,9 @@ const Navbar = () => (
           Get Involved
         </a>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a className="dropdown-item" href="/Donate">Donate</a>
-          <a className="dropdown-item" href="/Pickup">Pickup</a>
+          <a className="dropdown-item" href="/GetInvolved/FoodSupplier">Donate</a>
+          <a className="dropdown-item" href="/GetInvolved/Individual">Pickup</a>
+          <a className="dropdown-item" href="/GetInvolved/Resources">Resources</a>
         </div>
       </li>
 

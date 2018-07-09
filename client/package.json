@@ -2,6 +2,19 @@
     "name": "client",
     "version": "0.1.0",
     "private": true,
+<<<<<<< HEAD
+=======
+    "engines": {
+        "npm": "6.1.0",
+        "node": "8.11.0"
+    },
+    "proxy": {
+        "/api": {
+            "target": "http://localhost:3001",
+            "secure": "false"
+        }
+    },
+>>>>>>> 26bd0fde408228971273b469e426ee2586e09a35
     "dependencies": {
         "axios": "^0.18.0",
         "dotenv": "^6.0.0",
