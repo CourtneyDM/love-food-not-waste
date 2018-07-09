@@ -38,7 +38,7 @@ export default {
 
     getInventory: () => {
         console.log( 'getting inventory...' );
-        return axios.get( '/api/Inventory' );
+        return axios.get( '/api/inventory' );
     },
 
     deleteFoodItem: id => {
