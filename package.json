@@ -2,6 +2,12 @@
     "name": "waste-not",
     "version": "0.1.0",
     "private": true,
+    "proxy": {
+        "/api": {
+            "target": "http://localhost:3001",
+            "secure": "false"
+        }
+    },
     "dependencies": {
         "body-parser": "^1.18.3",
         "concurrently": "^3.6.0",

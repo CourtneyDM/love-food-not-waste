@@ -4,14 +4,15 @@
     "private": true,
     "proxy": {
         "/api": {
-            "target": "http://localhost:3001",
-            "secure": false
+            "target": "http://localhost:3002",
+            "secure": "false"
         }
     },
     "dependencies": {
         "axios": "^0.18.0",
         "dotenv": "^6.0.0",
         "momentjs": "^2.0.0",
+        "rc-table": "^6.1.15",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
         "react-router-dom": "^4.3.1",
