@@ -5,7 +5,7 @@
   "main": "server.js",
   "engines": {
     "npm": "5.6.0",
-    "node": "8.9.4"
+    "node": "8.11.0"
   },
   "proxy": {
     "/api": {
