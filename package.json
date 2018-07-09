@@ -2,13 +2,6 @@
   "name": "waste-not",
   "version": "0.1.0",
   "private": true,
-  "main": "server.js",
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:3001",
-      "secure": false
-    }
-  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.0",
@@ -22,18 +15,9 @@
     "unirest": "^0.5.1"
   },
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd client && npm run start",
-    "install": "cd client && yarn install",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }

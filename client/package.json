@@ -2,18 +2,20 @@
     "name": "client",
     "version": "0.1.0",
     "private": true,
-    
+    "engines": {
+        "npm": "6.1.0",
+        "node": "8.11.0"
+    },
     "proxy": {
         "/api": {
             "target": "http://localhost:3001",
-            "secure": false
+            "secure": "false"
         }
     },
     "dependencies": {
         "axios": "^0.18.0",
         "dotenv": "^6.0.0",
         "momentjs": "^2.0.0",
-        "rc-table": "^6.1.15",
         "react": "^16.4.1",
         "react-dom": "^16.4.1",
         "react-router-dom": "^4.3.1",
