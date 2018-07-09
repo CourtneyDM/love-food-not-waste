@@ -19,7 +19,6 @@ if ( MONGODB_URI ) {
 }
 else {
     mongoose.connect( databaseUri, { useNewUrlParser: true } );
-    // mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/wasteNot', { useNewUrlParser: true } );
 }
 
 const db = mongoose.connection;

@@ -38,11 +38,11 @@ export default {
 
     getInventory: () => {
         console.log( 'getting inventory...' );
-        return axios.get('/api/inventory');
+        return axios.get( '/api/Inventory' );
     },
 
     deleteFoodItem: id => {
         console.log( id );
-        return axios.delete('/api/inventory/' + id);
+        return axios.delete( '/api/inventory/' + id );
     }
 }
