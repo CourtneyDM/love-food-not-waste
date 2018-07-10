@@ -96,7 +96,7 @@ class Inventory extends Component {
                     <CardBasic
                         header='Food Inventory'>
                         <p>Do you know how long your food lasts?  <a href='http://time.com/3933554/food-waste/' target='_blank'>Americans waste over $640 per year </a> according to a recent survey by the American Chemistry Council.  Forgetting when your food expires or misinterpreting labels is a big contributer to food waste. </p>
-                        <img src='/assets/images/foodwaste.jpg' className='img-fluid' id='foodWaste' alt='Food Waste' width='200px' />
+                        <img src='/assets/images/foodwaste.jpg' className='img-fluid' id='foodWaste' alt='Food Waste' width='200px'/>
                         <p>We believe we can do better!  Use our food tracker to keep an inventory of items you have on hand.  When food is about to expire, check out our recipes to find out how you can use it before you lose it.</p>
 
                         <h5 className='text-center sectionHeader'>Your Saved Food</h5>
@@ -166,10 +166,15 @@ class Inventory extends Component {
                                     {this.state.brands.slice(0, this.state.limit).map((brand, index) => {
 
                                             const searchColumns = [{
-                                                itemName: brand.food_name,
+                                                itemName: brand.food_name,                
                                                 title: 'Item', dataIndex: 'itemName', key: 'itemName', width: 300,
                                             }, {
+                                                itemName: brand.brand_name,                
+                                                title: 'Brand', dataIndex: 'itemBrandName', key: 'itemBrandName', width: 300,
+                                            },{
                                                 title: 'Add to Inventory', dataIndex: '', key: 'operations', width: 300, render: () =>
+                                                    
+                                                    
                                                     <Button
                                                         text='Add'
                                                         className='btn btn-primary'
