@@ -26,6 +26,7 @@
         "start": "concurrently \"nodemon server.js\" \"npm run client\"",
         "build": "node scripts/build.js",
         "test": "react-scripts test --env=jsdom",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "heroku-postbuild": "cd client && npm install && npm run build"
     }
 }
