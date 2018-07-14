@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { CardDeck, CardBasic } from '../components/Card';
+import { CardDeck, CardBasic } from '../../components/Card';
 
-class Resources extends Component {
+class Inventory extends Component {
     render() {
         return (
             <div>
                 <CardDeck>
                     <CardBasic
-                        header='Page Not Found'>
-                        <p>404 Error:  The page you requested was not found.</p>
+                        header='Test'>
+                        <p>This is for the food inventory</p>
                     </CardBasic>
                 </CardDeck>
             </div>
@@ -16,4 +16,4 @@ class Resources extends Component {
     };
 };
 
-export default Resources;
+export default Inventory;

@@ -17,7 +17,7 @@ class Home extends Component {
                                 <a href='/Educate/FoodWaste' className="card-link">Why food waste is a big deal</a>
                             </ListItem>
                             <ListItem>
-                                 <a href='/Educate/Hunger' className="card-link">Hunger in America</a>
+                                <a href='/Educate/Hunger' className="card-link">Hunger in America</a>
                             </ListItem>
                         </List>
                     </CardWithImage>
@@ -29,7 +29,7 @@ class Home extends Component {
                     >
                         <List>
                             <ListItem>
-                                <a href='/AtHome/Inventory' className="card-link">Track your Food</a>
+                                <a href='/Home/Inventory' className="card-link">Track your Food</a>
                             </ListItem>
                             <ListItem>
                                 <a href='/Home/Recipes' className="card-link">Find Recipes</a>

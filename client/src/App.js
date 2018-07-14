@@ -4,6 +4,8 @@ import { Wrapper } from './components/Wrapper';
 import Jumbotron from './components/Jumbotron';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import FoodWaste from './pages/Educate/FoodWaste';
 import Hunger from './pages/Educate/Hunger';
 import Inventory from './pages/AtHome/Inventory';
@@ -33,6 +35,7 @@ const App = () => (
                     <Route exact path='/GetInvolved/Resources' component={Resources} />
                     <Route exact path='/Welcome' component={Landing} />
                     {/* <Route component={NoMatch} /> */}
+
                 </Switch>
             </div>
             <Footer />

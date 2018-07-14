@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import Moment from 'momentjs';
 import { Input, Button } from '../../components/Form';
+<<<<<<< HEAD
 import API from '../../utils/API'
 import InventoryItem from '../AtHome/InventoryItem'
 import { CardDeck, CardBasic } from '../../components/Card';
@@ -10,6 +11,11 @@ import './Inventory.css';
 
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
+=======
+import API from '../../utils/API';
+import InventoryItem from '../Inventory';
+import { CardDeck } from '../../components/Card';
+>>>>>>> courtney
 
 class Inventory extends Component {
     constructor(props) {
