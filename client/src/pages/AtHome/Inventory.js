@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import Moment from 'momentjs';
 import { Input, Button } from '../../components/Form';
-<<<<<<< HEAD
 import API from '../../utils/API'
 import InventoryItem from '../AtHome/InventoryItem'
 import { CardDeck, CardBasic } from '../../components/Card';
@@ -9,17 +8,12 @@ import { Section } from '../../components/Content';
 import './Inventory.css';
 
 
-const $ = require('jquery');
-$.DataTable = require('datatables.net');
-=======
-import API from '../../utils/API';
-import InventoryItem from '../Inventory';
-import { CardDeck } from '../../components/Card';
->>>>>>> courtney
+const $ = require( 'jquery' );
+$.DataTable = require( 'datatables.net' );
 
 class Inventory extends Component {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             barCode: '',
             itemName: '',
@@ -32,9 +26,9 @@ class Inventory extends Component {
             limit: 25
         }
 
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.saveFoodItem = this.saveFoodItem.bind(this);
+        this.handleInputChange = this.handleInputChange.bind( this );
+        this.handleClick = this.handleClick.bind( this );
+        this.saveFoodItem = this.saveFoodItem.bind( this );
     }
 
 
@@ -42,7 +36,7 @@ class Inventory extends Component {
     // Handle input field changes
     handleInputChange = event => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
+        this.setState( { [ name ]: value } );
     }
 
     // Handle button click
@@ -53,59 +47,59 @@ class Inventory extends Component {
 
     // Search API for specified food item
     getFoodDetails = query => {
-        API.getFoodDetails(query)
-            .then(results => {
-                this.setState({
+        API.getFoodDetails( query )
+            .then( results => {
+                this.setState( {
                     brands: results.data.branded,
-                });
-                console.log(this.state.brands);
-            })
-            .catch(error => { throw error });
+                } );
+                console.log( this.state.brands );
+            } )
+            .catch( error => { throw error } );
         // TODO: display results for failed request with status code 400
-    } 
+    }
 
     // Save food item to database
     saveFoodItem = foodData => {
-        console.log(foodData);
-        API.saveFoodItem(foodData)
-            .then(results => this.getInventory())
-            .catch(error => { throw error });
+        console.log( foodData );
+        API.saveFoodItem( foodData )
+            .then( results => this.getInventory() )
+            .catch( error => { throw error } );
     }
 
     render() {
 
-        
-        const tableSearch = $('#searchTable').DataTable();
+
+        const tableSearch = $( '#searchTable' ).DataTable();
         tableSearch.clear();
 
 
-        $(document).ready(function () {
-
-            
+        $( document ).ready( function () {
 
 
-            $('#searchTable').DataTable({
+
+
+            $( '#searchTable' ).DataTable( {
 
                 retrieve: true,
                 "columns": [
                     { "data": "item", "width": "30%" },
                     {
                         "data": "quantity", "width": "5%",
-                        "render": function (data) {
+                        "render": function ( data ) {
                             data = "<input className='quantityInput'></input>"
                             return data;
                         }
                     },
                     {
                         "data": "bestBy", "width": "5%",
-                        "render": function (data) {
+                        "render": function ( data ) {
                             data = "<input type='date' id='date' className='bestByInput'></input>"
                             return data;
                         }
                     },
                     {
                         "data": "add", "width": "5%",
-                        "render": function (data) {
+                        "render": function ( data ) {
 
                             data = "<button id='addButton'>" + data + "</button>";
 
@@ -114,12 +108,12 @@ class Inventory extends Component {
                     }
                 ]
 
-            })
+            } )
 
-        });
+        } );
 
-        $('#searchTable tbody').on('click', 'button', (event) => {
-            $('button').off("click"); // When the click is received, turn off the click handler
+        $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
+            $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
 
             event.stopPropagation();
             event.stopImmediatePropagation();
@@ -127,23 +121,23 @@ class Inventory extends Component {
             const button = event.currentTarget
 
 
-            const data = tableSearch.row(button.closest('tr')).data();
+            const data = tableSearch.row( button.closest( 'tr' ) ).data();
             const item = data.item;
-            const quantity = tableSearch.row(button.closest('tr')).nodes().to$().find('input').val()
-            const date = tableSearch.row(button.closest('tr')).nodes().to$().find('#date').val()
+            const quantity = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( 'input' ).val()
+            const date = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( '#date' ).val()
 
 
 
-            this.saveFoodItem({
+            this.saveFoodItem( {
                 itemName: item,
                 quantity: quantity,
                 bestByDate: date
-            })
-
-           
+            } )
 
 
-        })
+
+
+        } )
 
 
 
@@ -151,7 +145,7 @@ class Inventory extends Component {
 
 
             <React.Fragment>
-                {/* Section to display inventory */}
+                {/* Section to display inventory */ }
 
 
                 <CardDeck>
@@ -165,9 +159,9 @@ class Inventory extends Component {
                             <br />
                             <p>We believe we can do better!  Use our food tracker to keep an inventory of items you have on hand.  When food is about to expire, check out our recipes to find out how you can use it before you lose it.</p>
                         </div>
-                       
-                  
-                        {/* SEARCH FOR FOOD SECTION */}
+
+
+                        {/* SEARCH FOR FOOD SECTION */ }
                         <h5 className='text-center sectionHeader'>Add to your Inventory</h5>
 
                         <Input
@@ -175,17 +169,17 @@ class Inventory extends Component {
                             label='Item Name: '
                             name='itemName'
                             placeholder='Required'
-                            onChange={this.handleInputChange}>
+                            onChange={ this.handleInputChange }>
                             <Button
                                 className='btn btn-search'
                                 text='Search for Item'
-                                onClick={() => this.getFoodDetails(this.state.itemName)}
+                                onClick={ () => this.getFoodDetails( this.state.itemName ) }
                             />
                         </Input>
 
-                        {/* DISPLAY SEARCH RESULTS SECTION */}
+                        {/* DISPLAY SEARCH RESULTS SECTION */ }
 
-                        {!this.state.brands.length ? (
+                        { !this.state.brands.length ? (
 
 
                             <Section>
@@ -197,18 +191,18 @@ class Inventory extends Component {
                                     <h6 className='text-center sectionHeader'>Search Results</h6>
 
 
-                                    {/* Branded Foods */}
+                                    {/* Branded Foods */ }
 
 
-                                    {this.state.brands.slice(0, this.state.limit).map((brand, index) => {
+                                    { this.state.brands.slice( 0, this.state.limit ).map( ( brand, index ) => {
 
 
-                                        tableSearch.row.add({
+                                        tableSearch.row.add( {
                                             item: brand.food_name,
                                             quantity: 0,
                                             bestByDate: "",
                                             add: "Add"
-                                        }).draw();
+                                        } ).draw();
 
                                     }
                                     )
