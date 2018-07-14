@@ -2,12 +2,6 @@
     "name": "waste-not",
     "version": "0.1.0",
     "private": true,
-    "proxy": {
-        "/api": {
-            "target": "http://localhost:3001",
-            "secure": "false"
-        }
-    },
     "dependencies": {
         "ajv": "^6.5.2",
         "ajv-keywords": "^3.2.0",
