@@ -1,0 +1,10 @@
+.navbar {
+    background-color:#282828;
+    padding: 0px;
+    padding-left: 20px;
+}
+
+.navbar-toggler {
+    margin-top: -8px;
+    height: 30px;
+}
