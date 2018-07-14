@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import Moment from 'momentjs';
 import { Input, Button } from '../../components/Form';
-import API from '../../utils/API'
-import InventoryItem from '../Inventory'
+import API from '../../utils/API';
+import InventoryItem from '../Inventory';
 import { CardDeck } from '../../components/Card';
 
 class Inventory extends Component {

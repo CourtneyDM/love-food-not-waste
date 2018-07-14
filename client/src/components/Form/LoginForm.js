@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Button } from '../Form';
+import axios from 'axios';
 import './Form.css';
 
 export class LoginForm extends Component {
@@ -15,15 +16,24 @@ export class LoginForm extends Component {
 
     }
     componentDidMount() {
-        this.setState = {
-            userName: this.state.userName,
-            password: this.state.password
-        }
+        // this.setState = {
+        //     userName: this.state.userName,
+        //     password: this.state.password
+        // }
     }
 
     handleClick = event => {
         event.preventDefault();
-        alert( 'Clicked' );
+        return axios( {
+            method: 'GET',
+            url: '/api/auth/google',
+            headers: {
+                'Access-Control-Allow-Origin': '/api/user/google'
+            }
+        } );
+        // axios.get( '/api/auth/google', {
+        //     'Access-Control-Allow-Origin': '*'
+        // } );
         // TODO: Create functionality to handle form submission
     }
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Wrapper, WrapperImage } from './components/Wrapper';
+import { Wrapper } from './components/Wrapper';
 import Jumbotron from './components/Jumbotron';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import FoodWaste from './pages/Educate/FoodWaste';
 import Hunger from './pages/Educate/Hunger';
 import Inventory from './pages/AtHome/Inventory';
@@ -20,17 +22,19 @@ const App = () => (
         <Wrapper>
             <Navbar />
             <Jumbotron />
-            <div class='siteContent'>
+            <div className='siteContent'>
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path='/Educate/FoodWaste' component={FoodWaste} />
-                    <Route exact path='/Educate/Hunger' component={Hunger} />
-                    <Route exact path='/Home/Inventory' component={Inventory} />
-                    <Route exact path='/Home/Recipes' component={Recipes} />
-                    <Route exact path='/GetInvolved/FoodSupplier' component={FoodSupplier} />
-                    <Route exact path='/GetInvolved/Individual' component={Individual} />
-                    <Route exact path='/GetInvolved/Resources' component={Resources} />
-                    <Route component={NoMatch} />
+                    <Route exact path='/' component={ Home } />
+                    <Route exact path='/Login' component={ Login } />
+                    <Route exact path='/SignUp' component={ Signup } />
+                    <Route exact path='/Educate/FoodWaste' component={ FoodWaste } />
+                    <Route exact path='/Educate/Hunger' component={ Hunger } />
+                    <Route exact path='/Home/Inventory' component={ Inventory } />
+                    <Route exact path='/Home/Recipes' component={ Recipes } />
+                    <Route exact path='/GetInvolved/FoodSupplier' component={ FoodSupplier } />
+                    <Route exact path='/GetInvolved/Individual' component={ Individual } />
+                    <Route exact path='/GetInvolved/Resources' component={ Resources } />
+                    <Route component={ NoMatch } />
                 </Switch>
             </div>
             <Footer />
