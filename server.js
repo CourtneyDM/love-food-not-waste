@@ -15,7 +15,7 @@ const passportSetup = require( './config/passport-setup' );
 const app = express();
 
 // Configure PORT
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 // Setup connection to MongoDB for Heroku
 const databaseUri = keys.databaseURI.host;
