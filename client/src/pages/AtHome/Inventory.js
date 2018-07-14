@@ -5,6 +5,8 @@ import API from '../../utils/API'
 import InventoryItem from '../AtHome/InventoryItem'
 import { CardDeck, CardBasic } from '../../components/Card';
 import { Section } from '../../components/Content';
+import './Inventory.css';
+
 
 const $ = require('jquery');
 $.DataTable = require('datatables.net');
@@ -21,13 +23,14 @@ class Inventory extends Component {
             bestByDate: '',
             brands: [],
             saved: [],
-            limit: 5
+            limit: 25
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-
+        this.saveFoodItem = this.saveFoodItem.bind(this);
     }
+
 
     componentDidMount() {
         // Get the items saved in inventory database
@@ -45,6 +48,7 @@ class Inventory extends Component {
         event.preventDefault();
         alert(this.state.itemName);
     }
+
 
     // Search API for specified food item
     getFoodDetails = query => {
@@ -88,14 +92,75 @@ class Inventory extends Component {
             .catch(error => { throw error });
     }
 
+
+
     render() {
-        const table = $('#searchTable').DataTable();
+
+
+
+
+        const tableSearch = $('#searchTable').DataTable();
+
+
+        tableSearch.clear();
 
         $(document).ready(function () {
-            $('#searchTable').DataTable();
+
+
+            $('#searchTable').DataTable({
+
+                retrieve: true,
+                "columns": [
+                    { "data": "item", "width": "40%" },
+                    {
+                        "data": "quantity", "width": "5%",
+                        "render": function (data) {
+                            data = "<input className='quantityInput'></input>"
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "add", "width": "10%",
+                        "render": function (data) {
+
+                            data = "<button id='addButton'>"+data+"</button>";
+
+                            return data;
+                        }
+                    }
+                ]
+
+            })
+
         });
 
+        $('#searchTable tbody').on('click', 'button', (event) => {
+            $('button').off("click"); // When the click is received, turn off the click handler
+
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            const button = event.currentTarget
+
+
+            const data = tableSearch.row(button.closest('tr')).data();
+            const item = data.item;
+            const quantity = tableSearch.row(button.closest('tr')).nodes().to$().find('input').val()
+           
+
+            this.saveFoodItem({
+                itemName: item,
+                quantity: quantity,
+                bestByDate: '20181231'
+            })
+
+        })
+
+
+
         return (
+
+
             <React.Fragment>
                 {/* Section to display inventory */}
 
@@ -180,52 +245,32 @@ class Inventory extends Component {
                                     {this.state.brands.slice(0, this.state.limit).map((brand, index) => {
 
 
-                                        table.row.add([
-                                           brand.food_name,
-                                           "Link"
-                                        ]).draw();
-
-                                        const searchData = [];
-
-
-                                        searchData.push({
-                                            itemName: brand.food_name, itemBrandName: brand.brand_name, quantity: 1, bestByDate: '20181231', key: { index }
-                                            , addItem:
-
-
-                                                <Button
-                                                    text='Add'
-                                                    className='btn btn-primary'
-                                                    onClick={() => this.saveFoodItem({
-                                                        itemName: brand.food_name,
-                                                        itemBrandName: brand.brand_name,
-                                                        quantity: 1,
-                                                        bestByDate: '20181231'
-                                                    })}
-                                                />
-                                        });
-
-
+                                        tableSearch.row.add({
+                                            item: brand.food_name,
+                                            quantity: 0,
+                                            add: "Add"
+                                        }).draw();
 
                                     }
                                     )
 
-                                    }
-                                    <table id='searchTable' class="display">
-                                        <thead>
-                                            <tr>
-                                                <th>Item</th>
-                                                <th>Add</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Apple</td>
-                                                <td>Add</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
 
+
+
+                                    }
+                                    <div id='tableContainer' className='container-fluid'>
+                                        <table id='searchTable' className="display">
+                                            <thead>
+                                                <tr>
+                                                    <th className="item_name">Item</th>
+                                                    <th className="quantity">Quantity</th>
+                                                    <th className="add">Add </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
 
                                 </React.Fragment>

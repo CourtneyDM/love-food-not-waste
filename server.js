@@ -8,7 +8,7 @@ const routes = require( './routes' );
 const app = express();
 
 // Configure PORT
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 5000;
 
 // Setup connection to MongoDB for Heroku
 const databaseUri = 'mongodb://localhost:27017/wasteNot';
