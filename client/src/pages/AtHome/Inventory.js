@@ -111,7 +111,7 @@ class Inventory extends Component {
 
                 retrieve: true,
                 "columns": [
-                    { "data": "item", "width": "40%" },
+                    { "data": "item", "width": "30%" },
                     {
                         "data": "quantity", "width": "5%",
                         "render": function (data) {
@@ -120,7 +120,14 @@ class Inventory extends Component {
                         }
                     },
                     {
-                        "data": "add", "width": "10%",
+                        "data": "bestBy", "width": "5%",
+                        "render": function (data) {
+                            data = "<input type='date' id='date' className='bestByInput'></input>"
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "add", "width": "5%",
                         "render": function (data) {
 
                             data = "<button id='addButton'>"+data+"</button>";
@@ -146,12 +153,14 @@ class Inventory extends Component {
             const data = tableSearch.row(button.closest('tr')).data();
             const item = data.item;
             const quantity = tableSearch.row(button.closest('tr')).nodes().to$().find('input').val()
-           
+            const date = tableSearch.row(button.closest('tr')).nodes().to$().find('#date').val()
+
+            
 
             this.saveFoodItem({
                 itemName: item,
                 quantity: quantity,
-                bestByDate: '20181231'
+                bestByDate: date
             })
 
         })
@@ -248,6 +257,7 @@ class Inventory extends Component {
                                         tableSearch.row.add({
                                             item: brand.food_name,
                                             quantity: 0,
+                                            bestByDate:"",
                                             add: "Add"
                                         }).draw();
 
@@ -264,6 +274,7 @@ class Inventory extends Component {
                                                 <tr>
                                                     <th className="item_name">Item</th>
                                                     <th className="quantity">Quantity</th>
+                                                    <th className="bestByDate">Best By</th>
                                                     <th className="add">Add </th>
                                                 </tr>
                                             </thead>
