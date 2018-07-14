@@ -96,15 +96,40 @@ class Inventory extends Component {
 
     render() {
 
-
-
-
+        const tableSaved = $('#savedTable').DataTable();
         const tableSearch = $('#searchTable').DataTable();
-
-
         tableSearch.clear();
 
+
         $(document).ready(function () {
+
+            $('#savedTable').DataTable({
+
+                retrieve: true,
+                "columns": [
+                    { "data": "item", "width": "30%" },
+                    {
+                        "data": "quantity", "width": "5%",
+                        
+                    },
+                    {
+                        "data": "bestBy", "width": "5%"
+                       
+                    },
+                    {
+                        "data": "remove", "width": "5%",
+                        "render": function (data) {
+
+                            data = "<button id='removeButton'>Remove</button>";
+
+                            return data;
+                        }
+                    }
+                ]
+
+            })
+
+        
 
 
             $('#searchTable').DataTable({
@@ -130,7 +155,7 @@ class Inventory extends Component {
                         "data": "add", "width": "5%",
                         "render": function (data) {
 
-                            data = "<button id='addButton'>"+data+"</button>";
+                            data = "<button id='addButton'>" + data + "</button>";
 
                             return data;
                         }
@@ -155,13 +180,20 @@ class Inventory extends Component {
             const quantity = tableSearch.row(button.closest('tr')).nodes().to$().find('input').val()
             const date = tableSearch.row(button.closest('tr')).nodes().to$().find('#date').val()
 
-            
+
 
             this.saveFoodItem({
                 itemName: item,
                 quantity: quantity,
                 bestByDate: date
             })
+
+            tableSaved.row.add({
+                item: item,
+                quantity: quantity,
+                bestBy: date,
+            }).draw();
+
 
         })
 
@@ -188,7 +220,24 @@ class Inventory extends Component {
                         <h5 className='text-center sectionHeader'>Your Saved Food</h5>
                         <Section>
 
-                            {!this.state.saved.length ? (
+                            <div id='tableContainer' className='container-fluid'>
+                                <table id='savedTable' className="display">
+                                    <thead>
+                                        <tr>
+                                            <th className="item_name">Item</th>
+                                            <th className="quantity">Quantity</th>
+                                            <th className="bestByDate">Best By</th>
+                                            <th className="delete">Remove </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                            {/* {!this.state.saved.length ? (
                                 <Section>
                                     <br />
                                     <p className='text-center'><i>There are no items in your inventory.</i></p></Section>
@@ -213,8 +262,8 @@ class Inventory extends Component {
                                                 </InventoryItem>
                                             )
                                         })}
-                                    </Section>
-                                )}
+                                    </Section> */}
+                                {/* )} */}
                         </Section>
 
 
@@ -257,7 +306,7 @@ class Inventory extends Component {
                                         tableSearch.row.add({
                                             item: brand.food_name,
                                             quantity: 0,
-                                            bestByDate:"",
+                                            bestByDate: "",
                                             add: "Add"
                                         }).draw();
 
