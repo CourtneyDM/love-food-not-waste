@@ -61,7 +61,7 @@ class Inventory extends Component {
     saveFoodItem = foodData => {
         console.log( foodData );
         API.saveFoodItem( foodData )
-            .then( results => this.getInventory() )
+            // .then( results => this.getInventory() )
             .catch( error => { throw error } );
     }
 
