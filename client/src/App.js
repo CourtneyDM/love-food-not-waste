@@ -11,6 +11,7 @@ import Recipes from './pages/AtHome/Recipes';
 import FoodSupplier from './pages/GetInvolved/FoodSupplier';
 import Individual from './pages/GetInvolved/Individual';
 import Resources from './pages/GetInvolved/Resources';
+import Landing from './pages/Landing';
 import NoMatch from './pages/NoMatch';
 import Footer from './components/Footer';
 
@@ -30,6 +31,7 @@ const App = () => (
                     <Route exact path='/GetInvolved/FoodSupplier' component={FoodSupplier} />
                     <Route exact path='/GetInvolved/Individual' component={Individual} />
                     <Route exact path='/GetInvolved/Resources' component={Resources} />
+                    <Route exact path='/Welcome' component={Landing} />
                     {/* <Route component={NoMatch} /> */}
                 </Switch>
             </div>
