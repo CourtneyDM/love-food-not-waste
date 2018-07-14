@@ -30,13 +30,6 @@ export class SignUpForm extends Component {
             }
         } ).then( res => console.log( res ) );
 
-        // return axios.post( '/api/user/signup', {
-        //     username: this.state.username,
-        //     email: this.state.email,
-        //     password: this.state.password
-        // } ).then( res => console.log( res ) );
-
-        alert( `Hello ${this.state.username}, I see that your email address is ${this.state.email}` );
         // TODO: create functionality to handle form submission
     }
 

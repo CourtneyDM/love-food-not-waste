@@ -31,7 +31,7 @@ const Navbar = () => (
         </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a className="dropdown-item" href="/Home/Inventory">Food Inventory</a>
-                        <a className="dropdown-item" href="/Recipes">What can I make?</a>
+                        <a className="dropdown-item" href="/Home/Recipes">What can I make?</a>
                     </div>
                 </li>
 

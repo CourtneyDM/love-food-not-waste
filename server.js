@@ -21,6 +21,7 @@ const PORT = process.env.PORT || 3001;
 const databaseUri = keys.databaseURI.host;
 const MONGODB_URI = process.env.MONGODB_URI || keys.mongodb.dbURI;
 
+// Connect to MongoDB based on environment
 if ( MONGODB_URI ) {
     mongoose.connect( MONGODB_URI, { useNewUrlParser: true } );
 }

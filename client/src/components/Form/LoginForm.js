@@ -9,17 +9,9 @@ export class LoginForm extends Component {
         this.state = {
             userName: '',
             password: ''
-        }
-
+        };
         this.handleClick = this.handleClick.bind( this );
         this.handleInputChange = this.handleInputChange.bind( this );
-
-    }
-    componentDidMount() {
-        // this.setState = {
-        //     userName: this.state.userName,
-        //     password: this.state.password
-        // }
     }
 
     handleClick = event => {
@@ -31,9 +23,6 @@ export class LoginForm extends Component {
                 'Access-Control-Allow-Origin': '/api/user/google'
             }
         } );
-        // axios.get( '/api/auth/google', {
-        //     'Access-Control-Allow-Origin': '*'
-        // } );
         // TODO: Create functionality to handle form submission
     }
 
@@ -41,7 +30,6 @@ export class LoginForm extends Component {
         event.preventDefault();
         const { name, value } = event.target;
         this.setState( { [ name ]: value } );
-
     }
 
     render() {
@@ -52,13 +40,13 @@ export class LoginForm extends Component {
                     <div className='form-group'>
                         <Input
                             label='Username'
-                            id='userName'
+                            name='userName'
                             type='text'
                             className='form-control'
                         />
                         <Input
                             label='Password'
-                            id='password'
+                            name='password'
                             type='password'
                             className='form-control'
                         />
