@@ -1,0 +1,13 @@
+#addButton{
+    margin-top: 0;
+    background-color: #38BE7F;
+    color: white;
+}
+
+#tableContainer {
+    width: 80%;
+}
+
+.quantityInput {
+    width: 75px;
+}

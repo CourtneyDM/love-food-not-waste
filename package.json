@@ -2,6 +2,12 @@
     "name": "waste-not",
     "version": "0.1.0",
     "private": true,
+    "proxy": {
+        "/api": {
+            "target": "http://localhost:3001",
+            "secure": "false"
+        }
+    },
     "dependencies": {
         "body-parser": "^1.18.3",
         "concurrently": "^3.6.0",
@@ -22,5 +28,9 @@
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject",
         "heroku-postbuild": "cd client && npm install && npm run build"
+    },
+    "devDependencies": {
+        "datatables.net": "^1.10.19",
+        "jquery": "^3.3.1"
     }
 }

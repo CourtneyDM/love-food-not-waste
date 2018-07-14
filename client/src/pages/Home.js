@@ -29,7 +29,7 @@ class Home extends Component {
                     >
                         <List>
                             <ListItem>
-                                <a href='/Home/Inventory' className="card-link">Track your Food</a>
+                                <a href='/AtHome/Inventory' className="card-link">Track your Food</a>
                             </ListItem>
                             <ListItem>
                                 <a href='/Home/Recipes' className="card-link">Find Recipes</a>
