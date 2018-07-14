@@ -156,7 +156,6 @@ class Inventory extends Component {
                 ]
 
             } )
-
         } );
 
         $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
@@ -303,13 +302,7 @@ class Inventory extends Component {
                                             add: "Add"
                                         } ).draw();
 
-                                    }
-                                    )
-
-
-
-
-                                    }
+                                    } ) }
                                     <div id='tableContainer' className='container-fluid'>
                                         <table id='searchTable' className="display">
                                             <thead>
