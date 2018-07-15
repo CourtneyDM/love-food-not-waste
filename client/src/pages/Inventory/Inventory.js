@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+// import Moment from 'momentjs';
 import { Input, Button } from '../../components/Form';
 import API from '../../utils/API'
-import InventoryItem from './InventoryItem'
-import { CardDeck } from '../../components/Card';
+import InventoryItem from '../AtHome/InventoryItem'
+import { CardDeck, CardBasic } from '../../components/Card';
+import { Section } from '../../components/Content';
+import './Inventory.css';
+
+
+const $ = require( 'jquery' );
+$.DataTable = require( 'datatables.net' );
 
 class Inventory extends Component {
     constructor( props ) {
@@ -16,13 +23,14 @@ class Inventory extends Component {
             bestByDate: '',
             brands: [],
             saved: [],
-            limit: 5
+            limit: 25
         }
 
         this.handleInputChange = this.handleInputChange.bind( this );
         this.handleClick = this.handleClick.bind( this );
-
+        this.saveFoodItem = this.saveFoodItem.bind( this );
     }
+
 
     componentDidMount() {
         // Get the items saved in inventory database
@@ -40,6 +48,7 @@ class Inventory extends Component {
         event.preventDefault();
         alert( this.state.itemName );
     }
+
 
     // Search API for specified food item
     getFoodDetails = query => {
@@ -83,104 +92,257 @@ class Inventory extends Component {
             .catch( error => { throw error } );
     }
 
+
+
     render() {
+
+        const tableSaved = $( '#savedTable' ).DataTable();
+        const tableSearch = $( '#searchTable' ).DataTable();
+        tableSearch.clear();
+
+
+        $( document ).ready( function () {
+
+            $( '#savedTable' ).DataTable( {
+
+                retrieve: true,
+                "columns": [
+                    { "data": "item", "width": "30%" },
+                    {
+                        "data": "quantity", "width": "5%",
+
+                    },
+                    {
+                        "data": "bestBy", "width": "5%"
+
+                    },
+                    {
+                        "data": "remove", "width": "5%",
+                        "render": function ( data ) {
+
+                            data = "<button id='removeButton'>Remove</button>";
+
+                            return data;
+                        }
+                    }
+                ]
+
+            } )
+
+
+
+
+            $( '#searchTable' ).DataTable( {
+
+                retrieve: true,
+                "columns": [
+                    { "data": "item", "width": "30%" },
+                    {
+                        "data": "quantity", "width": "5%",
+                        "render": function ( data ) {
+                            data = "<input className='quantityInput'></input>"
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "bestBy", "width": "5%",
+                        "render": function ( data ) {
+                            data = "<input type='date' id='date' className='bestByInput'></input>"
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "add", "width": "5%",
+                        "render": function ( data ) {
+
+                            data = "<button id='addButton'>" + data + "</button>";
+
+                            return data;
+                        }
+                    }
+                ]
+
+            } )
+
+        } );
+
+        $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
+            $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
+
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            const button = event.currentTarget
+
+
+            const data = tableSearch.row( button.closest( 'tr' ) ).data();
+            const item = data.item;
+            const quantity = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( 'input' ).val()
+            const date = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( '#date' ).val()
+
+
+
+            this.saveFoodItem( {
+                itemName: item,
+                quantity: quantity,
+                bestByDate: date
+            } )
+
+            tableSaved.row.add( {
+                item: item,
+                quantity: quantity,
+                bestBy: date,
+            } ).draw();
+
+
+        } )
+
+
+
         return (
+
+
             <React.Fragment>
                 {/* Section to display inventory */ }
-                <h5 className='text-center'>Inventory</h5>
-                { !this.state.saved.length ? (
-                    <CardDeck>
-                        <InventoryItem
-                            itemName='No Saved Food Items'
-                            itemDescription='Your saved foods will be displayed in cards like this one' />
-                    </CardDeck>
-                ) : (
-                        <CardDeck>
-                            { this.state.saved.map( item => {
-                                return (
-                                    <InventoryItem
-                                        key={ item._id }
-                                        itemName={ item.itemName }
-                                        itemBrandName={ item.itemBrandName } >
-                                        <span>
-                                            <Button
-                                                text='Delete from Inventory'
-                                                className='btn btn-danger'
-                                                onClick={ () => this.deleteItem( item._id ) }
-                                            />
-                                        </span>
-                                    </InventoryItem>
-                                )
-                            } ) }
-                        </CardDeck>
-                    ) }
-                <hr />
-                {/* SEARCH FOR FOOD SECTION */ }
-                <div>
-                    <h4 className='text-center'>Get Food Item</h4>
 
-                    <Input
-                        label='Item Name: '
-                        name='itemName'
-                        placeholder='Required'
-                        onChange={ this.handleInputChange } />
-                    <Button
-                        className='btn btn-success'
-                        text='Search for Item'
-                        onClick={ () => this.getFoodDetails( this.state.itemName ) } />
 
-                </div>
-                {/* DISPLAY SEARCH RESULTS SECTION */ }
+                <CardDeck>
+                    <CardBasic
+                        header='Food Inventory'>
+                        <div className='container-fluid'>
+                            <figure>
+                                <img src='/assets/images/foodwaste.jpg' id='foodWaste' alt='Food Waste' width='200px' />
+                            </figure>
+                            <p>Do you know how long your food lasts?  <a href='http://time.com/3933554/food-waste/' target='_blank'>Americans waste over $640 per year </a> according to a recent survey by the American Chemistry Council.  Forgetting when your food expires or misinterpreting labels is a big contributer to food waste. </p>
+                            <br />
+                            <p>We believe we can do better!  Use our food tracker to keep an inventory of items you have on hand.  When food is about to expire, check out our recipes to find out how you can use it before you lose it.</p>
+                        </div>
+                        <h5 className='text-center sectionHeader'>Your Saved Food</h5>
+                        <Section>
 
-                { !this.state.brands.length ? (
-                    <CardDeck>
-                        <InventoryItem
-                            itemName='Nothing to see here...'
-                            itemBrandName='Please revise your search and try again' />
-                    </CardDeck>
-                ) : (
-                        <React.Fragment>
-                            <h5> Your Search Results</h5>
-                            {/* Branded Foods */ }
+                            <div id='tableContainer' className='container-fluid'>
+                                <table id='savedTable' className="display">
+                                    <thead>
+                                        <tr>
+                                            <th className="item_name">Item</th>
+                                            <th className="quantity">Quantity</th>
+                                            <th className="bestByDate">Best By</th>
+                                            <th className="delete">Remove </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                            {
-                                this.state.brands.slice( 0, this.state.limit ).map( ( brand, index ) => {
-                                    return (
-                                        <CardDeck>
-                                            <InventoryItem
-                                                key={ index }
-                                                itemName={ brand.food_name }
-                                                itemBrandName={ brand.brand_name_item_name }
-                                                calories={ brand.nf_calories }
-                                                serving_qty={ brand.serving_qty }
-                                                serving_unit={ brand.serving_unit }>
 
-                                                <span>
-                                                    <Button
-                                                        text='Add to Inventory'
-                                                        className='btn btn-primary'
-                                                        onClick={ () => this.saveFoodItem( {
-                                                            itemName: brand.food_name,
-                                                            itemBrandName: brand.brand_name,
-                                                            quantity: 1,
-                                                            bestByDate: '20181231'
-                                                        } ) }
-                                                    />
-                                                </span>
 
-                                            </InventoryItem>
-                                        </CardDeck>
+                            {/* {!this.state.saved.length ? (
+                                <Section>
+                                    <br />
+                                    <p className='text-center'><i>There are no items in your inventory.</i></p></Section>
+                            ) : (
+                                    <Section>
+                                        {this.state.saved.map(item => {
+                                            return (
+                                                <InventoryItem
+                                                    key={item._id}
+                                                    itemName={item.itemName}
+                                                    itemBrandName={item.itemBrandName} >
+                                                    <span>
+                                                        <Button
+                                                            text='Delete from Inventory'
+                                                            className='btn btn-danger'
+                                                            onClick={() => this.deleteItem(item._id)}
+                                                        />
+                                                    </span>
+                                                </InventoryItem>
+                                            )
+                                        })}
+                                    </Section> */}
+                            {/* )} */ }
+                        </Section>
+
+
+                        {/* SEARCH FOR FOOD SECTION */ }
+                        <h5 className='text-center sectionHeader'>Add to your Inventory</h5>
+
+                        <Input
+
+                            label='Item Name: '
+                            name='itemName'
+                            placeholder='Required'
+                            onChange={ this.handleInputChange }>
+                            <Button
+                                className='btn btn-search'
+                                text='Search for Item'
+                                onClick={ () => this.getFoodDetails( this.state.itemName ) }
+                            />
+                        </Input>
+
+                        {/* DISPLAY SEARCH RESULTS SECTION */ }
+
+                        { !this.state.brands.length ? (
+
+
+                            <Section>
+                                <br />
+                                <p className='text-center'><i>Search for an item to add to your inventory.</i></p></Section>
+                        ) : (
+                                <React.Fragment>
+
+                                    <h6 className='text-center sectionHeader'>Search Results</h6>
+
+
+                                    {/* Branded Foods */ }
+
+
+                                    { this.state.brands.slice( 0, this.state.limit ).map( ( brand, index ) => {
+
+
+                                        tableSearch.row.add( {
+                                            item: brand.food_name,
+                                            quantity: 0,
+                                            bestByDate: "",
+                                            add: "Add"
+                                        } ).draw();
+
+                                    }
                                     )
-                                } )
-                            }
 
-                        </React.Fragment>
-                    )
-                }
+
+
+
+                                    }
+                                    <div id='tableContainer' className='container-fluid'>
+                                        <table id='searchTable' className="display">
+                                            <thead>
+                                                <tr>
+                                                    <th className="item_name">Item</th>
+                                                    <th className="quantity">Quantity</th>
+                                                    <th className="bestByDate">Best By</th>
+                                                    <th className="add">Add </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </React.Fragment>
+                            )
+                        }
+
+                    </CardBasic>
+                </CardDeck>
             </React.Fragment>
-        );
+        )
     }
+
+
 }
+
 export default Inventory;
 
 // TODO: Setup the InventoryItem component to display the search results from the API for both brand names and common foods
