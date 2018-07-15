@@ -8,9 +8,7 @@
 
 # production
 /build
-/config
-./config/keys.js
-./config/passport-setup.js
+# /config
 
 # misc
 .DS_Store
