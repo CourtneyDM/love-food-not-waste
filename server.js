@@ -46,7 +46,7 @@ if ( process.env.NODE_ENV === 'production' ) {
 // Configure Cookie Session
 app.use( cookieSession( {
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [ process.env.cookieKey || keys.session.cookieKey ]
+    keys: [ keys.session.cookieKey ]
 } ) );
 
 // Initialize Passort

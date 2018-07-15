@@ -15,8 +15,8 @@ const UserSchema = new Schema( {
         type: String,
         unique: true,
         trim: true,
-        required: true
-        // match: [ /.+@+\..+/, 'Please enter a valid email address.' ]
+        required: true,
+        match: [ /.+@+\..+/, 'Please enter a valid email address.' ]
     },
     password: {
         type: String,

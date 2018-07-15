@@ -10,13 +10,16 @@ export class SignUpForm extends Component {
             username: '',
             email: '',
             password: ''
-        };
+        }
+
         this.handleClick = this.handleClick.bind( this );
         this.handleInputChange = this.handleInputChange.bind( this );
+
     }
 
     handleClick = event => {
         event.preventDefault();
+
         return axios( {
             method: 'POST',
             url: '/api/user/signup',

@@ -11,11 +11,10 @@ router.get( '/profile', ( req, res ) => {
 
 // Receive form details from user
 router.post( '/signup', ( req, res ) => {
+    // console.log( req.body );
     const newUser = new User( req.body );
-    console.log( req.body.email );
     // Encrypt user password and create new user
-
-    newUser.createUser( newUser, function ( err, user ) {
+    User.createUser( newUser, function ( err, user ) {
         if ( err ) { throw err; }
         console.log( user );
     } );

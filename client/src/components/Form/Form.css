@@ -13,25 +13,3 @@ button {
 input {
     margin-bottom: 10px;
 }
-
-.btn-search {
-    background-color: #00BAED;
-    color: white;
-    width: 150px;
-    height: 32px;
-    margin-top: 0;
-    padding-top: 2px;
-}
-
-.form-group{
-    margin: 0 auto;
-    margin-top: 20px;
-}
-
-label {
-    margin-right: 10px;
-}
-
-input {
-    margin-right: 10px;
-}

@@ -31,7 +31,7 @@ const Navbar = () => (
         </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a className="dropdown-item" href="/Home/Inventory">Food Inventory</a>
-                        <a className="dropdown-item" href="/Home/Recipes">What can I make?</a>
+                        <a className="dropdown-item" href="/Recipes">What can I make?</a>
                     </div>
                 </li>
 
@@ -46,7 +46,7 @@ const Navbar = () => (
                 </li>
 
 
-            </ul >
+            </ul>
             <form className="form-inline my-2 my-lg-0">
                 <Link className="nav-link" to="/Login"><Button
                     className='btn login'
@@ -58,8 +58,8 @@ const Navbar = () => (
                         text='Sign Up' />
                 </Link>
             </form>
-        </div >
-    </nav >
+        </div>
+    </nav>
 )
 
 export default Navbar;
