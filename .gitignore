@@ -8,7 +8,11 @@
 
 # production
 /build
+./config/keys.js
+./config/passport-setup.js
 /config
+/config/keys.js
+/config/passport-setup.js
 
 
 # misc
