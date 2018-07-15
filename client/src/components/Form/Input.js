@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export const Input = props => (
     <React.Fragment>
         <div className='form-group'>
@@ -10,6 +11,7 @@ export const Input = props => (
                 className={ props.className }
                 placeholder={ props.placeholder }
                 onChange={ props.onChange } />
+                {props.children}
         </div>
 
 
