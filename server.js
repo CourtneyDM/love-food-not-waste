@@ -15,8 +15,8 @@ const User = require( './models/user' );
 const keys = require( './config/keys' );
 
 // Setup connection to MongoDB for Heroku
-const databaseUri = keys.databaseURI.host;
-const MONGODB_URI = process.env.MONGODB_URI || keys.mongodb.dbURI;
+const databaseUri = 'mongodb://localhost:27017/wasteNot';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_xsqdq0bn:ovl3l58hlmo7tt72lo4sdm8gnm@ds129811.mlab.com:29811/heroku_xsqdq0bn';
 
 // Connect to MongoDB based on environment
 if ( MONGODB_URI ) {
