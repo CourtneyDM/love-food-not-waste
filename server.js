@@ -1,8 +1,15 @@
-// Import Dependencies
+// Import Module Dependencies
 const bodyParser = require( 'body-parser' );
+const cookieSession = require( 'cookie-session' );
 const express = require( 'express' );
 const mongoose = require( 'mongoose' );
-const routes = require( './routes' );
+const passport = require( 'passport' );
+
+// Import Routes and Configurations
+const apiRoutes = require( './routes/api/inventory' );
+const authRoutes = require( './routes/auth/authRoutes' );
+const keys = require( './config/keys' );
+const passportSetup = require( './config/passport-setup' );
 
 // Configure server to use Express
 const app = express();
@@ -11,9 +18,10 @@ const app = express();
 const PORT = process.env.PORT || 3004;
 
 // Setup connection to MongoDB for Heroku
-const databaseUri = 'mongodb://localhost:27017/wasteNot';
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_xsqdq0bn:ovl3l58hlmo7tt72lo4sdm8gnm@ds129811.mlab.com:29811/heroku_xsqdq0bn';
+const databaseUri = keys.databaseURI.host;
+const MONGODB_URI = process.env.MONGODB_URI || keys.mongodb.dbURI;
 
+// Connect to MongoDB based on environment
 if ( MONGODB_URI ) {
     mongoose.connect( MONGODB_URI, { useNewUrlParser: true } );
 }
@@ -36,8 +44,19 @@ if ( process.env.NODE_ENV === 'production' ) {
     app.use( express.static( 'client/build' ) );
 }
 
+// Configure Cookie Session
+app.use( cookieSession( {
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [ keys.session.cookieKey ]
+} ) );
+
+// Initialize Passort
+app.use( passport.initialize() );
+app.use( passport.session() );
+
 // Configure routes
-app.use( routes );
+app.use( '/api/inventory', apiRoutes );
+app.use( '/api/user', authRoutes );
 
 // Start Server...
 app.listen( PORT, () => console.log( `Express server listening on PORT ${PORT}` ) );

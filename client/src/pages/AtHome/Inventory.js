@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Moment from 'momentjs';
 import { Input, Button } from '../../components/Form';
 import API from '../../utils/API'
 import { CardDeck, CardBasic } from '../../components/Card';
@@ -7,12 +6,12 @@ import { Section } from '../../components/Content';
 import './Inventory.css';
 
 
-const $ = require('jquery');
-$.DataTable = require('datatables.net');
+const $ = require( 'jquery' );
+$.DataTable = require( 'datatables.net' );
 
 class Inventory extends Component {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             barCode: '',
             itemName: '',
@@ -46,7 +45,7 @@ class Inventory extends Component {
     // Handle input field changes
     handleInputChange = event => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
+        this.setState( { [ name ]: value } );
     }
 
     // Handle button click
@@ -58,14 +57,14 @@ class Inventory extends Component {
 
     // Search API for specified food item
     getFoodDetails = query => {
-        API.getFoodDetails(query)
-            .then(results => {
-                this.setState({
+        API.getFoodDetails( query )
+            .then( results => {
+                this.setState( {
                     brands: results.data.branded,
-                });
-                console.log(this.state.brands);
-            })
-            .catch(error => { throw error });
+                } );
+                console.log( this.state.brands );
+            } )
+            .catch( error => { throw error } );
         // TODO: display results for failed request with status code 400
     }
 
@@ -107,7 +106,7 @@ class Inventory extends Component {
 
 
 
-            $('#searchTable').DataTable({
+            $( '#searchTable' ).DataTable( {
 
                 retrieve: true,
                 "autoWidth": false,
@@ -140,12 +139,12 @@ class Inventory extends Component {
                     }
                 ]
 
-            })
+            } )
 
-        });
+        } );
 
-        $('#searchTable tbody').on('click', 'button', (event) => {
-            $('button').off("click"); // When the click is received, turn off the click handler
+        $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
+            $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
 
             event.stopPropagation();
             event.stopImmediatePropagation();
@@ -153,17 +152,17 @@ class Inventory extends Component {
             const button = event.currentTarget
             console.log(tableSearch.row(button.closest('tr')));
 
-            const data = tableSearch.row(button.closest('tr')).data();
+            const data = tableSearch.row( button.closest( 'tr' ) ).data();
             const item = data.item;
-            const quantity = tableSearch.row(button.closest('tr')).nodes().to$().find('input').val()
-            const date = tableSearch.row(button.closest('tr')).nodes().to$().find('#date').val()
+            const quantity = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( 'input' ).val()
+            const date = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( '#date' ).val()
 
 
             this.saveFoodItem({
                 itemName: item,
                 quantity: quantity,
                 bestByDate: date
-            })
+            } )
 
            alert('Your item has been added.')
         })
@@ -174,7 +173,7 @@ class Inventory extends Component {
 
 
             <React.Fragment>
-                {/* Section to display inventory */}
+                {/* Section to display inventory */ }
 
 
                 <CardDeck>
@@ -197,7 +196,7 @@ class Inventory extends Component {
                             name='itemName'
                             label='Item Name: '
                             placeholder='Required'
-                            onChange={this.handleInputChange}>
+                            onChange={ this.handleInputChange }>
                             <Button
                                 className='btn btn-search'
                                 text='Search for Item'
@@ -206,7 +205,7 @@ class Inventory extends Component {
                             />
                         </Input>
 
-                        {/* DISPLAY SEARCH RESULTS SECTION */}
+                        {/* DISPLAY SEARCH RESULTS SECTION */ }
 
                         
                                 <React.Fragment>
@@ -214,7 +213,7 @@ class Inventory extends Component {
                                     <h6 className='text-center sectionHeader'>Search Results</h6>
 
 
-                                    {/* Branded Foods */}
+                                    {/* Branded Foods */ }
 
 
                                     {this.state.brands.slice(0, this.state.brands.length).map((brand, index) => {
@@ -225,7 +224,7 @@ class Inventory extends Component {
                                             quantity: 1,
                                             bestByDate: "",
                                             add: "Add"
-                                        }).draw();
+                                        } ).draw();
 
                                     }
                                     )

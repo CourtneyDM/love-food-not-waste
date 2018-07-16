@@ -17,7 +17,7 @@ class Home extends Component {
                                 <a href='/Educate/FoodWaste' className="card-link">Why food waste is a big deal</a>
                             </ListItem>
                             <ListItem>
-                                 <a href='/Educate/Hunger' className="card-link">Hunger in America</a>
+                                <a href='/Educate/Hunger' className="card-link">Hunger in America</a>
                             </ListItem>
                         </List>
                     </CardWithImage>
