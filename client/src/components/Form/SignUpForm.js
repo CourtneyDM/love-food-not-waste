@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Input, Button } from '../Form';
 import axios from 'axios';
+import Dashboard from '../../pages/Landing';
 import './Form.css';
 
 export class SignUpForm extends Component {
@@ -17,15 +19,21 @@ export class SignUpForm extends Component {
 
     handleClick = event => {
         event.preventDefault();
-        return axios( {
+        axios( {
             method: 'POST',
-            url: '/api/user/signup',
+            url: '/signup',
             data: {
                 username: this.state.username,
                 email: this.state.email,
                 password: this.state.password
             }
-        } ).then( res => console.log( res ) );
+        } ).then( res => {
+            this.setState( {
+                username: res.data.username,
+                email: res.data.email
+            } );
+            console.log( `Username: ${this.state.username}. Email: ${this.state.email}` );
+        } ).catch( err => { throw err } );
 
         // TODO: create functionality to handle form submission
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Input, Button } from '../../components/Form';
 import API from '../../utils/API'
-import InventoryItem from '../AtHome/InventoryItem'
+// import InventoryItem from '../AtHome/InventoryItem'
 import { CardDeck, CardBasic } from '../../components/Card';
 import { Section } from '../../components/Content';
 import './Inventory.css';
@@ -154,7 +154,7 @@ class Inventory extends Component {
                             <figure>
                                 <img src='/assets/images/foodwaste.jpg' id='foodWaste' alt='Food Waste' width='200px' />
                             </figure>
-                            <p>Do you know how long your food lasts?  <a href='http://time.com/3933554/food-waste/' target='_blank'>Americans waste over $640 per year </a> according to a recent survey by the American Chemistry Council.  Forgetting when your food expires or misinterpreting labels is a big contributer to food waste. </p>
+                            <p>Do you know how long your food lasts?  <a href='http://time.com/3933554/food-waste/' target='_blank' rel='noopener noreferrer'>Americans waste over $640 per year </a> according to a recent survey by the American Chemistry Council.  Forgetting when your food expires or misinterpreting labels is a big contributer to food waste. </p>
                             <br />
                             <p>We believe we can do better!  Use our food tracker to keep an inventory of items you have on hand.  When food is about to expire, check out our recipes to find out how you can use it before you lose it.</p>
                         </div>
@@ -194,7 +194,6 @@ class Inventory extends Component {
 
 
                                     { this.state.brands.slice( 0, this.state.limit ).map( ( brand, index ) => {
-
 
                                         tableSearch.row.add( {
                                             item: brand.food_name,

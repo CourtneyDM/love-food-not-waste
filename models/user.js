@@ -38,13 +38,30 @@ const UserSchema = new Schema( {
     }
 } );
 
-UserSchema.methods.createUser = function ( newUser, cb ) {
+UserSchema.methods.createUser = ( newUser, cb ) => {
     bcrypt.genSalt( 10, ( err, salt ) => {
         bcrypt.hash( newUser.password, salt, ( err, hash ) => {
             newUser.password = hash;
             return newUser.save( cb );
         } );
     } );
+};
+
+UserSchema.methods.getUserByUsername = ( username, cb ) => {
+    const query = { username: username };
+    User.findOne( query, cb );
+};
+
+UserSchema.methods.comparePassword = ( userPassword, hash, cb ) => {
+    bcrypt.compare( userPassword, hash, ( err, isMatch ) => {
+        if ( err ) { throw err; }
+        cb( null, isMatch );
+    } );
+    User.findOne( query, cb );
+};
+
+UserSchema.methods.getUserById = ( id, cb ) => {
+    User.findById( id, cb );
 };
 
 const User = mongoose.model( 'User', UserSchema );
