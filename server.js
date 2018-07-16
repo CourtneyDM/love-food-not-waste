@@ -121,6 +121,8 @@ app.get( '/authrequired', ( req, res ) => {
         res.send( 'you hit the authentication endpoint.\n' );
     }
     else {
+        // console.log( 'User unable to be authenticated' );
+        res.send( 'User cannot be authenticated' );
         res.redirect( '/' );
     }
 } );
@@ -138,7 +140,7 @@ app.post( '/signup', ( req, res ) => {
             }
         }
     } );
-    // console.log( req.body.email );
+
     // Encrypt user password and create new user
     newUser.createUser( newUser, ( err, user ) => {
         if ( err ) { throw err; }
@@ -146,8 +148,6 @@ app.post( '/signup', ( req, res ) => {
         console.log( user );
         res.json( { 'user': user } );
     } );
-
-
 } );
 
 // Configure PORT

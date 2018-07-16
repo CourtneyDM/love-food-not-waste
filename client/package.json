@@ -2,7 +2,12 @@
     "name": "client",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://localhost:3001/",
+    "proxy": {
+        "/*": {
+            "target": "http://localhost:3001",
+            "secure": "false"
+        }
+    },
     "dependencies": {
         "axios": "^0.18.0",
         "datatables.net": "^1.10.19",
