@@ -13,6 +13,9 @@ const inventorySchema = new Schema( {
     itemBrandName: {
         type: String,
     },
+    quantity: {
+        type: Number,
+    },
     bestByDate: {
         type: String,
         required: true

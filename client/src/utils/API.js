@@ -38,11 +38,25 @@ export default {
 
     getInventory: () => {
         console.log( 'getting inventory...' );
-        return axios.get( '/api/inventory' );
+        return axios.get( '/api/inventory');
     },
 
     deleteFoodItem: id => {
         console.log( id );
         return axios.delete( '/api/inventory/' + id );
+    },
+    
+    getFoodInventory: query => {
+        console.log( 'getting food inventory...' );
+        return axios.get( '/api/food',{
+            params: {
+              item: query
+            }
+            });
+        },
+    
+    saveFoodInventory: foodData => {
+        console.log( 'saving to new database...' );
+        return axios.post( '/api/food', foodData );
     }
 }
