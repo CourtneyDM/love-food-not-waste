@@ -5,9 +5,13 @@
 }
 
 #tableContainer {
-    width: 80%;
+    width: 90%;
 }
 
-.quantityInput {
-    width: 75px;
-}
+
+#searchTable td:nth-child(1) {
+    width: 50px;
+    max-width: 50px;
+    word-break: break-all;
+    white-space: pre-line;
+  }
