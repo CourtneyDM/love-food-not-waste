@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Moment from 'momentjs';
 import API from '../utils/API'
 import { CardDeck, CardBasic } from '../components/Card';
-
+import { Section } from '../components/Content';
 
 
 const $ = require( 'jquery' );
@@ -20,20 +20,19 @@ class Landing extends Component {
             bestByDate: '',
             brands: [],
             saved: [],
-            limit: 25,
-            profile: {
-                username: '',
-                userId: ''
-            }
+            limit: 5
         }
+
         this.handleInputChange = this.handleInputChange.bind( this );
         this.handleClick = this.handleClick.bind( this );
+        this.getInventory = this.getInventory.bind( this );
+        this.deleteItem = this.deleteItem.bind( this );
     }
 
     // TODO: Don't do shit right now!!
     componentDidMount() {
         // Get the items saved in inventory database
-        // this.getInventory();
+        this.getInventory();
     }
 
     // Handle input field changes
@@ -58,7 +57,7 @@ class Landing extends Component {
     // Get food items saved to database
     getInventory = () => {
         API.getInventory()
-            .then( res => this.setState( { saved: res.data } ) )
+            .then( res => this.setState( { saved: res.data.data } ) )
             .catch( error => { throw error } );
     }
 
@@ -67,52 +66,89 @@ class Landing extends Component {
     render() {
 
         const tableSaved = $( '#savedTable' ).DataTable();
-
+        tableSaved.clear();
 
         $( document ).ready( function () {
-            $.getJSON( '/api/inventory', function ( response ) {
-                console.log( response.data );
-                $( '#savedTable' ).DataTable( {
+            // $.getJSON('/api/inventory', function(response) {
+            $( '#savedTable' ).DataTable( {
 
-                    "data": response.data,
-                    "columns": [
-                        { "data": "itemName", "width": "30%" },
-                        {
-                            "data": "bestByDate", "width": "5%"
+                retrieve: true,
+                "columns": [
+                    { "data": "id", "visible": false, "searchable": false },
+                    { "data": "itemName", "width": "20%" },
+                    { "data": "quantity", "width": "5%" },
+                    { "data": "bestByDate", "width": "5%" },
+                    {
+                        "data": "remove", "width": "5%",
+                        "render": function ( data ) {
 
+                            data = "<button className='removeButton'>Remove</button>";
+                            return data;
                         }
-                    ]
+                    }
+                ]
 
-                } )
             } );
         } );
 
 
+        $( '#savedTable tbody' ).on( 'click', 'button', ( event ) => {
+            $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
 
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            const button = event.currentTarget
 
+            const data = tableSaved.row( button.closest( 'tr' ) ).data();
+            const id = data.id;
 
+            console.log( id )
+            this.deleteItem( id );
 
-
+        } )
 
         return (
-
-
             <React.Fragment>
                 <CardDeck>
                     <CardBasic
                         header='My Food'>
-                        <div id='tableContainer' className='container-fluid'>
-                            <table id='savedTable' className="display">
-                                <thead>
-                                    <tr>
-                                        <th className="item_name">Item</th>
-                                        <th className="bestByDate">Best By</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
+                        <React.Fragment>
+
+                            <h6 className='text-center sectionHeader'>Search Results</h6>
+
+                            { this.state.saved.slice( 0, this.state.limit ).map( ( saved, index ) => {
+
+                                tableSaved.row.add( {
+                                    id: saved._id,
+                                    itemName: saved.itemName,
+                                    quantity: saved.quantity,
+                                    bestByDate: saved.bestByDate,
+                                    remove: "Remove"
+                                } ).draw();
+
+                            }
+
+                            ) }
+
+
+                            <div id='tableContainer' className='container-fluid'>
+                                <table id='savedTable' className="display">
+                                    <thead>
+                                        <tr>
+                                            <th className="id">Id</th>
+                                            <th className="itemName">Item</th>
+                                            <th className="quantity">Quantity</th>
+                                            <th className="bestByDate">Best By</th>
+                                            <th className="remove">Remove </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </React.Fragment>
 
                     </CardBasic>
                 </CardDeck>
@@ -125,4 +161,3 @@ class Landing extends Component {
 
 export default Landing;
 
-// TODO: Setup the InventoryItem component to display the search results from the API for both brand names and common foods
