@@ -6,7 +6,7 @@ const mongoose = require( 'mongoose' );
 const passport = require( 'passport' );
 
 // Import Routes and Configurations
-const apiRoutes = require( './routes/api/inventory' );
+const apiRoutes = require( './routes/api/' );
 const authRoutes = require( './routes/auth/authRoutes' );
 const keys = require( './config/keys' );
 const passportSetup = require( './config/passport-setup' );
@@ -55,7 +55,7 @@ app.use( passport.initialize() );
 app.use( passport.session() );
 
 // Configure routes
-app.use( '/api/inventory', apiRoutes );
+app.use( '/api/', apiRoutes );
 app.use( '/api/user', authRoutes );
 
 // Start Server...

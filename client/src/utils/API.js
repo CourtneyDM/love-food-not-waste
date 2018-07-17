@@ -47,12 +47,12 @@ export default {
     },
     
     getFoodInventory: query => {
-        console.log( 'getting food inventory...' );
-        return axios.get( '/api/food',{
+        console.log( 'API.js getting food: ', query );
+        return axios.get( `/api/food`, {
             params: {
               item: query
             }
-            });
+            })
         },
     
     saveFoodInventory: foodData => {
