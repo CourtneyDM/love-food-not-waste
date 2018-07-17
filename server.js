@@ -94,14 +94,9 @@ if ( process.env.NODE_ENV === 'production' ) {
 
 // Configure routes
 // app.use( '/api/inventory', apiRoutes );
-<<<<<<< HEAD
-// app.use( '/api/food', foodRoutes );
-app.use( '/api', routes );
-=======
 
 app.use( '/api/', apiRoutes );
 // app.use( '/api/user', authRoutes );
->>>>>>> master
 
 // Create the login get and post routes
 app.get( '/login', ( req, res ) => {
