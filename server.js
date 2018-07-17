@@ -10,13 +10,8 @@ const mongoose = require( 'mongoose' );
 const bycrpt = require( 'bcrypt-nodejs' );
 
 // Import Routes and Configurations
-<<<<<<< HEAD
-const routes = require( './routes' );
-const User = require( './models/user' );
-=======
 const apiRoutes = require( './routes/api/' );
 const authRoutes = require( './routes/auth/authRoutes' );
->>>>>>> master
 const keys = require( './config/keys' );
 
 // Setup connection to MongoDB for Heroku
