@@ -7,7 +7,6 @@ const bodyParser = require( 'body-parser' );
 const passport = require( 'passport' );
 const mongoose = require( 'mongoose' );
 
-
 // Configure PORT
 const PORT = process.env.PORT || 3001;
 
@@ -35,7 +34,6 @@ db.once( 'open', () => console.log( 'Mongoose connection successful.' ) );
 
 // Create Express server
 const app = express();
-
 
 // Add & configure middleware
 app.use( bodyParser.urlencoded( { extended: true } ) );

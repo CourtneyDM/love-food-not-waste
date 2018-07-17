@@ -16,7 +16,7 @@ passport.use( new LocalStrategy(
                 return done( null, false, { message: 'Invalid username.\n' } );
             }
             if ( !bcrypt.compareSync( password, user.password ) ) {
-                return done.null, false, { message: 'Invalid password.' };
+                return done( null, false, { message: 'Invalid password.' } );
             }
             return done( null, user );
         } );
@@ -52,7 +52,7 @@ router.post( '/login', ( req, res, next ) => {
         if ( info ) { return res.send( info.message ); }
         if ( err ) { return next( err ); }
         if ( !user ) { return res.redirect( '/login' ); }
-        req.login( user, ( err ) => {
+        req.login( user, err => {
             if ( err ) { return next( err ); }
             return res.redirect( '/authrequired' );
         } );
