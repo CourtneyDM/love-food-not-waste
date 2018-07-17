@@ -9,8 +9,9 @@
 # production
 /build
 /config
+/sessions
 ./config
-
+./sessions
 
 # misc
 .DS_Store

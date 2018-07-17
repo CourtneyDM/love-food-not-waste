@@ -10,7 +10,7 @@ const mongoose = require( 'mongoose' );
 const bycrpt = require( 'bcrypt-nodejs' );
 
 // Import Routes and Configurations
-const apiRoutes = require( './routes/api/inventory' );
+const routes = require( './routes' );
 const User = require( './models/user' );
 const keys = require( './config/keys' );
 
@@ -88,7 +88,9 @@ if ( process.env.NODE_ENV === 'production' ) {
 }
 
 // Configure routes
-app.use( '/api/inventory', apiRoutes );
+// app.use( '/api/inventory', apiRoutes );
+// app.use( '/api/food', foodRoutes );
+app.use( '/api', routes );
 
 // Create the login get and post routes
 app.get( '/login', ( req, res ) => {

@@ -9,7 +9,7 @@ router.route( '/' )
 
 // Matches with /api/inventory/:id
 router
-    .route( '/:id' )
+    .get( '/:id' )
     .delete( inventoryController.remove );
 
 module.exports = router;
