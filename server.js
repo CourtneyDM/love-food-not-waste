@@ -121,7 +121,8 @@ app.post( '/login', ( req, res, next ) => {
 
 app.get( '/authrequired', ( req, res ) => {
     if ( req.isAuthenticated() ) {
-        res.send( 'you hit the authentication endpoint.\n' );
+        res.send( req.user );
+        // res.send( 'you hit the authentication endpoint.\n' );
     }
     else {
         // console.log( 'User unable to be authenticated' );
