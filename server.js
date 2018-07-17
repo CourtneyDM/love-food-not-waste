@@ -5,10 +5,8 @@ const session = require( 'express-session' );
 const FileStore = require( 'session-file-store' )( session );
 const bodyParser = require( 'body-parser' );
 const passport = require( 'passport' );
-// const LocalStrategy = require( 'passport-local' );
 const mongoose = require( 'mongoose' );
-// const bcrypt = require( 'bcrypt-nodejs' );
-// const User = require( './models/user' );
+
 
 // Configure PORT
 const PORT = process.env.PORT || 3001;
@@ -34,34 +32,6 @@ else {
 const db = mongoose.connection;
 db.on( 'error', err => console.log( `Mongoose error: ${err}` ) );
 db.once( 'open', () => console.log( 'Mongoose connection successful.' ) );
-
-// Configure Local Strategy for Passport
-// passport.use( new LocalStrategy(
-//     { usernameField: 'email' },
-//     ( email, password, done ) => {
-//         User.findOne( { username: email }, ( err, user ) => {
-//             if ( err ) { throw err; }
-//             if ( !user ) {
-//                 return done( null, false, { message: 'Invalid username.\n' } );
-//             }
-//             if ( !bcrypt.compareSync( password, user.password ) ) {
-//                 return done.null, false, { message: 'Invalid password.' };
-//             }
-//             return done( null, user );
-//         } );
-//     }
-// ) );
-
-// Tell Passport how to serialize the user
-// passport.serializeUser( ( user, done ) => {
-//     done( null, user.id );
-// } );
-
-// passport.deserializeUser( ( id, done ) => {
-//     User.findById( id, ( err, user ) => {
-//         done( err, user );
-//     } );
-// } );
 
 // Create Express server
 const app = express();
@@ -93,68 +63,6 @@ if ( process.env.NODE_ENV === 'production' ) {
 // Configure routes
 app.use( '/api/', apiRoutes );
 app.use( userRoutes );
-
-// Create the login get and post routes
-// app.get( '/login', ( req, res ) => {
-//     console.log( `Inside GET /login callback.` );
-//     console.log( req.sessionID );
-//     return res.redirect( '/' );
-// } );
-
-// app.get( '/users', ( req, res ) => {
-//     User.find().then( users => {
-//         res.json( users );
-//     } )
-// } );
-
-// app.post( '/login', ( req, res, next ) => {
-//     passport.authenticate( 'local', ( err, user, info ) => {
-//         if ( info ) { return res.send( info.message ); }
-//         if ( err ) { return next( err ); }
-//         if ( !user ) { return res.redirect( '/login' ); }
-//         req.login( user, ( err ) => {
-//             if ( err ) { return next( err ); }
-//             return res.redirect( '/authrequired' );
-//         } );
-//     } )( req, res, next );
-// } );
-
-// Authenticate session ID
-// app.get( '/authrequired', ( req, res ) => {
-//     if ( req.isAuthenticated() ) {
-//         res.send( { user: req.user, sessionID: req.sessionID } );
-//         // res.send( 'you hit the authentication endpoint.\n' );
-//     }
-//     else {
-//         // console.log( 'User unable to be authenticated' );
-//         res.send( 'User cannot be authenticated' );
-//         res.redirect( '/' );
-//     }
-// } );
-
-// // Create signup route
-// app.post( '/register', ( req, res ) => {
-//     const newUser = new User( req.body );
-//     User.findOne( { username: newUser.username }, ( err, user ) => {
-//         if ( err ) {
-//             res.status( 500 ).send( 'error occured' );
-//         }
-//         else {
-//             if ( user ) {
-//                 res.status( 500 ).send( 'User already exists.' );
-//             }
-//         }
-//     } );
-
-//     // Encrypt user password and create new user
-//     newUser.createUser( newUser, ( err, user ) => {
-//         if ( err ) { throw err; }
-//         console.log( user );
-//         res.json( user );
-//     } );
-// } );
-
-
 
 // Start Server...
 app.listen( PORT, () => console.log( `Express server listening on PORT ${PORT}` ) );
