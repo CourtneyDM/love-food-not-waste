@@ -7,21 +7,15 @@ const bodyParser = require( 'body-parser' );
 const passport = require( 'passport' );
 const LocalStrategy = require( 'passport-local' );
 const mongoose = require( 'mongoose' );
-const bycrpt = require( 'bcrypt-nodejs' );
+const bcrypt = require( 'bcrypt-nodejs' );
 
 // Import Routes and Configurations
-<<<<<<< HEAD
-const routes = require( './routes' );
-const User = require( './models/user' );
-=======
 const apiRoutes = require( './routes/api/' );
-const authRoutes = require( './routes/auth/authRoutes' );
->>>>>>> master
 const keys = require( './config/keys' );
 
 // Setup connection to MongoDB for Heroku
-const databaseUri = 'mongodb://localhost:27017/wasteNot';
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_xsqdq0bn:ovl3l58hlmo7tt72lo4sdm8gnm@ds129811.mlab.com:29811/heroku_xsqdq0bn';
+const databaseUri = keys.databaseURI.host;
+const MONGODB_URI = process.env.MONGODB_URI || keys.mongodb.dbURI;
 
 // Connect to MongoDB based on environment
 if ( MONGODB_URI ) {
@@ -45,10 +39,9 @@ passport.use( new LocalStrategy(
             if ( !user ) {
                 return done( null, false, { message: 'Invalid username.\n' } );
             }
-            if ( !bycrpt.compareSync( password, user.password ) ) {
+            if ( !bcrypt.compareSync( password, user.password ) ) {
                 return done.null, false, { message: 'Invalid password.' };
             }
-
             return done( null, user );
         } );
     }
@@ -86,22 +79,13 @@ app.use( session( {
 app.use( passport.initialize() );
 app.use( passport.session() );
 
-
 // Serve Static Pages on Heroku
 if ( process.env.NODE_ENV === 'production' ) {
     app.use( express.static( 'client/build' ) );
 }
 
 // Configure routes
-// app.use( '/api/inventory', apiRoutes );
-<<<<<<< HEAD
-// app.use( '/api/food', foodRoutes );
-app.use( '/api', routes );
-=======
-
 app.use( '/api/', apiRoutes );
-// app.use( '/api/user', authRoutes );
->>>>>>> master
 
 // Create the login get and post routes
 app.get( '/login', ( req, res ) => {
@@ -109,7 +93,6 @@ app.get( '/login', ( req, res ) => {
     console.log( req.sessionID );
     return res.redirect( '/' );
 } );
-
 
 app.get( '/users', ( req, res ) => {
     User.find().then( users => {
