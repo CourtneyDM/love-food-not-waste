@@ -24,11 +24,11 @@ class Inventory extends Component {
             limit: 25
         }
 
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.saveFoodItem = this.saveFoodItem.bind(this);
-        this.getFoodInventory = this.getFoodInventory.bind(this);
-        this.saveFoodInventory = this.saveFoodInventory.bind(this);
+        this.handleInputChange = this.handleInputChange.bind( this );
+        this.handleClick = this.handleClick.bind( this );
+        this.saveFoodItem = this.saveFoodItem.bind( this );
+        this.getFoodInventory = this.getFoodInventory.bind( this );
+        this.saveFoodInventory = this.saveFoodInventory.bind( this );
     }
     componentDidMount() {
         // Get the items saved in inventory database
@@ -71,38 +71,38 @@ class Inventory extends Component {
 
     // Save food item to database
     saveFoodItem = foodData => {
-        console.log(foodData);
-        API.saveFoodItem(foodData)
-            .catch(error => { throw error });
+        console.log( foodData );
+        API.saveFoodItem( foodData )
+            .catch( error => { throw error } );
     }
 
 
     getFoodInventory = query => {
-        API.getFoodInventory(query)
-            .then(console.log(query))
-            .then(res => this.setState({ brands: res.data.data }))
-            .catch(error => { throw error });
+        API.getFoodInventory( query )
+            .then( console.log( query ) )
+            .then( res => this.setState( { brands: res.data.data } ) )
+            .catch( error => { throw error } );
     }
 
     searchButtonClick = () => {
-        console.log("Searching for: " + this.state.itemName)
-        this.getFoodInventory(this.state.itemName)
+        console.log( "Searching for: " + this.state.itemName )
+        this.getFoodInventory( this.state.itemName )
 
     }
 
     // Save food item to database
-    saveFoodInventory = (foodData) => {
-        
-        API.saveFoodInventory(foodData)
-           .catch(error => { throw error });
+    saveFoodInventory = ( foodData ) => {
+
+        API.saveFoodInventory( foodData )
+            .catch( error => { throw error } );
     }
- 
+
 
     render() {
-        const tableSearch = $('#searchTable').DataTable();
+        const tableSearch = $( '#searchTable' ).DataTable();
         tableSearch.clear();
 
-        $(document).ready(function () {
+        $( document ).ready( function () {
 
 
 
@@ -116,21 +116,21 @@ class Inventory extends Component {
                     { "data": "guidelines", },
                     {
                         "data": "quantity",
-                        "render": function (data) {
+                        "render": function ( data ) {
                             data = "<input className='quantityInput'></input>"
                             return data;
                         }
                     },
                     {
                         "data": "bestBy",
-                        "render": function (data) {
+                        "render": function ( data ) {
                             data = "<input type='date' id='date' className='bestByInput'></input>"
                             return data;
                         }
                     },
                     {
                         "data": "add",
-                        "render": function (data) {
+                        "render": function ( data ) {
 
                             data = "<button id='addButton'>" + data + "</button>";
 
@@ -150,7 +150,7 @@ class Inventory extends Component {
             event.stopImmediatePropagation();
             event.preventDefault();
             const button = event.currentTarget
-            console.log(tableSearch.row(button.closest('tr')));
+            console.log( tableSearch.row( button.closest( 'tr' ) ) );
 
             const data = tableSearch.row( button.closest( 'tr' ) ).data();
             const item = data.item;
@@ -158,14 +158,14 @@ class Inventory extends Component {
             const date = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( '#date' ).val()
 
 
-            this.saveFoodItem({
+            this.saveFoodItem( {
                 itemName: item,
                 quantity: quantity,
                 bestByDate: date
             } )
 
-           alert('Your item has been added.')
-        })
+            alert( 'Your item has been added.' )
+        } )
 
 
 
@@ -183,13 +183,13 @@ class Inventory extends Component {
                             <figure>
                                 <img src='/assets/images/foodwaste.jpg' id='foodWaste' alt='Food Waste' width='200px' />
                             </figure>
-                            <p>Do you know how long your food lasts?  <a href='http://time.com/3933554/food-waste/' target='_blank'>Americans waste over $640 per year </a> according to a recent survey by the American Chemistry Council.  Forgetting when your food expires or misinterpreting labels is a big contributer to food waste. </p>
+                            <p>Do you know how long your food lasts?  <a href='http://time.com/3933554/food-waste/' target='_blank' rel='noopener noreferrer'>Americans waste over $640 per year </a> according to a recent survey by the American Chemistry Council.  Forgetting when your food expires or misinterpreting labels is a big contributer to food waste. </p>
                             <br />
                             <p>We believe we can do better!  Use our food tracker to keep an inventory of items you have on hand.  When food is about to expire, check out our recipes to find out how you can use it before you lose it, or consider donating to a local food bank.</p>
                         </div>
 
                         <h5 className='text-center sectionHeader'>Manage your Inventory</h5>
-                        {/* SEARCH FOR FOOD SECTION */}
+                        {/* SEARCH FOR FOOD SECTION */ }
                         <h5 className='text-center sectionHeader'>Add to your Inventory</h5>
 
                         <Input
@@ -200,59 +200,64 @@ class Inventory extends Component {
                             <Button
                                 className='btn btn-search'
                                 text='Search for Item'
-                                onClick={() => this.searchButtonClick()
-                                   }
+                                onClick={ () => this.searchButtonClick()
+                                }
                             />
                         </Input>
 
                         {/* DISPLAY SEARCH RESULTS SECTION */ }
 
-                        
-                                <React.Fragment>
 
-                                    <h6 className='text-center sectionHeader'>Search Results</h6>
+                        <React.Fragment>
 
-
-                                    {/* Branded Foods */ }
+                            <h6 className='text-center sectionHeader'>Search Results</h6>
 
 
-                                    {this.state.brands.slice(0, this.state.brands.length).map((brand, index) => {
-                                        tableSearch.row.add({
-                                            category: brand.category,
-                                            item: brand.item,
-                                            guidelines: "Pantry: " + brand.pantry + "<br>" + "Refrigerator: " + brand.refrigerator + "<br>" + "Freezer: " + brand.freezer,
-                                            quantity: 1,
-                                            bestByDate: "",
-                                            add: "Add"
-                                        } ).draw();
-
-                                    }
-                                    )
-                               
+                            {/* Branded Foods */ }
 
 
+                            {/* // { this.state.brands.slice( 0, this.state.limit ).map( ( brand, index ) => { */ }
 
-                                    }
-                                    <div id='tableContainer' className='container-fluid'>
-                                        <table id='searchTable' className='display' width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th className="category">Category</th>
-                                                    <th className="item_name">Item</th>
-                                                    <th className="guidelines">Guidelines</th>
-                                                    <th className="quantity">Quantity</th>
-                                                    <th className="bestByDate">Best By</th>
-                                                    <th className="add">Add </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                            {/* //     tableSearch.row.add( { */ }
+                            {/* //         item: brand.food_name, */ }
+                            {/* //         quantity: 0, */ }
+                            { this.state.brands.slice( 0, this.state.brands.length ).map( ( brand, index ) => {
+                                tableSearch.row.add( {
+                                    category: brand.category,
+                                    item: brand.item,
+                                    guidelines: "Pantry: " + brand.pantry + "<br>" + "Refrigerator: " + brand.refrigerator + "<br>" + "Freezer: " + brand.freezer,
+                                    quantity: 1,
+                                    bestByDate: "",
+                                    add: "Add"
+                                } ).draw();
 
-                                    
-                                </React.Fragment>
-                           
+                            }
+                            )
+
+
+
+
+                            }
+                            <div id='tableContainer' className='container-fluid'>
+                                <table id='searchTable' className='display' width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th className="category">Category</th>
+                                            <th className="item_name">Item</th>
+                                            <th className="guidelines">Guidelines</th>
+                                            <th className="quantity">Quantity</th>
+                                            <th className="bestByDate">Best By</th>
+                                            <th className="add">Add </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </React.Fragment>
+
 
                     </CardBasic>
                 </CardDeck>
@@ -264,5 +269,3 @@ class Inventory extends Component {
 }
 
 export default Inventory;
-
-// TODO: Setup the InventoryItem component to display the search results from the API for both brand names and common foods

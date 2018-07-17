@@ -8,11 +8,10 @@
 
 # production
 /build
-./config/keys.js
-./config/passport-setup.js
 /config
-/config/keys.js
-/config/passport-setup.js
+/sessions
+./config
+/sessions
 
 
 # misc
@@ -31,3 +30,5 @@ yarn-error.log*
 waste-not-firebase-adminsdk-dy000-2aff960931.json
 node_modules
 node_modules
+node_modules
+npm-debug.log

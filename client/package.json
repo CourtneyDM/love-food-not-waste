@@ -2,12 +2,6 @@
     "name": "client",
     "version": "0.1.0",
     "private": true,
-    "proxy": {
-        "/api": {
-            "target": "http://localhost:3004",
-            "secure": "false"
-        }
-    },
     "dependencies": {
         "axios": "^0.18.0",
         "datatables.net": "^1.10.19",
@@ -27,5 +21,11 @@
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
+<<<<<<< HEAD
     }
 }
+=======
+    },
+    "proxy": "http://localhost:3001"
+}
+>>>>>>> 06521fe2dc84c3de083513755268a9e66fff7075

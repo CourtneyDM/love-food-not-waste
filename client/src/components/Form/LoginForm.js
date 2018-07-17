@@ -7,7 +7,7 @@ export class LoginForm extends Component {
     constructor( props ) {
         super( props );
         this.state = {
-            userName: '',
+            email: '',
             password: ''
         };
         this.handleClick = this.handleClick.bind( this );
@@ -16,13 +16,21 @@ export class LoginForm extends Component {
 
     handleClick = event => {
         event.preventDefault();
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        };
         return axios( {
-            method: 'GET',
-            url: '/api/auth/google',
-            headers: {
-                'Access-Control-Allow-Origin': '/api/user/google'
+            method: 'POST',
+            url: "/login",
+            data: {
+                email: this.state.email,
+                password: this.state.password
             }
-        } );
+        } ).then( res => console.log( res ) ).catch( err => { throw err } );
+        // axios.post( '/login', user )
+        //     .then( res => console.log( res ) )
+        //     .catch( err => { throw err; } );
         // TODO: Create functionality to handle form submission
     }
 
@@ -39,16 +47,18 @@ export class LoginForm extends Component {
                 <div className='signup'>
                     <div className='form-group'>
                         <Input
-                            label='Username'
-                            name='userName'
+                            label='Email'
+                            name='email'
                             type='text'
                             className='form-control'
+                            onChange={ this.handleInputChange }
                         />
                         <Input
                             label='Password'
                             name='password'
                             type='password'
                             className='form-control'
+                            onChange={ this.handleInputChange }
                         />
                         <Button
                             onClick={ this.handleClick }
