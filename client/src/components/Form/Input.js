@@ -6,6 +6,7 @@ export const Input = props => (
         <div className='form-group'>
             <label htmlFor={ props.name }>{ props.label }</label>
             <input
+                id={props.id}
                 name={ props.name }
                 type={ props.type }
                 className={ props.className }

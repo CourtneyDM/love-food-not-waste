@@ -4,20 +4,20 @@ import axios from 'axios';
 import './Form.css';
 
 export class SignUpForm extends Component {
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
         this.state = {
             username: '',
             email: '',
             password: ''
         };
-        this.handleClick = this.handleClick.bind( this );
-        this.handleInputChange = this.handleInputChange.bind( this );
+        this.handleClick = this.handleClick.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleClick = event => {
         event.preventDefault();
-        return axios( {
+        return axios({
             method: 'POST',
             url: '/api/user/signup',
             data: {
@@ -25,7 +25,7 @@ export class SignUpForm extends Component {
                 email: this.state.email,
                 password: this.state.password
             }
-        } ).then( res => console.log( res ) );
+        }).then(res => console.log(res));
 
         // TODO: create functionality to handle form submission
     }
@@ -33,14 +33,13 @@ export class SignUpForm extends Component {
     handleInputChange = event => {
         event.preventDefault();
         const { name, value } = event.target;
-        this.setState( { [ name ]: value } );
+        this.setState({ [name]: value });
 
     }
 
     render() {
         return (
             <React.Fragment>
-                <h2>Sign Up Form</h2>
                 <div className='signup'>
                     <div className='form-group'>
                         <Input
@@ -48,32 +47,32 @@ export class SignUpForm extends Component {
                             name='username'
                             type='text'
                             className='form-control'
-                            onChange={ this.handleInputChange }
+                            onChange={this.handleInputChange}
                         />
                         <Input
                             label='Email'
                             name='email'
                             type='email'
                             className='form-control'
-                            onChange={ this.handleInputChange }
+                            onChange={this.handleInputChange}
                         />
                         <Input
                             label='Password'
                             name='password'
                             type='password'
-                            value={ this.state.value }
+                            value={this.state.value}
                             className='form-control'
-                            onChange={ this.handleInputChange }
+                            onChange={this.handleInputChange}
                         />
                         <Input
                             label='Confirm Password'
                             name='confirm'
                             type='password'
                             className='form-control'
-                            onChange={ this.handleInputChange }
+                            onChange={this.handleInputChange}
                         />
                         <Button
-                            onClick={ this.handleClick }
+                            onClick={this.handleClick}
                             text='Create Account'
                             className='btn btn-success'
                         />
