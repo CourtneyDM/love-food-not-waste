@@ -269,5 +269,3 @@ class Inventory extends Component {
 }
 
 export default Inventory;
-
-// TODO: Setup the InventoryItem component to display the search results from the API for both brand names and common foods

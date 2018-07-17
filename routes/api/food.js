@@ -2,14 +2,23 @@
 const router = require( 'express' ).Router();
 const foodController = require( '../../controllers/foodController' );
 
-// Matches with /api/inventory
+// Matches with /api/food
 router.route( '/' )
     .get( foodController.findAll )
     .post( foodController.create );
 
-// Matches with /api/food/:id
-router
-    .route( ':id' );
-// .delete( foodController.remove );
+router.route( '/:item' )
+    .get( foodController.findAll )
+    .post( foodController.create );
+
+// // Routes to /api/inventory
+// router.route( '/' )
+//     .get( inventoryController.findAll )
+//     .post( inventoryController.create );
+
+// // Matches with /api/inventory/:id
+// router
+//     .route( '/:id' )
+//     .delete( inventoryController.remove );
 
 module.exports = router;

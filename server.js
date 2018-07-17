@@ -10,13 +10,18 @@ const mongoose = require( 'mongoose' );
 const bycrpt = require( 'bcrypt-nodejs' );
 
 // Import Routes and Configurations
+<<<<<<< HEAD
 const routes = require( './routes' );
 const User = require( './models/user' );
+=======
+const apiRoutes = require( './routes/api/' );
+const authRoutes = require( './routes/auth/authRoutes' );
+>>>>>>> master
 const keys = require( './config/keys' );
 
 // Setup connection to MongoDB for Heroku
-const databaseUri = keys.databaseURI.host;
-const MONGODB_URI = process.env.MONGODB_URI || keys.mongodb.dbURI;
+const databaseUri = 'mongodb://localhost:27017/wasteNot';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_xsqdq0bn:ovl3l58hlmo7tt72lo4sdm8gnm@ds129811.mlab.com:29811/heroku_xsqdq0bn';
 
 // Connect to MongoDB based on environment
 if ( MONGODB_URI ) {
@@ -89,8 +94,14 @@ if ( process.env.NODE_ENV === 'production' ) {
 
 // Configure routes
 // app.use( '/api/inventory', apiRoutes );
+<<<<<<< HEAD
 // app.use( '/api/food', foodRoutes );
 app.use( '/api', routes );
+=======
+
+app.use( '/api/', apiRoutes );
+// app.use( '/api/user', authRoutes );
+>>>>>>> master
 
 // Create the login get and post routes
 app.get( '/login', ( req, res ) => {
@@ -120,7 +131,8 @@ app.post( '/login', ( req, res, next ) => {
 
 app.get( '/authrequired', ( req, res ) => {
     if ( req.isAuthenticated() ) {
-        res.send( 'you hit the authentication endpoint.\n' );
+        res.send( req.user );
+        // res.send( 'you hit the authentication endpoint.\n' );
     }
     else {
         // console.log( 'User unable to be authenticated' );
