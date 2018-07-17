@@ -10,8 +10,8 @@ const mongoose = require( 'mongoose' );
 const bycrpt = require( 'bcrypt-nodejs' );
 
 // Import Routes and Configurations
-const apiRoutes = require( './routes/api/inventory' );
-const User = require( './models/user' );
+const apiRoutes = require( './routes/api/' );
+const authRoutes = require( './routes/auth/authRoutes' );
 const keys = require( './config/keys' );
 
 // Setup connection to MongoDB for Heroku
@@ -88,7 +88,10 @@ if ( process.env.NODE_ENV === 'production' ) {
 }
 
 // Configure routes
-app.use( '/api/inventory', apiRoutes );
+// app.use( '/api/inventory', apiRoutes );
+
+app.use( '/api/', apiRoutes );
+// app.use( '/api/user', authRoutes );
 
 // Create the login get and post routes
 app.get( '/login', ( req, res ) => {
