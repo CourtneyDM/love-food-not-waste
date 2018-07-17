@@ -19,6 +19,10 @@ const inventorySchema = new Schema( {
     bestByDate: {
         type: String,
         required: true
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     }
 } );
 

@@ -3,26 +3,25 @@ const LocalStrategy = require( 'passport-local' ).Strategy;
 const passport = require( 'passport' );
 const router = require( 'express' ).Router();
 const User = require( '../../models/user' );
-// const axios = require( 'axios' );
+const bcrypt = require( 'bcrypt-nodejs' );
 
 
 // Create local strategy
 passport.use( new LocalStrategy(
-    ( username, password, done ) => {
-        User.findOne( { username: username }, ( err, user ) => {
-            // User.getUserByUsername( username, ( err, user ) => {
-            if ( err ) { return done( err ); }
+    { usernameField: 'email' },
+    ( email, password, done ) => {
+        User.findOne( { username: email }, ( err, user ) => {
+            if ( err ) { throw err; }
             if ( !user ) {
-                return done( null, false, { message: 'Incorrect username.' } );
+                return done( null, false, { message: 'Invalid username.\n' } );
             }
-            if ( !user.validPassword( password ) ) {
-                return done( null, false, { message: 'Incorrect password.' } );
+            if ( !bcrypt.compareSync( password, user.password ) ) {
+                return done.null, false, { message: 'Invalid password.' };
             }
             return done( null, user );
-
         } );
-    } )
-);
+    }
+) );
 
 // Tell passport how to serialize the user
 passport.serializeUser( ( user, done ) => {
@@ -30,9 +29,15 @@ passport.serializeUser( ( user, done ) => {
 } );
 
 passport.deserializeUser( ( id, done ) => {
-    newUser.getUserById( id, ( err, user ) => {
+    User.findById( id, ( err, user ) => {
         done( err, user );
     } );
+} );
+
+router.get( '/users', ( req, res ) => {
+    User.find().then( users => {
+        res.json( users );
+    } )
 } );
 
 // Create the login GET and POST routes
@@ -54,26 +59,35 @@ router.post( '/login', ( req, res, next ) => {
     } )( req, res, next );
 } );
 
+// Authenticate session ID
 router.get( '/authrequired', ( req, res ) => {
     if ( req.isAuthenticated() ) {
-        res.send( 'you hit the authentication endpoint.\n' );
+        res.send( { user: req.user, sessionID: req.sessionID } );
     }
     else {
-        res.redirect( '/' );
+        res.send( 'User cannot be authenticated' );
     }
 } );
 
 // Create signup route
-router.post( '/signup', ( req, res ) => {
-
+router.post( '/register', ( req, res ) => {
     const newUser = new User( req.body );
-    // console.log( req.body.email );
+    User.findOne( { username: newUser.username }, ( err, user ) => {
+        if ( err ) {
+            res.status( 500 ).send( 'error occured' );
+        }
+        else {
+            if ( user ) {
+                res.status( 500 ).send( 'User already exists.' );
+            }
+        }
+    } );
 
     // Encrypt user password and create new user
     newUser.createUser( newUser, ( err, user ) => {
         if ( err ) { throw err; }
         console.log( user );
-        res.send( user );
+        res.json( user );
     } );
 } );
 

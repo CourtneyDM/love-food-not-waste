@@ -21,19 +21,16 @@ export class SignUpForm extends Component {
         event.preventDefault();
         axios( {
             method: 'POST',
-            url: '/signup',
+            url: '/register',
             data: {
-                username: this.state.username,
+                fullname: this.state.fullname.toLowerCase(),
+                username: this.state.email,
                 email: this.state.email,
                 password: this.state.password
             }
         } ).then( res => {
-            this.setState( {
-                username: res.data.username,
-                email: res.data.email
-            } );
-            console.log( `Username: ${this.state.username}. Email: ${this.state.email}` );
-        } ).catch( err => { throw err } );
+            console.log( `Data: ${JSON.stringify( res )}` );
+        } );
 
         // TODO: create functionality to handle form submission
     }
@@ -53,7 +50,7 @@ export class SignUpForm extends Component {
                     <div className='form-group'>
                         <Input
                             label='Name'
-                            name='username'
+                            name='fullname'
                             type='text'
                             className='form-control'
                             onChange={ this.handleInputChange }
@@ -70,13 +67,6 @@ export class SignUpForm extends Component {
                             name='password'
                             type='password'
                             value={ this.state.value }
-                            className='form-control'
-                            onChange={ this.handleInputChange }
-                        />
-                        <Input
-                            label='Confirm Password'
-                            name='confirm'
-                            type='password'
                             className='form-control'
                             onChange={ this.handleInputChange }
                         />
