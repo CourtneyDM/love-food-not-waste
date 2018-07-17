@@ -8,6 +8,7 @@ const passport = require( 'passport' );
 const LocalStrategy = require( 'passport-local' );
 const mongoose = require( 'mongoose' );
 const bcrypt = require( 'bcrypt-nodejs' );
+const User = require( './models/user' );
 
 // Import Routes and Configurations
 const apiRoutes = require( './routes/api/' );
