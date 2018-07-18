@@ -21,11 +21,6 @@
         "build": "react-scripts build",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
-<<<<<<< HEAD
-    }
-}
-=======
     },
     "proxy": "http://localhost:3001"
 }
->>>>>>> 06521fe2dc84c3de083513755268a9e66fff7075

@@ -15,12 +15,9 @@
         "cors": "^2.8.4",
         "dotenv": "^6.0.0",
         "express": "^4.16.3",
-<<<<<<< HEAD
         "link": "^0.1.5",
-=======
         "express-messages": "^1.0.1",
         "express-session": "^1.15.6",
->>>>>>> 06521fe2dc84c3de083513755268a9e66fff7075
         "mongoose": "^5.2.1",
         "nodemon": "^1.17.5",
         "passport": "^0.4.0",
