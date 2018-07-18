@@ -8,7 +8,7 @@ const passport = require( 'passport' );
 const mongoose = require( 'mongoose' );
 
 // Configure PORT
-const PORT = process.env.PORT || 30051;
+const PORT = process.env.PORT || 5000;
 
 // Import Routes and Configurations
 const apiRoutes = require( './routes/api/' );
