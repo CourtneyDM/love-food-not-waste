@@ -15,10 +15,6 @@ export class LoginForm extends Component {
         this.handleClick = this.handleClick.bind( this );
         this.handleInputChange = this.handleInputChange.bind( this );
     }
-    // componentDidMount() {
-    //     window.sessionStorage.setItem( { 'isAuthenticated': false } );
-    //     this.setState( { isAuthenitcated: window.sessionStorage.getItem( 'isAuthenticated' ) } );
-    // }
 
     // Handle the button click event
     handleClick = event => {
