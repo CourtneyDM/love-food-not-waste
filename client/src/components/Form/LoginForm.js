@@ -61,8 +61,8 @@ export class LoginForm extends Component {
                 window.sessionStorage.setItem( "fullname", res.data.user.fullname );
                 window.sessionStorage.setItem( "email", res.data.user.email );
                 window.sessionStorage.setItem( "sessionID", res.data.sessionID );
+                window.sessionStorage.setItem( "userID", res.data.user._id );
                 this.setState( { isAuthenitcated: true } );
-                window.location.pathname = '/Welcome';
             }
         } ).catch( err => { throw err } );
     }
