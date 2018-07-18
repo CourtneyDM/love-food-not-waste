@@ -19,8 +19,11 @@ export class SignUpForm extends Component {
         this.handleInputChange = this.handleInputChange.bind( this );
     }
 
+    componentDidMount() {
+        window.sessionStorage.clear();
+    }
+
     handleClick = event => {
-        console.log( window.location.pathname );
         event.preventDefault();
         this.setState( {
             fullname: this.state.fullname.toUpperCase().trim(),

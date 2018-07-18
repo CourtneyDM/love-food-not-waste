@@ -98,8 +98,10 @@ router.post( '/register', ( req, res ) => {
 
 // Route for when a user logs out
 router.get( '/logout', ( req, res ) => {
+    console.log( "attemtpting to logout" );
     // Terminate the session
     req.session.destroy();
+    console.log( `Session id: ${req.sessionID}` );
     return res.end();
 } );
 

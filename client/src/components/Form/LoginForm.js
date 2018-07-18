@@ -10,11 +10,15 @@ export class LoginForm extends Component {
         this.state = {
             email: '',
             password: '',
-            sessionID: ''
+            isAuthenitcated: false
         };
         this.handleClick = this.handleClick.bind( this );
         this.handleInputChange = this.handleInputChange.bind( this );
     }
+    // componentDidMount() {
+    //     window.sessionStorage.setItem( { 'isAuthenticated': false } );
+    //     this.setState( { isAuthenitcated: window.sessionStorage.getItem( 'isAuthenticated' ) } );
+    // }
 
     // Handle the button click event
     handleClick = event => {
@@ -54,19 +58,19 @@ export class LoginForm extends Component {
                 return alert( 'Please check your submission and try again.' );
             }
             else {
-                window.sessionStorage.setItem( "fullname", res.data.fullname );
-                window.sessionStorage.setItem( "email", res.data.email );
+                window.sessionStorage.setItem( "fullname", res.data.user.fullname );
+                window.sessionStorage.setItem( "email", res.data.user.email );
                 window.sessionStorage.setItem( "sessionID", res.data.sessionID );
+                this.setState( { isAuthenitcated: true } );
+                window.location.pathname = '/Welcome';
             }
         } ).catch( err => { throw err } );
     }
 
     render() {
         return (
-            ( window.sessionStorage ?
+            ( this.state.isAuthenitcated ?
                 ( <React.Fragment>
-                    { window.sessionStorage.setItem( 'username', this.state.email ) }
-                    { window.sessionStorage.setItem( 'sessionID', this.state.sessionID ) }
                     <Dashboard />
                 </React.Fragment>
                 )

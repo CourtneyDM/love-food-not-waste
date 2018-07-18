@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import Moment from 'momentjs';
 import API from '../utils/API'
 import { CardDeck, CardBasic } from '../components/Card';
-import { Section } from '../components/Content';
-
+import { Button } from '../components/Form';
+import axios from 'axios';
 
 const $ = require( 'jquery' );
 $.DataTable = require( 'datatables.net' );
@@ -34,6 +33,21 @@ class Landing extends Component {
         console.log( window.sessionStorage );
         // Get the items saved in inventory database
         this.getInventory();
+    }
+
+    // Log current user out of session
+    sessionLogout = event => {
+        event.preventDefault();
+        console.log( window.sessionStorage.length );
+        if ( window.sessionStorage.length > 0 ) {
+            window.sessionStorage.clear();
+            axios.get( '/logout', ( req, res ) => {
+                console.log( "logged out" );
+                window.sessionStorage.clear();
+                window.location.pathname = '/';
+            } );
+        }
+        return window.location.pathname = '/';
     }
 
     // Handle input field changes
@@ -153,6 +167,11 @@ class Landing extends Component {
 
                     </CardBasic>
                 </CardDeck>
+                <Button
+                    text='logout'
+                    className='btn btn-success'
+                    onClick={ this.sessionLogout }
+                />
             </React.Fragment>
         )
     }
