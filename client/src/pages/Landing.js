@@ -35,7 +35,7 @@ class Landing extends Component {
         this.getInventory();
     }
 
-    // Log current user out of session
+    // Log current user out and end session with server
     sessionLogout = event => {
         event.preventDefault();
         console.log( window.sessionStorage.length );
