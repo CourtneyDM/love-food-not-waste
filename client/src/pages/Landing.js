@@ -31,6 +31,7 @@ class Landing extends Component {
 
     // TODO: Don't do shit right now!!
     componentDidMount() {
+        console.log( window.sessionStorage );
         // Get the items saved in inventory database
         this.getInventory();
     }
