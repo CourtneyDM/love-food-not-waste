@@ -80,8 +80,11 @@ class Landing extends Component {
 
     render() {
 
+
         const tableSaved = $( '#savedTable' ).DataTable();
         tableSaved.clear();
+
+
 
         $( document ).ready( function () {
             // $.getJSON('/api/inventory', function(response) {
