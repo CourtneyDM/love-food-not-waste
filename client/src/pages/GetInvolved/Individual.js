@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Chatroom from './../Chatroom.js';
+import Chatroom from './Chatroom.js';
 
 class Individual extends Component {
   render() {

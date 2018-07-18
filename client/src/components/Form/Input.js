@@ -3,9 +3,11 @@ import React from 'react';
 
 export const Input = props => (
     <React.Fragment>
-        <div className='form-group'>
+        <div className='form-group'
+        id={props.id}>
             <label htmlFor={ props.name }>{ props.label }</label>
             <input
+                id={props.id}
                 name={ props.name }
                 type={ props.type }
                 className={ props.className }

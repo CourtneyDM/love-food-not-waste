@@ -8,7 +8,7 @@ const passport = require( 'passport' );
 const mongoose = require( 'mongoose' );
 
 // Configure PORT
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 
 // Import Routes and Configurations
 const apiRoutes = require( './routes/api/' );
@@ -47,7 +47,7 @@ app.use( session( {
     store: new FileStore(),
     secret: process.env.secret || keys.session.cookieKey,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
 } ) );
 
 app.use( passport.initialize() );

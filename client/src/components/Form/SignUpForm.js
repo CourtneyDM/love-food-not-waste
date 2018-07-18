@@ -5,8 +5,8 @@ import Login from '../../pages/Login';
 import './Form.css';
 
 export class SignUpForm extends Component {
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
         this.state = {
             fullname: '',
             username: '',
@@ -15,8 +15,8 @@ export class SignUpForm extends Component {
             isRegisterd: false,
             redirect: false
         };
-        this.handleClick = this.handleClick.bind( this );
-        this.handleInputChange = this.handleInputChange.bind( this );
+        this.handleClick = this.handleClick.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     componentDidMount() {
@@ -58,7 +58,6 @@ export class SignUpForm extends Component {
             // Check if user has registered
             ( !this.state.isRegisterd ? (
                 < React.Fragment >
-                    <h2>Sign Up Form</h2>
                     <div className='signup'>
                         <div className='form-group'>
 
