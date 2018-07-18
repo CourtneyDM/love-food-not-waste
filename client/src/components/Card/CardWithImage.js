@@ -7,6 +7,7 @@ export const CardWithImage = props => (
          <img class="card-img-top" src={props.source} alt={props.header} height='180px'/>
             <div className="card-header card-header-image text-center">{ props.header }</div>
             <div className="card-body d-flex flex-column">
+                <br/>
                 <p className="card-text">{ props.text} </p>
                 {props.children}
             </div>

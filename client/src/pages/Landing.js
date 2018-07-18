@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Moment from 'momentjs';
 import API from '../utils/API'
 import { CardDeck, CardBasic } from '../components/Card';
-import { Section } from '../components/Content';
+
 
 
 const $ = require('jquery');
