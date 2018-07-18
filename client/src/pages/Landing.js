@@ -5,12 +5,12 @@ import { CardDeck, CardBasic } from '../components/Card';
 
 
 
-const $ = require('jquery');
-$.DataTable = require('datatables.net');
+const $ = require( 'jquery' );
+$.DataTable = require( 'datatables.net' );
 
 class Landing extends Component {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             barCode: '',
             itemName: '',
@@ -23,13 +23,13 @@ class Landing extends Component {
             limit: 5
         }
 
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
-        this.getInventory = this.getInventory.bind(this);
-        this.deleteItem = this.deleteItem.bind(this);
+        this.handleInputChange = this.handleInputChange.bind( this );
+        this.handleClick = this.handleClick.bind( this );
+        this.getInventory = this.getInventory.bind( this );
+        this.deleteItem = this.deleteItem.bind( this );
     }
 
-
+    // TODO: Don't do shit right now!!
     componentDidMount() {
         // Get the items saved in inventory database
         this.getInventory();
@@ -38,39 +38,39 @@ class Landing extends Component {
     // Handle input field changes
     handleInputChange = event => {
         const { name, value } = event.target;
-        this.setState({ [name]: value });
+        this.setState( { [ name ]: value } );
     }
 
     // Handle button click
     handleClick = event => {
         event.preventDefault();
-        alert(this.state.itemName);
+        alert( this.state.itemName );
     }
 
     // Delete food item from database
     deleteItem = id => {
-        API.deleteFoodItem(id)
-            .then(results => this.getInventory())
-            .catch(error => { throw error });
+        API.deleteFoodItem( id )
+            .then( results => this.getInventory() )
+            .catch( error => { throw error } );
     }
 
     // Get food items saved to database
     getInventory = () => {
         API.getInventory()
-            .then(res => this.setState({ saved: res.data.data }))
-            .catch(error => { throw error });
+            .then( res => this.setState( { saved: res.data.data } ) )
+            .catch( error => { throw error } );
     }
 
 
 
     render() {
 
-        const tableSaved = $('#savedTable').DataTable();
+        const tableSaved = $( '#savedTable' ).DataTable();
         tableSaved.clear();
 
-        $(document).ready(function () {
+        $( document ).ready( function () {
             // $.getJSON('/api/inventory', function(response) {
-            $('#savedTable').DataTable({
+            $( '#savedTable' ).DataTable( {
 
                 retrieve: true,
                 "columns": [
@@ -80,7 +80,7 @@ class Landing extends Component {
                     { "data": "bestByDate", "width": "5%" },
                     {
                         "data": "remove", "width": "5%",
-                        "render": function (data) {
+                        "render": function ( data ) {
 
                             data = "<button className='removeButton'>Remove</button>";
                             return data;
@@ -88,25 +88,25 @@ class Landing extends Component {
                     }
                 ]
 
-            });
-        });
+            } );
+        } );
 
 
-        $('#savedTable tbody').on('click', 'button', (event) => {
-            $('button').off("click"); // When the click is received, turn off the click handler
+        $( '#savedTable tbody' ).on( 'click', 'button', ( event ) => {
+            $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
 
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
             const button = event.currentTarget
 
-            const data = tableSaved.row(button.closest('tr')).data();
+            const data = tableSaved.row( button.closest( 'tr' ) ).data();
             const id = data.id;
 
-            console.log(id)
-            this.deleteItem(id);
+            console.log( id )
+            this.deleteItem( id );
 
-        })
+        } )
 
         return (
             <React.Fragment>
@@ -117,19 +117,19 @@ class Landing extends Component {
 
                             <h6 className='text-center sectionHeader'>Search Results</h6>
 
-                            {this.state.saved.slice(0, this.state.limit).map((saved, index) => {
+                            { this.state.saved.slice( 0, this.state.limit ).map( ( saved, index ) => {
 
-                                tableSaved.row.add({
+                                tableSaved.row.add( {
                                     id: saved._id,
                                     itemName: saved.itemName,
                                     quantity: saved.quantity,
                                     bestByDate: saved.bestByDate,
                                     remove: "Remove"
-                                }).draw();
+                                } ).draw();
 
                             }
 
-                            )}
+                            ) }
 
 
                             <div id='tableContainer' className='container-fluid'>

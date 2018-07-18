@@ -4,7 +4,14 @@ const bcrypt = require( 'bcryptjs' );
 
 const Schema = mongoose.Schema;
 
+// Setup User Schema
 const UserSchema = new Schema( {
+    fullname: {
+        type: String,
+        trim: true,
+        required: true,
+        index: true
+    },
     username: {
         type: String,
         trim: true,
@@ -38,13 +45,34 @@ const UserSchema = new Schema( {
     }
 } );
 
-UserSchema.methods.createUser = function ( newUser, cb ) {
+// Custom method to create user and hash password
+UserSchema.methods.createUser = ( newUser, cb ) => {
     bcrypt.genSalt( 10, ( err, salt ) => {
         bcrypt.hash( newUser.password, salt, ( err, hash ) => {
             newUser.password = hash;
             return newUser.save( cb );
         } );
     } );
+};
+
+// TODO: REMOVE
+UserSchema.methods.getUserByUsername = ( username, cb ) => {
+    const query = { username: username };
+    User.findOne( query, cb );
+};
+
+// TODO: REMOVE
+UserSchema.methods.comparePassword = ( userPassword, hash, cb ) => {
+    bcrypt.compare( userPassword, hash, ( err, isMatch ) => {
+        if ( err ) { throw err; }
+        cb( null, isMatch );
+    } );
+    User.findOne( query, cb );
+};
+
+// TODO: REMOVE
+UserSchema.methods.getUserById = ( id, cb ) => {
+    User.findById( id, cb );
 };
 
 const User = mongoose.model( 'User', UserSchema );

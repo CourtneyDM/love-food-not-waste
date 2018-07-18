@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { CardDeck, CardBasic } from '../../components/Card';
+import Comment from './Comment';
 
 class FoodSupplier extends Component {
     render() {
         return (
             <div>
                 <CardDeck>
-                    <CardBasic
-                        header='Test'>
-                        <p>This is where restaurants, caterers, grocers and other food service establishments can share food</p>
+                    <CardBasic>
+						<Comment>
+
+						</Comment>
+                       
                     </CardBasic>
                 </CardDeck>
             </div>
@@ -17,3 +20,5 @@ class FoodSupplier extends Component {
 };
 
 export default FoodSupplier;
+
+

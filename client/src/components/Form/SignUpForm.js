@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Input, Button } from '../Form';
 import axios from 'axios';
+import Dashboard from '../../pages/Landing';
 import './Form.css';
 
 export class SignUpForm extends Component {
@@ -17,15 +19,18 @@ export class SignUpForm extends Component {
 
     handleClick = event => {
         event.preventDefault();
-        return axios({
+        axios( {
             method: 'POST',
-            url: '/api/user/signup',
+            url: '/register',
             data: {
-                username: this.state.username,
+                fullname: this.state.fullname.toLowerCase(),
+                username: this.state.email,
                 email: this.state.email,
                 password: this.state.password
             }
-        }).then(res => console.log(res));
+        } ).then( res => {
+            console.log( `Data: ${JSON.stringify( res )}` );
+        } );
 
         // TODO: create functionality to handle form submission
     }
@@ -44,7 +49,7 @@ export class SignUpForm extends Component {
                     <div className='form-group'>
                         <Input
                             label='Name'
-                            name='username'
+                            name='fullname'
                             type='text'
                             className='form-control'
                             onChange={this.handleInputChange}
@@ -61,13 +66,6 @@ export class SignUpForm extends Component {
                             name='password'
                             type='password'
                             value={this.state.value}
-                            className='form-control'
-                            onChange={this.handleInputChange}
-                        />
-                        <Input
-                            label='Confirm Password'
-                            name='confirm'
-                            type='password'
                             className='form-control'
                             onChange={this.handleInputChange}
                         />

@@ -4,11 +4,11 @@ const foodController = require( '../../controllers/foodController' );
 
 // Matches with /api/food
 router.route( '/' )
-.get( foodController.findAll)
-.post( foodController.create );
+    .get( foodController.findAll )
+    .post( foodController.create );
 
 router.route( '/:item' )
-    .get( foodController.findAll)
+    .get( foodController.findAll )
     .post( foodController.create );
 
 
