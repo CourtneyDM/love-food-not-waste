@@ -34,6 +34,11 @@ passport.deserializeUser( ( id, done ) => {
     } );
 } );
 
+router.get( '/', ( req, res ) => {
+    console.log( req.sessionID );
+    return res.end();
+} )
+
 router.get( '/users', ( req, res ) => {
     User.find().then( users => {
         return res.json( users );
@@ -89,6 +94,13 @@ router.post( '/register', ( req, res ) => {
                 } );
             }
     } );
+} );
+
+// Route for when a user logs out
+router.get( '/logout', ( req, res ) => {
+    // Terminate the session
+    req.session.destroy();
+    return res.end();
 } );
 
 module.exports = router;
