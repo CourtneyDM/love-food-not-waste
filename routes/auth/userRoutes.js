@@ -34,9 +34,14 @@ passport.deserializeUser( ( id, done ) => {
     } );
 } );
 
+router.get( '/', ( req, res ) => {
+    console.log( req.sessionID );
+    return res.end();
+} )
+
 router.get( '/users', ( req, res ) => {
     User.find().then( users => {
-        res.json( users );
+        return res.json( users );
     } )
 } );
 
@@ -62,36 +67,48 @@ router.post( '/login', ( req, res, next ) => {
 // Authenticate session ID
 router.get( '/authrequired', ( req, res ) => {
     if ( req.isAuthenticated() ) {
-        res.send( { user: req.user, sessionID: req.sessionID } );
+        return res.send( { user: req.user, sessionID: req.sessionID } );
     }
     else {
-        res.send( 'User cannot be authenticated' );
+        return res.send( 'User cannot be authenticated' );
     }
 } );
 
 // Create signup route
 router.post( '/register', ( req, res ) => {
     const newUser = new User( req.body );
-    User.findOne( { username: newUser.username }, ( err, user ) => {
+    return User.findOne( { username: newUser.username }, ( err, user ) => {
         if ( err ) {
             res.status( 500 ).send( 'error occured' );
         }
-        else {
+        else
             if ( user ) {
                 res.status( 500 ).send( 'User already exists.' );
             }
-        }
-    } );
-
-    // Encrypt user password and create new user
-    newUser.createUser( newUser, ( err, user ) => {
-        if ( err ) { throw err; }
-        console.log( user );
-        res.json( user );
+            else {
+                // Encrypt user password and create new user
+                newUser.createUser( newUser, ( err, user ) => {
+                    if ( err ) { throw err; }
+                    console.log( user );
+                    res.json( user );
+                } );
+            }
     } );
 } );
 
+// Route for when a user logs out
+router.get( '/logout', ( req, res ) => {
+    console.log( "attemtpting to logout" );
+    // Terminate the session
+    req.session.destroy();
+    console.log( `Session id: ${req.sessionID}` );
+    return res.end();
+} );
 
+module.exports = router;
+
+
+// TODO: Implement Google Login Later
 // router.post( '/login',
 //     passport.authenticate( 'local',
 //         { successRedirect: '/', failureRedirect: '/signup' } ), ( req, res ) => {
@@ -110,4 +127,3 @@ router.post( '/register', ( req, res ) => {
 //     // res.redirect('/profile/');
 // } );
 
-module.exports = router;
