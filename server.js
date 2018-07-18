@@ -46,8 +46,8 @@ app.use( session( {
     },
     store: new FileStore(),
     secret: process.env.secret || keys.session.cookieKey,
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 } ) );
 
 app.use( passport.initialize() );

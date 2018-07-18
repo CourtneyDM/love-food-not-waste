@@ -58,6 +58,7 @@ export class LoginForm extends Component {
                 window.sessionStorage.setItem( "email", res.data.user.email );
                 window.sessionStorage.setItem( "sessionID", res.data.sessionID );
                 window.sessionStorage.setItem( "userID", res.data.user._id );
+                window.sessionStorage.setItem( "isLoggedIn", true );
                 this.setState( { isAuthenitcated: true } );
             }
         } ).catch( err => { throw err } );
@@ -66,10 +67,8 @@ export class LoginForm extends Component {
     render() {
         return (
             ( this.state.isAuthenitcated ?
-                ( <React.Fragment>
-                    <Dashboard />
-                </React.Fragment>
-                )
+                // Render the dashboard if the user has logged in
+                <Dashboard />
                 :
                 ( <React.Fragment>
                     <h2>Account Login</h2>
