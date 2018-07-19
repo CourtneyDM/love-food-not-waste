@@ -38,7 +38,7 @@ export class LoginForm extends Component {
     getUserData = user => {
         axios( {
             method: 'POST',
-            url: "/login",
+            url: "/user/login",
             data: {
                 email: user.email.trim(),
                 password: user.password.trim()

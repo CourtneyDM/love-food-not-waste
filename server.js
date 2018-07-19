@@ -11,8 +11,9 @@ const mongoose = require( 'mongoose' );
 const PORT = process.env.PORT || 3001;
 
 // Import Routes and Configurations
-const apiRoutes = require( './routes/api/' );
-const userRoutes = require( './routes/auth/userRoutes' );
+// const apiRoutes = require( './routes/api/' );
+// const userRoutes = require( './routes/auth/userRoutes' );
+const routes = require( './routes' );
 const keys = require( './config/keys' );
 
 // Setup connection to MongoDB for Heroku
@@ -59,8 +60,8 @@ if ( process.env.NODE_ENV === 'production' ) {
 }
 
 // Configure routes
-app.use( '/api', apiRoutes );
-app.use( userRoutes );
+// app.use( '/api', apiRoutes );
+app.use( routes );
 
 // Start Server...
 app.listen( PORT, () => console.log( `Express server listening on PORT ${PORT}` ) );

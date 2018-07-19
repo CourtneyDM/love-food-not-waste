@@ -5,8 +5,8 @@ import Login from '../../pages/Login';
 import './Form.css';
 
 export class SignUpForm extends Component {
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             fullname: '',
             username: '',
@@ -15,8 +15,8 @@ export class SignUpForm extends Component {
             isRegisterd: false,
             redirect: false
         };
-        this.handleClick = this.handleClick.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClick = this.handleClick.bind( this );
+        this.handleInputChange = this.handleInputChange.bind( this );
     }
 
     componentDidMount() {
@@ -33,7 +33,7 @@ export class SignUpForm extends Component {
         } );
         return axios( {
             method: 'POST',
-            url: '/register',
+            url: '/user/register',
             data: {
                 fullname: this.state.fullname.toUpperCase().trim(),
                 username: this.state.email.trim(),
