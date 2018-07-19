@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Input, Button } from '../../components/Form';
 import API from '../../utils/API'
 import { CardDeck, CardBasic } from '../../components/Card';
-import { Section } from '../../components/Content';
 import './Inventory.css';
 
 
@@ -39,6 +38,7 @@ class Inventory extends Component {
         //     refrigerator: "6 Months",
         //     freezer: "1 Year"
         // });
+        console.log("User ID:" + window.sessionStorage.getItem("userID"))
     }
 
 
@@ -99,6 +99,7 @@ class Inventory extends Component {
 
 
     render() {
+       
         const tableSearch = $( '#searchTable' ).DataTable();
         tableSearch.clear();
 
@@ -145,7 +146,7 @@ class Inventory extends Component {
 
         $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
             $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
-
+           
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
@@ -193,6 +194,7 @@ class Inventory extends Component {
                         <h5 className='text-center sectionHeader'>Add to your Inventory</h5>
 
                         <Input
+                            id="searchForm"
                             name='itemName'
                             label='Item Name: '
                             placeholder='Required'
