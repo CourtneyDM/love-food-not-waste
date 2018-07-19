@@ -59,7 +59,7 @@ if ( process.env.NODE_ENV === 'production' ) {
 }
 
 // Configure routes
-app.use( '/api/', apiRoutes );
+app.use( '/api', apiRoutes );
 app.use( userRoutes );
 
 // Start Server...
