@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Input, Button } from '../../components/Form';
 import API from '../../utils/API'
 import { CardDeck, CardBasic } from '../../components/Card';
-import { Section } from '../../components/Content';
 import './Inventory.css';
 
 
@@ -193,6 +192,7 @@ class Inventory extends Component {
                         <h5 className='text-center sectionHeader'>Add to your Inventory</h5>
 
                         <Input
+                            id="searchForm"
                             name='itemName'
                             label='Item Name: '
                             placeholder='Required'

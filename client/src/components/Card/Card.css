@@ -12,6 +12,7 @@
 .card-body {
     overflow: hidden;
 }
+
 .card-header-image{
     color: white;
      background-color: #B7060E;
@@ -37,4 +38,8 @@
 
 .card-body p {
     margin-top: -20px;
+}
+
+.card-body d-flex flex-column{
+    margin-top: 0px;
 }
