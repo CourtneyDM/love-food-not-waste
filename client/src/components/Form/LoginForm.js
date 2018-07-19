@@ -60,6 +60,7 @@ export class LoginForm extends Component {
                 window.sessionStorage.setItem( "userID", res.data.user._id );
                 window.sessionStorage.setItem( "isLoggedIn", true );
                 this.setState( { isAuthenitcated: true } );
+                window.location.pathname = '/Welcome';
             }
         } ).catch( err => { throw err } );
     }
