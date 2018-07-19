@@ -67,10 +67,13 @@ export class LoginForm extends Component {
     render() {
         return (
             ( this.state.isAuthenitcated ?
-                // Render the dashboard if the user has logged in
-                <Dashboard />
+                ( <React.Fragment>
+                    <Dashboard />
+                </React.Fragment>
+                )
                 :
                 ( <React.Fragment>
+                    <h2>Account Login</h2>
                     <div className='signup'>
                         <div className='form-group'>
                             <Input

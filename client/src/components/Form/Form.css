@@ -3,6 +3,7 @@
     flex-flow: column;
     width: 80%;
     margin: auto;
+    margin-top: 20px;
 }
 
 button {
@@ -24,6 +25,7 @@ input {
 
 .form-group{
     margin: 0 auto;
+    margin-top: 20px;
 }
 
 label {

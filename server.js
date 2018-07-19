@@ -11,13 +11,13 @@ const mongoose = require( 'mongoose' );
 const PORT = process.env.PORT || 3001;
 
 // Import Routes and Configurations
-const routes = require( './routes' );
+const apiRoutes = require( './routes/api/' );
 const userRoutes = require( './routes/auth/userRoutes' );
-// const keys = require( './config/keys' );
+const keys = require( './config/keys' );
 
 // Setup connection to MongoDB for Heroku
-const databaseUri = 'mongodb://localhost:27017/wasteNot';
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_xsqdq0bn:ovl3l58hlmo7tt72lo4sdm8gnm@ds129811.mlab.com:29811/heroku_xsqdq0bn';
+const databaseUri = keys.databaseURI.host;
+const MONGODB_URI = process.env.MONGODB_URI || keys.mongodb.dbURI;
 
 // Connect to MongoDB based on environment
 if ( MONGODB_URI ) {
@@ -45,8 +45,8 @@ app.use( session( {
         return uuid();  // Use UUIDs for session IDs
     },
     store: new FileStore(),
-    secret: process.env.secret || 'wastenotsmudallastexas',
-    resave: false,
+    secret: process.env.secret || keys.session.cookieKey,
+    resave: true,
     saveUninitialized: true
 } ) );
 
@@ -59,7 +59,7 @@ if ( process.env.NODE_ENV === 'production' ) {
 }
 
 // Configure routes
-app.use( routes );
+app.use( '/api/', apiRoutes );
 app.use( userRoutes );
 
 // Start Server...

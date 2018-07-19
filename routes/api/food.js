@@ -11,5 +11,14 @@ router.route( '/:item' )
     .get( foodController.findAll )
     .post( foodController.create );
 
+// // Routes to /api/inventory
+// router.route( '/' )
+//     .get( inventoryController.findAll )
+//     .post( inventoryController.create );
+
+// // Matches with /api/inventory/:id
+// router
+//     .route( '/:id' )
+//     .delete( inventoryController.remove );
 
 module.exports = router;
