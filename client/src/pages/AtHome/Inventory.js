@@ -38,6 +38,7 @@ class Inventory extends Component {
         //     refrigerator: "6 Months",
         //     freezer: "1 Year"
         // });
+        console.log("User ID:" + window.sessionStorage.getItem("userID"))
     }
 
 
@@ -98,6 +99,7 @@ class Inventory extends Component {
 
 
     render() {
+       
         const tableSearch = $( '#searchTable' ).DataTable();
         tableSearch.clear();
 
@@ -144,7 +146,7 @@ class Inventory extends Component {
 
         $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
             $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
-
+           
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
