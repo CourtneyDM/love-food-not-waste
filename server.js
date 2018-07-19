@@ -59,8 +59,8 @@ if ( process.env.NODE_ENV === 'production' ) {
 }
 
 // Configure routes
-app.use( '/api/', apiRoutes );
-app.use( userRoutes );
+app.use( '/api', apiRoutes );
+app.use( '/', userRoutes );
 
 // Start Server...
 app.listen( PORT, () => console.log( `Express server listening on PORT ${PORT}` ) );
