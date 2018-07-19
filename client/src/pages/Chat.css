@@ -11,6 +11,8 @@
   width: 360px;
   height: 425px;
   color: white;
+  font-size: 13px;
+  text-align: center;
   background-color: rgba(0,0,0, .7);
   border-radius: 5px;
   overflow: hidden;
@@ -25,7 +27,7 @@
   color: #FFF;
   margin: 0;
   height: 40px;
-  font-size: 20px;
+  font-size: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,7 +61,7 @@
 
 .chatroom .chats .chat a {
   text-decoration: none;
-  color:#3498DB;
+  color: red;
 }
 
 .chatroom .input {
@@ -90,7 +92,8 @@
   border: 1px solid red;
   height: 30px;
   width: 70px;
-  font-size: 14px;
+  font-size: 15px;
+  color: white;
   box-sizing: border-box;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;

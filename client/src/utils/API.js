@@ -58,5 +58,14 @@ export default {
     saveFoodInventory: foodData => {
         console.log( 'saving to new database...' );
         return axios.post( '/api/food', foodData );
-    }
+    },
+
+    getChat: () => {
+        console.log( 'getting chat...' );
+        return axios.get( '/api/chat');
+    },
+    saveChat: message => {
+        console.log( 'saving to chat database...' );
+        return axios.post( '/api/chat', message );
+    },
 }
