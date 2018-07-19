@@ -277,8 +277,6 @@ class Inventory extends Component {
             </React.Fragment>
         )
     }
-
-
 }
 
 export default Inventory;
