@@ -78,6 +78,7 @@ export default {
 
     // Get a recipe by ingredient
     getIngredientRecipe: ingredients => {
+        console.log('getting recipes for...' + ingredients)
         // API call will go here
         const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients';
         const HOST = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
@@ -87,7 +88,7 @@ export default {
             url: URL,
             params: {
                 ingredients: ingredients,
-                number: 1 //We have a limit of 500 results a day (free plan), so can change this accordingly
+                number: 5 //We have a limit of 500 results a day (free plan), so can change this accordingly
             },
             headers: {
                 'X-Mashape-Host': HOST,

@@ -93,8 +93,8 @@ class Inventory extends Component {
 
     // Save food item to database
     saveFoodInventory = ( foodData ) => {
-        API.saveFoodInventory( foodData ).
-            theni( res => { console.log( res ) } )
+        API.saveFoodInventory( foodData )
+            .then( res => { console.log( res ) } )
             .catch( error => { throw error } );
     }
 
@@ -267,10 +267,10 @@ class Inventory extends Component {
                                     </tbody>
                                 </table>
                             </div>
-                            <Button
+                            {/* <Button
                                 text='Get Recipe'
                                 onClick={ () => this.getRecipe( 'Shredded Chicken' ) }
-                            />
+                            /> */}
 
                         </React.Fragment>
 

@@ -8,6 +8,7 @@ export const CardBasic = props => (
             <div className="card-body d-flex flex-column">
             {props.children}
             </div>
+          
         </div>
     </React.Fragment>
 );
