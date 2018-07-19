@@ -33,7 +33,7 @@ export class SignUpForm extends Component {
         } );
         return axios( {
             method: 'POST',
-            url: '/api/user/register',
+            url: '/register',
             data: {
                 fullname: this.state.fullname.toUpperCase().trim(),
                 username: this.state.email.trim(),

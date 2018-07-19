@@ -9,8 +9,4 @@ router.use( '/inventory', inventoryRoutes );
 //Routes to Food
 router.use( '/food', foodRoutes );
 
-// Routes to Users
-router.use( '/user', userRoutes );
-
-
 module.exports = router;
