@@ -19,8 +19,8 @@ const Navbar = () => (
                         What's the Problem?
         </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="Educate/FoodWaste">Food Waste</a>
-                        <a className="dropdown-item" href="Educate/Hunger">Hunger</a>
+                        <Link className="dropdown-item" to="/Educate/FoodWaste">Food Waste</Link>
+                        <Link className="dropdown-item" to="/Educate/Hunger">Hunger</Link>
                     </div>
                 </li>
 
@@ -30,8 +30,8 @@ const Navbar = () => (
                         Help at Home
         </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="/AtHome/Inventory">Food Inventory</a>
-                        <a className="dropdown-item" href="/AtHome/Recipes">What can I make?</a>
+                        <Link className="dropdown-item" to="/AtHome/Inventory">Food Inventory</Link>
+                        <Link className="dropdown-item" to="/AtHome/Recipes">Recipes</Link>
                     </div>
                 </li>
 
@@ -40,9 +40,9 @@ const Navbar = () => (
                         Get Involved
         </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="GetInvolved/FoodSupplier">Food Suppliers</a>
-                        <a className="dropdown-item" href="GetInvolved/Individual">Individual</a>
-                        <a className="dropdown-item" href="GetInvolved/Resources">Resources</a>
+                        <Link className="dropdown-item" to="/GetInvolved/Individual">Message Board</Link>
+                        <Link className="dropdown-item" to="/GetInvolved/Resources">Resources</Link>
+
                     </div>
                 </li>
 

@@ -43,11 +43,9 @@ class Home extends Component {
                     >
                         <List>
                             <ListItem>
-                                <a href='/GetInvolved/FoodSupplier' className="card-link">Food Suppliers - Donate Here</a>
+                                <a href='/GetInvolved/Individual' className="card-link">Message Board</a>
                             </ListItem>
-                            <ListItem>
-                                <a href='/GetInvolved/Individual' className="card-link">Individuals - Donate or Deliver</a>
-                            </ListItem>
+                            
                             <ListItem>
                                 <a href='/GetInvolved/Resources' className="card-link">Resources</a>
                             </ListItem>
