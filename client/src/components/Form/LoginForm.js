@@ -74,7 +74,7 @@ export class LoginForm extends Component {
                 )
                 :
                 ( <React.Fragment>
-                    <h2>Account Login</h2>
+
                     <div className='signup'>
                         <div className='form-group'>
                             <Input
