@@ -28,6 +28,7 @@ class Inventory extends Component {
         this.saveFoodItem = this.saveFoodItem.bind( this );
         this.getFoodInventory = this.getFoodInventory.bind( this );
         this.saveFoodInventory = this.saveFoodInventory.bind( this );
+        this.getRecipe = this.getRecipe.bind( this );
     }
     componentDidMount() {
         // Get the items saved in inventory database
@@ -38,7 +39,7 @@ class Inventory extends Component {
         //     refrigerator: "6 Months",
         //     freezer: "1 Year"
         // });
-        console.log("User ID:" + window.sessionStorage.getItem("userID"))
+        console.log( "User ID:" + window.sessionStorage.getItem( "userID" ) );
     }
 
 
@@ -68,7 +69,6 @@ class Inventory extends Component {
         // TODO: display results for failed request with status code 400
     }
 
-
     // Save food item to database
     saveFoodItem = foodData => {
         console.log( foodData );
@@ -92,14 +92,22 @@ class Inventory extends Component {
 
     // Save food item to database
     saveFoodInventory = ( foodData ) => {
+        API.saveFoodInventory( foodData ).
+            theni( res => { console.log( res ) } )
+            .catch( error => { throw error } );
+    }
 
-        API.saveFoodInventory( foodData )
+    // Find a recipe
+    getRecipe = ingredients => {
+        API.getIngredientRecipe( ingredients )
+            .then( res => console.log( `Recipe search results: ${JSON.stringify( res, null, 2 )}` ) )
             .catch( error => { throw error } );
     }
 
 
     render() {
-       
+
+
         const tableSearch = $( '#searchTable' ).DataTable();
         tableSearch.clear();
 
@@ -146,7 +154,7 @@ class Inventory extends Component {
 
         $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
             $( 'button' ).off( "click" ); // When the click is received, turn off the click handler
-           
+
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
@@ -165,7 +173,7 @@ class Inventory extends Component {
                 bestByDate: date
             } )
 
-            alert( 'Your item has been added.' )
+            alert( 'Your item has been added.' );
         } )
 
 
@@ -256,7 +264,10 @@ class Inventory extends Component {
                                     </tbody>
                                 </table>
                             </div>
-
+                            <Button
+                                text='Get Recipe'
+                                onClick={ () => this.getRecipe( 'Shredded Chicken' ) }
+                            />
 
                         </React.Fragment>
 

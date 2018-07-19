@@ -36,36 +36,63 @@ export default {
         return axios.post( '/api/inventory', foodData );
     },
 
+    // Get food from user inventory
     getInventory: () => {
         console.log( 'getting inventory...' );
-        return axios.get( '/api/inventory');
+        return axios.get( '/api/inventory' );
     },
 
+    // Delete food item from user inventory
     deleteFoodItem: id => {
         console.log( id );
         return axios.delete( '/api/inventory/' + id );
     },
-    
+
+    // Get food database
     getFoodInventory: query => {
         console.log( 'API.js getting food: ', query );
         return axios.get( `/api/food`, {
             params: {
-              item: query
+                item: query
             }
-            })
-        },
-    
+        } )
+    },
+
+    // Save food to database
     saveFoodInventory: foodData => {
         console.log( 'saving to new database...' );
         return axios.post( '/api/food', foodData );
     },
 
+    // Get Chat
     getChat: () => {
         console.log( 'getting chat...' );
-        return axios.get( '/api/chat');
+        return axios.get( '/api/chat' );
     },
+
+    // Save chat
     saveChat: message => {
         console.log( 'saving to chat database...' );
         return axios.post( '/api/chat', message );
     },
+
+    // Get a recipe by ingredient
+    getIngredientRecipe: ingredients => {
+        // API call will go here
+        const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients';
+        const HOST = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
+        const KEY = 'jQfnjagUlOmsh6jakRb6pEeFbK99p1ebYpGjsnhQRHifZupNG2';
+        return axios( {
+            method: 'GET',
+            url: URL,
+            params: {
+                ingredients: ingredients,
+                number: 1 //We have a limit of 500 results a day (free plan), so can change this accordingly
+            },
+            headers: {
+                'X-Mashape-Host': HOST,
+                'X-Mashape-Key': KEY
+            }
+        } );
+    }
 }
