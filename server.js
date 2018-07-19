@@ -11,7 +11,7 @@ const mongoose = require( 'mongoose' );
 const PORT = process.env.PORT || 3001;
 
 // Import Routes and Configurations
-const routes = require( './routes );
+const routes = require( './routes' );
 const userRoutes = require( './routes/auth/userRoutes' );
 // const keys = require( './config/keys' );
 
