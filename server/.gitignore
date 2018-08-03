@@ -8,7 +8,6 @@
 
 # production
 /build
-/config
 /sessions
 ./config/keys.js
 /sessions
