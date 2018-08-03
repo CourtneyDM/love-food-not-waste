@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import { CardWithImage, CardDeck } from '../components/Card';
 import { List, ListItem } from '../components/List';
 
@@ -14,10 +15,10 @@ export class Home extends Component {
                     >
                         <List>
                             <ListItem>
-                                <a href='/Educate/FoodWaste' className="card-link">Why food waste is a big deal</a>
+                                <Link to='/Educate/FoodWaste' className="card-link">Why food waste is a big deal</Link>
                             </ListItem>
                             <ListItem>
-                                <a href='/Educate/Hunger' className="card-link">Hunger in America</a>
+                                <Link to='/Educate/Hunger' className="card-link">Hunger in America</Link>
                             </ListItem>
                         </List>
                     </CardWithImage>
@@ -29,10 +30,10 @@ export class Home extends Component {
                     >
                         <List>
                             <ListItem>
-                                <a href='/AtHome/Inventory' className="card-link">Track your Food</a>
+                                <Link to='/AtHome/Inventory' className="card-link">Track your Food</Link>
                             </ListItem>
                             <ListItem>
-                                <a href='/AtHome/Recipes' className="card-link">Find Recipes</a>
+                                <Link to='/AtHome/Recipes' className="card-link">Find Recipes</Link>
                             </ListItem>
                         </List>
                     </CardWithImage>
@@ -43,17 +44,16 @@ export class Home extends Component {
                     >
                         <List>
                             <ListItem>
-                                <a href='/GetInvolved/Individual' className="card-link">Message Board</a>
+                                <Link to='/GetInvolved/Individual' className="card-link">Message Board</Link>
                             </ListItem>
 
                             <ListItem>
-                                <a href='/GetInvolved/Resources' className="card-link">Resources</a>
+                                <Link to='/GetInvolved/Resources' className="card-link">Resources</Link>
                             </ListItem>
                         </List>
                     </CardWithImage>
                 </CardDeck>
             </div>
-
         )
     };
 };
