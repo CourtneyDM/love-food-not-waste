@@ -8,7 +8,7 @@ const passport = require( 'passport' );
 const mongoose = require( 'mongoose' );
 
 // Define Server PORT
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // Import Configs
 const passportConfig = require( './config/passport-config' );
