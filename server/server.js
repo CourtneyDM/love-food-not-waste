@@ -47,7 +47,7 @@ app.use( session( {
         return uuid(); //Use UUID for session IDs
     },
     store: new FileStore(),
-    secret: process.env.secret || keys.session.cookieKey,
+    secret: process.env.cookieKey || keys.session.cookieKey,
     resave: true,
     saveUninitialized: true
 } ) );

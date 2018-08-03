@@ -41,8 +41,8 @@ passport.deserializeUser( ( id, done ) => {
 passport.use( new GoogleStrategy( {
     // Options for Google Strategy
     callbackURL: '/auth/google/redirect',
-    clientID: keys.google.clientID,
-    clientSecret: keys.google.clientSecret
+    clientID: process.env.clientID || keys.google.clientID,
+    clientSecret: process.env.clientSecret || keys.google.clientSecret
 }, ( accessToken, refreshToken, profile, done ) => {
     // Check if user exists in our database
     User.findOne( {
