@@ -8,7 +8,7 @@ const passport = require( 'passport' );
 const mongoose = require( 'mongoose' );
 
 // Define Server PORT
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 // Import Configs
 const passportConfig = require( './config/passport-config' );
@@ -23,9 +23,11 @@ const dbURI = 'mongodb://localhost:27017/wasteNot'; //keys.dbURI.host;
 const MONGODB_URI = process.env.MONGODB_URI;// || keys.mongodb.dbURI;
 if ( MONGODB_URI ) {
     mongoose.connect( MONGODB_URI, { useNewUrlParser: true } );
+    console.log( 'Connected to mLab database' );
 }
 else {
     mongoose.connect( dbURI, { useNewUrlParser: true } );
+    console.log( 'Connected to local MongoDB database' );
 }
 // Validate connection to database
 const db = mongoose.connection;
