@@ -1,4 +1,5 @@
 // Define routes to be used by Express server - Love Food Not Waste
+const path = require( 'path' );
 const router = require( 'express' ).Router();
 const chatRoutes = require( './chatRoutes' );
 const foodRoutes = require( './foodRoutes' );
