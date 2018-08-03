@@ -1,0 +1,20 @@
+.navbar {
+    background-color:#282828;
+    padding: 0px;
+    padding-left: 20px;
+    height: 50px;
+}
+
+.navbar-toggler {
+    margin-top: -8px;
+    height: 30px;
+}
+.userInfo{
+    color: #FFF;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}

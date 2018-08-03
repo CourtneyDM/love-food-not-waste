@@ -1,0 +1,45 @@
+.card-deck{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    overflow: auto;
+}
+
+.card {
+    margin-top: 30px;
+}
+
+.card-body {
+    overflow: hidden;
+}
+
+.card-header-image{
+    color: white;
+     background-color: #B7060E;
+     font-family: 'Roboto', sans-serif;
+     font-size: 20px;
+     padding-top: 6px;
+     height: 50px;
+ }
+
+ .card-header-basic{
+     border: none;
+     background-color: white;
+     font-size: 24px;
+     font-family: 'Roboto',sans-serif;
+     
+ }
+
+#foodWaste {
+    float: left;
+    border-radius: 1px;
+    margin: 0px 15px 15px 0px;
+}
+
+.card-body p {
+    margin-top: -20px;
+}
+
+.card-body d-flex flex-column{
+    margin-top: 0px;
+}

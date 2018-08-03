@@ -1,0 +1,29 @@
+#foodBanksText{
+    margin-top: 40px;
+}
+
+#foodBanks {
+    table-layout: auto;
+        border-collapse: collapse;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 50px;
+}
+
+#foodBanks td, #foodBanks th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#foodBanks tr:nth-child(even){background-color: #f2f2f2;}
+
+#foodBanks tr:hover {background-color: #ddd;}
+
+#foodBanks th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #00BAED;
+    color: white;
+}
