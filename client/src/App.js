@@ -21,17 +21,17 @@ export default class App extends Component {
                     <Jumbotron />
                     <div className='siteContent'>
                         <Switch>
-                            <Route exact path='/' component={ Home } />
-                            <Route path={ `${this.props.match.url}/login` } component={ Login } />
-                            <Route path='/signup' component={ Signup } />
-                            <Route path='/dashboard' component={ Dashboard } />
-                            <Route path='/AtHome/Inventory' component={ Inventory } />
-                            <Route path='/AtHome/Recipes' component={ Recipes } />
-                            <Route path='/Educate/FoodWaste' component={ FoodWaste } />
-                            <Route path='/Educate/Hunger' component={ Hunger } />
-                            <Route path='/GetInvolved/FoodSupplier' component={ FoodSupplier } />
-                            <Route path='/GetInvolved/Individual' component={ Individual } />
-                            <Route path='/GetInvolved/Resources' component={ Resources } />
+                            <Route exact path={ '/' } component={ Home } />
+                            <Route path={ '/login' } component={ Login } />
+                            <Route path={ '/signup' } component={ Signup } />
+                            <Route path={ '/dashboard' } component={ Dashboard } />
+                            <Route path={ '/AtHome/Inventory' } component={ Inventory } />
+                            <Route path={ '/AtHome/Recipes' } component={ Recipes } />
+                            <Route path={ '/Educate/FoodWaste' } component={ FoodWaste } />
+                            <Route path={ '/Educate/Hunger' } component={ Hunger } />
+                            <Route path={ '/GetInvolved/FoodSupplier' } component={ FoodSupplier } />
+                            <Route path={ '/GetInvolved/Individual' } component={ Individual } />
+                            <Route path={ '/GetInvolved/Resources' } component={ Resources } />
                             <Route component={ NoMatch } />
                         </Switch>
                     </div>
