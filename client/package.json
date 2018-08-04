@@ -18,10 +18,5 @@
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
     },
-    "proxy": {
-        "/*": {
-            "target": "http://localhost:3001",
-            "ws": true
-        }
-    }
+    "proxy": "http://localhost:3001"
 }

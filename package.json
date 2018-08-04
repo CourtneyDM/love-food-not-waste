@@ -10,8 +10,8 @@
     "scripts": {
         "server": "node server.js",
         "client": "cd server && node scripts/start-client.js",
-        "start": "nodemon --ignore sessions/ --ignore client /server.js",
-        "app": "concurrently \"nodemon --ignore sessions/ --ignore ../client/ server.js \" \"npm run client\"",
+        "start": "nodemon --ignore sessions/ server",
+        "app": "concurrently \"cd server && nodemon --ignore sessions/ server.js \" \"cd server && npm run client\"",
         "build": "node scripts/build.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "heroku-postbuild": "cd client && npm install && npm run build"
