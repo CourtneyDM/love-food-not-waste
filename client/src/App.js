@@ -22,7 +22,7 @@ export default class App extends Component {
                     <div className='siteContent'>
                         <Switch>
                             <Route exact path='/' component={ Home } />
-                            <Route path='/login' component={ Login } />
+                            <Route path={ `${this.props.match.url}/login` } component={ Login } />
                             <Route path='/signup' component={ Signup } />
                             <Route path='/dashboard' component={ Dashboard } />
                             <Route path='/AtHome/Inventory' component={ Inventory } />
