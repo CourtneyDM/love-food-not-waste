@@ -22,16 +22,16 @@ export default class App extends Component {
                     <div className='siteContent'>
                         <Switch>
                             <Route exact path='/' component={ Home } />
-                            <Route exact path='/login' component={ Login } />
-                            <Route exact path='/signup' component={ Signup } />
-                            <Route exact path='/dashboard' component={ Dashboard } />
-                            <Route exact path='/AtHome/Inventory' component={ Inventory } />
-                            <Route exact path='/AtHome/Recipes' component={ Recipes } />
-                            <Route exact path='/Educate/FoodWaste' component={ FoodWaste } />
-                            <Route exact path='/Educate/Hunger' component={ Hunger } />
-                            <Route exact path='/GetInvolved/FoodSupplier' component={ FoodSupplier } />
-                            <Route exact path='/GetInvolved/Individual' component={ Individual } />
-                            <Route exact path='/GetInvolved/Resources' component={ Resources } />
+                            <Route path='/login' component={ Login } />
+                            <Route path='/signup' component={ Signup } />
+                            <Route path='/dashboard' component={ Dashboard } />
+                            <Route path='/AtHome/Inventory' component={ Inventory } />
+                            <Route path='/AtHome/Recipes' component={ Recipes } />
+                            <Route path='/Educate/FoodWaste' component={ FoodWaste } />
+                            <Route path='/Educate/Hunger' component={ Hunger } />
+                            <Route path='/GetInvolved/FoodSupplier' component={ FoodSupplier } />
+                            <Route path='/GetInvolved/Individual' component={ Individual } />
+                            <Route path='/GetInvolved/Resources' component={ Resources } />
                             <Route component={ NoMatch } />
                         </Switch>
                     </div>
