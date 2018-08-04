@@ -38,29 +38,21 @@ export class Dashboard extends Component {
         }
     }
 
-    // componentWillUnmount() {
-    //     this.setState( {
-    //         barCode: '',
-    //         itemName: '',
-    //         itemBrandName: '',
-    //         quantity: '',
-    //         dateAdded: '',
-    //         bestByDate: '',
-    //         brands: [],
-    //         saved: [],
-    //         limit: 5,
-    //         isAuthenticated: false
-    //     } );
-    //     window.sessionStorage.clear();
-    // }
 
-    // Logout user and end session
-    // logoutUser = () => {
-    //     Auth.logoutUser().then( response => {
-    //         window.sessionStorage.clear();
-    //         // this.setState( { isAuthenticated: false } );
-    //     } );
-    // }
+    componentWillUnmount() {
+        this.setState( {
+            barCode: '',
+            itemName: '',
+            itemBrandName: '',
+            quantity: '',
+            dateAdded: '',
+            bestByDate: '',
+            brands: [],
+            saved: [],
+            limit: 5,
+            isAuthenticated: false
+        } );
+    }
 
     // Handle input field changes
     handleInputChange = event => {
@@ -172,7 +164,9 @@ export class Dashboard extends Component {
                             </CardBasic>
                         </CardDeck>
                     </ React.Fragment>
-                    : <Redirect to='/' />
+                    :
+                    // If user is not logged in, redirect to home page
+                    <Redirect to='/' />
             )
             } />
         );
