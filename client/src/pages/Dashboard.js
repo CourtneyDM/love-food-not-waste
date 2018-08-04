@@ -38,29 +38,29 @@ export class Dashboard extends Component {
         }
     }
 
-    componentWillUnmount() {
-        this.setState( {
-            barCode: '',
-            itemName: '',
-            itemBrandName: '',
-            quantity: '',
-            dateAdded: '',
-            bestByDate: '',
-            brands: [],
-            saved: [],
-            limit: 5,
-            isAuthenticated: false
-        } );
-        window.sessionStorage.clear();
-    }
+    // componentWillUnmount() {
+    //     this.setState( {
+    //         barCode: '',
+    //         itemName: '',
+    //         itemBrandName: '',
+    //         quantity: '',
+    //         dateAdded: '',
+    //         bestByDate: '',
+    //         brands: [],
+    //         saved: [],
+    //         limit: 5,
+    //         isAuthenticated: false
+    //     } );
+    //     window.sessionStorage.clear();
+    // }
 
     // Logout user and end session
-    logoutUser = () => {
-        Auth.logoutUser().then( response => {
-            window.sessionStorage.clear();
-            // this.setState( { isAuthenticated: false } );
-        } );
-    }
+    // logoutUser = () => {
+    //     Auth.logoutUser().then( response => {
+    //         window.sessionStorage.clear();
+    //         // this.setState( { isAuthenticated: false } );
+    //     } );
+    // }
 
     // Handle input field changes
     handleInputChange = event => {
