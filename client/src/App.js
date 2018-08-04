@@ -9,10 +9,8 @@ import { Login, Signup } from './pages/Authentication';
 import { FoodWaste, Hunger } from './pages/Educate';
 import { Inventory, Recipes } from './pages/AtHome';
 import { FoodSupplier, Individual, Resources } from './pages/GetInvolved';
-// import {Chatroom, Comment, Message} from './pages/GetInvolved';
 
 export default class App extends Component {
-
     render() {
         return (
             <Router>
@@ -22,10 +20,10 @@ export default class App extends Component {
                     <div className='siteContent'>
                         <Switch>
                             <Route exact path={ '/' } component={ Home } />
-                            <Route path={ '/login' } component={ Login } />
-                            <Route path={ '/signup' } component={ Signup } />
-                            <Route path={ '/dashboard' } component={ Dashboard } />
-                            <Route path={ '/AtHome/Inventory' } component={ Inventory } />
+                            <Route path={ `${match.params.login}` } component={ Login } />
+                            <Route path={ '/:signup' } component={ Signup } />
+                            <Route path={ '/:dashboard' } component={ Dashboard } />
+                            <Route path={ '/:AtHome/Inventory' } component={ Inventory } />
                             <Route path={ '/AtHome/Recipes' } component={ Recipes } />
                             <Route path={ '/Educate/FoodWaste' } component={ FoodWaste } />
                             <Route path={ '/Educate/Hunger' } component={ Hunger } />
