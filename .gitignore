@@ -1,13 +1,16 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
 # dependencies
+.env
 /node_modules
+/config/keys.js
 
 # testing
 /coverage
 
 # production
 /build
+/sessions
+./config/keys.js
+/sessions
 
 # misc
 .DS_Store
