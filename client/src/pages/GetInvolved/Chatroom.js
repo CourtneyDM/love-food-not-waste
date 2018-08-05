@@ -19,7 +19,7 @@ class Chatroom extends React.Component {
     componentDidMount() {
         this.setState( {
             message: '',
-            username: 'Anonymous'
+            username: ''
         } );
         this.getChat();
         this.scrollToBot();

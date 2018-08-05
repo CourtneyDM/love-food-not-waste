@@ -6,7 +6,7 @@ import './Chat.css';
 const Message = ( { chat, date, username } ) => (
     <CardBasic
         id="chatMessageHeader"
-        header={ `${username} - ${date}` }>
+        header={ `Submitted by: ${username} - ${date}` }>
         { chat }
     </CardBasic>
 );

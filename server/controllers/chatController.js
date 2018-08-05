@@ -7,7 +7,7 @@ module.exports = {
     findAll: ( req, res ) => {
         db.Chat
             .find( req.query )
-            .sort( { date: 1 } )
+            .sort( { dateCreated: 1 } )
             .then( dbModel => res.json( { 'data': dbModel } ) )
             .catch( error => res.status( 422 ).json( error ) );
     },
