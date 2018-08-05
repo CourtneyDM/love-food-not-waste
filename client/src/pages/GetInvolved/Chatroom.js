@@ -13,7 +13,7 @@ class Chatroom extends React.Component {
             message: '',
             chats: []
         };
-        this.getChat = this.getChat.bind( this );
+        // this.getChat = this.getChat.bind( this );
     }
 
     componentDidMount() {
@@ -25,6 +25,14 @@ class Chatroom extends React.Component {
         this.scrollToBot();
     }
 
+    // Save recent post to chat database
+    saveChat = message => {
+        return API.saveChat( message )
+            .then( res => console.log( `saveChat response: ${res}` ) )
+            .catch( error => { throw error } );
+        // TODO: update chat array with response from API call - call getChat method
+    }
+
     // Handle input field changes
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -34,7 +42,6 @@ class Chatroom extends React.Component {
     // Handle button click
     handleClick = event => {
         event.preventDefault();
-        alert( this.state.itemName );
         this.setState( {
             message: this.state.message
         } );
@@ -58,13 +65,6 @@ class Chatroom extends React.Component {
             .catch( error => { throw error } );
     }
 
-    // Save recent post to chat database
-    saveChat = message => {
-        return API.saveChat( message )
-            .then( res => console.log( `saveChat response: ${res}` ) )
-            .catch( error => { throw error } );
-        // TODO: update chat array with response from API call - call getChat method
-    }
 
     // saveChatClick = () => {
     //     console.log( "Saving message:" + this.state.message )
