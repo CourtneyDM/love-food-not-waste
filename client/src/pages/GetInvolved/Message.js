@@ -3,10 +3,11 @@ import { CardBasic } from '../../components/Card';
 import './Chat.css';
 
 
-const Message = ( { chat, date } ) => (
+const Message = ( { chat, date, username } ) => (
     <CardBasic
         id="chatMessageHeader"
         header={ date }>
+        { username }
         { chat }
     </CardBasic>
 );
