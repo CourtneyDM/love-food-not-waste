@@ -8,17 +8,15 @@ module.exports = {
         db.Chat
             .find( req.query )
             .sort( { date: 1 } )
-            .then( res => res.set( 'Content-Type', 'application/json' ) )
             .then( dbModel => res.json( { 'data': dbModel } ) )
             .catch( error => res.status( 422 ).json( error ) );
     },
     // Add Chat to Database
     create: ( req, res ) => {
         console.log( `Checking request: ${JSON.stringify( req )}` );
-        res.end();
+        res.json( req );
         // db.Chat
         //     .create( req.body )
-        // then(res => res.set('Content-Type', 'application/json'))
         //     .then( dbModel => res.json( dbModel ) )
         //     .catch( error => res.status( 422 ).json( error ) );
     }
