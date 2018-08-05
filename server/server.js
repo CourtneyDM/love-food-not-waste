@@ -67,5 +67,10 @@ if ( process.env.NODE_ENV === "production" ) {
 app.use( '/auth', authRoutes );
 app.use( '/api', apiRoutes );
 
+// If no API routes are hit, send the React app pages
+app.get( '*', ( req, res ) => {
+    res.sendFile( path.join( __dirname, '../client/build/index.html' ) );
+} );
+
 // Start Express Server
 app.listen( PORT, () => { console.log( `Server now listening on PORT ${PORT}...` ) } );
