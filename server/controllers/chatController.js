@@ -13,9 +13,10 @@ module.exports = {
     },
     // Add Chat to Database
     create: ( req, res ) => {
-        db.Chat
-            .create( req )
-            .then( dbModel => res.json( dbModel ) )
-            .catch( error => res.status( 422 ).json( error ) );
+        console.log( `Checking request: ${JSON.stringify( req, null, 2 )}` );
+        // db.Chat
+        //     .create( req.body )
+        //     .then( dbModel => res.json( dbModel ) )
+        //     .catch( error => res.status( 422 ).json( error ) );
     }
 };
