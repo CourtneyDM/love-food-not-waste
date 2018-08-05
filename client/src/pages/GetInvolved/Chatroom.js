@@ -51,8 +51,8 @@ class Chatroom extends React.Component {
             message: this.state.message
         };
 
-        // console.log( `Post details: ${post}` );
-        return this.saveChat( post );
+        console.log( `Post details: ${post}` );
+        // return this.saveChat( post );
     }
 
     scrollToBot() {
@@ -62,13 +62,11 @@ class Chatroom extends React.Component {
     getChat = () => {
         return API.getChat()
             .then( results => {
-                console.log( `Here are the results: ${JSON.stringify( results, null, 2 )}` );
                 this.setState( {
                     chats: results.data.data,
                     message: '',
                     username: ''
                 } );
-                console.log( this.state.chats );
             } )
             .catch( error => { throw error } );
     }
