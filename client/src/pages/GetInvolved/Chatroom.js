@@ -11,6 +11,7 @@ class Chatroom extends React.Component {
         super( props );
         this.state = {
             post: {
+                username: 'Anonymous',
                 message: ''
             },
             chats: []
@@ -46,7 +47,6 @@ class Chatroom extends React.Component {
         event.preventDefault();
         this.setState( {
             post: {
-                username: 'Anonymous',
                 message: this.state.message
             }
         } );
