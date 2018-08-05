@@ -17,10 +17,6 @@ class Chatroom extends React.Component {
     }
 
     componentDidMount() {
-        this.setState( {
-            message: '',
-            username: 'Anonymous'
-        } );
         this.getChat();
         this.scrollToBot();
     }
@@ -73,7 +69,7 @@ class Chatroom extends React.Component {
 
     // Save recent post to chat database
     saveChat = post => {
-        console.log( `Posting: ${post}` );
+        console.log( `Posting: ${JSONS.stringify( post, null, 2 )}` );
         return API.saveChat( post )
             .then( this.getChat() )
             .catch( error => { throw error } );
