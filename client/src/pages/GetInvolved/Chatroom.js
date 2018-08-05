@@ -10,16 +10,20 @@ class Chatroom extends React.Component {
     constructor( props ) {
         super( props );
         this.state = {
-            post: {
-                username: 'Anonymous',
-                message: ''
-            },
+            username: '',
+            message: '',
             chats: []
         };
         // this.getChat = this.getChat.bind( this );
     }
 
     componentDidMount() {
+        this.setState( {
+            post: {
+                message: '',
+                username: 'Anonymous'
+            }
+        } );
         this.getChat();
         this.scrollToBot();
     }
@@ -45,12 +49,23 @@ class Chatroom extends React.Component {
     // Handle button click
     handleClick = event => {
         event.preventDefault();
-        const post = {
-            username: 'Anonymous',
-            message: this.state.message
-        };
+        const post = {};
+        if ( window.sessionStorage.getItem( 'username' ) ) {
+            this.setState( {
+                username: window.sessionStorage.getItem( 'username' ),
+                message: this.state.message
+            } );
+        }
+        else {
+            this.setState( {
+                username: 'Anonymous',
+                message
+            } );
+        }
+        post.message = this.state.message;
+        post.username = this.state.username;
 
-        console.log( `Message submitted: ${this.state.message}` );
+        console.log( `Post details: ${post}` );
         return this.saveChat( post );
     }
 
