@@ -14,6 +14,7 @@ module.exports = {
     // Add Chat to Database
     create: ( req, res ) => {
         db.Chat
+        console.log( `req.body: ${req.body}` );
             .create( req.body )
             .then( dbModel => res.json( dbModel ) )
             .catch( error => res.status( 422 ).json( error ) );
