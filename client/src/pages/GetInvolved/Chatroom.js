@@ -33,9 +33,8 @@ class Chatroom extends React.Component {
     // Save recent post to chat database
     saveChat = post => {
         return API.saveChat( post )
-            .then( res => console.log( `saveChat res.data: ${res.data}` ) )
+            .then( this.getChat() )
             .catch( error => { throw error } );
-        // TODO: update chat array with response from API call - call getChat method
     }
 
     // Handle input field changes
