@@ -90,11 +90,11 @@ class Chatroom extends React.Component {
                             { this.state.chats
                                 .slice( 0, this.state.chats.length )
                                 .map( ( chat, index ) => {
-                                    console.log( `Message: ${JSONS.stringify( chat )} index: ${index}` );
-                                    // return <Message
-                                    //     key={ index }
-                                    //     date={ chat.date }
-                                    //     chat={ chat.message } />
+                                    return <Message
+                                        key={ index }
+                                        date={ chat.dateCreated }
+                                        username={ chat.username }
+                                        chat={ chat.message } />
                                 } ) }
                         </div>
                     </div>
