@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { CardDeck, CardBasic } from '../components/Card';
 import API from '../utils/API';
-import Auth from '../utils/Auth';
+// import Auth from '../utils/Auth';
 
 const $ = require( 'jquery' );
 $.DataTable = require( 'datatables.net' );
