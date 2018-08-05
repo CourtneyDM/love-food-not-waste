@@ -43,6 +43,9 @@ class Chatroom extends React.Component {
                 username: window.sessionStorage.getItem( 'username' ),
             } );
         }
+        else {
+            this.setState( { username: 'Anonymous' } );
+        }
         const post = {
             username: this.state.username,
             message: this.state.message
@@ -72,6 +75,7 @@ class Chatroom extends React.Component {
 
     // Save recent post to chat database
     saveChat = post => {
+        console.log( `Posting: ${post}` );
         return API.saveChat( post )
             .then( this.getChat() )
             .catch( error => { throw error } );
