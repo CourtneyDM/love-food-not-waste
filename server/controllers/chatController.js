@@ -15,7 +15,7 @@ module.exports = {
     create: ( req, res ) => {
         console.log( `/** LOGGING: req.body: ${JSON.stringify( req.body, null, 2 )} **/` );
         db.Chat
-            .create( req.body )
+            .create( req.body.message )
             .then( dbModel => res.json( dbModel ) )
             .catch( error => res.status( 422 ).json( error ) );
     }
