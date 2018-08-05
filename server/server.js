@@ -12,15 +12,15 @@ const PORT = process.env.PORT || 3001;
 
 // Import Configs
 const passportConfig = require( './config/passport-config' );
-const keys = require( './config/keys' );
+// const keys = require( './config/keys' ); 
 
 // Import Routes
 const authRoutes = require( './routes/authentication/authRoutes' );
 const apiRoutes = require( './routes/api' );
 
 // Configure and Setup Connections for MongoDB
-const dbURI = 'mongodb://localhost:27017/wasteNot' || keys.dbURI.host;
-const MONGODB_URI = process.env.MONGODB_URI || keys.mongodb.dbURI;
+const dbURI = 'mongodb://localhost:27017/wasteNot'; // || keys.dbURI.host;
+const MONGODB_URI = process.env.MONGODB_URI; // || keys.mongodb.dbURI;
 if ( MONGODB_URI ) {
     mongoose.connect( MONGODB_URI, { useNewUrlParser: true } );
     console.log( 'Connected to mLab database' );
