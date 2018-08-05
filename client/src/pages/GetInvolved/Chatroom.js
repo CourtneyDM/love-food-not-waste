@@ -45,8 +45,8 @@ class Chatroom extends React.Component {
         this.setState( {
             message: this.state.message
         } );
-        console.log( `Message submitted: ${message}` );
-        return this.saveChat( message );
+        console.log( `Message submitted: ${this.state.message}` );
+        return this.saveChat( this.state.message );
     }
 
 
