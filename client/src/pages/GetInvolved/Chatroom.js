@@ -31,7 +31,7 @@ class Chatroom extends React.Component {
     // Save recent post to chat database
     saveChat = message => {
         return API.saveChat( message )
-            .then( res => console.log( `saveChat response: ${JSON.stringify( res, null, 2 )}` ) )
+            .then( res => console.log( `saveChat res.data: ${res.data}` ) )
             .catch( error => { throw error } );
         // TODO: update chat array with response from API call - call getChat method
     }
@@ -49,7 +49,7 @@ class Chatroom extends React.Component {
             message: this.state.message,
             username: 'Anonymous'
         }
-        console.log( `Message submitted: ${this.state.message}` );
+        console.log( `Message submitted: ${post}` );
         return this.saveChat( post );
     }
 
@@ -68,18 +68,7 @@ class Chatroom extends React.Component {
     }
 
 
-    // saveChatClick = () => {
-    //     console.log( "Saving message:" + this.state.message )
-    //     this.saveChat( {
-    //         message: this.state.message
-    //     } )
 
-    //     this.setState( {
-    //         message: ''
-    //     } );
-    //     this.getChat();
-
-    // }
     render() {
         return (
             <CardDeck>
