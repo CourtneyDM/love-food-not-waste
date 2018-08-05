@@ -64,7 +64,7 @@ class Chatroom extends React.Component {
     getChat = () => {
         return API.getChat()
             .then( results => {
-                console.log( `Results: ${results}` );
+                console.log( `Here are the results: ${results}` );
                 this.setState( {
                     chats: results.data.data,
                 } );
