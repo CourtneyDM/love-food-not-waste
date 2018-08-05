@@ -19,7 +19,6 @@ export default class App extends Component {
                     <Jumbotron />
                     <div className='siteContent'>
                         <Switch>
-                            <Route exact path='/' component={ Home } />
                             <Route path='/login' component={ Login } />
                             <Route path='/signup' component={ Signup } />
                             <Route path='/dashboard' component={ Dashboard } />
@@ -30,6 +29,7 @@ export default class App extends Component {
                             <Route path='/GetInvolved/FoodSupplier' component={ FoodSupplier } />
                             <Route path='/GetInvolved/Individual' component={ Individual } />
                             <Route path='/GetInvolved/Resources' component={ Resources } />
+                            <Route exact path='/' component={ Home } />
                             <Route component={ NoMatch } />
                         </Switch>
                     </div>
