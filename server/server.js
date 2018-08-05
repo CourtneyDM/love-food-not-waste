@@ -58,7 +58,7 @@ app.use( session( {
 app.use( passport.initialize() );
 app.use( passport.session() );
 
-// Serve up static assets om Heroku
+// Serve up static routes om Heroku
 if ( process.env.NODE_ENV === "production" ) {
     app.use( express.static( "client/build" ) );
 }
