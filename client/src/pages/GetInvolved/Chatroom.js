@@ -53,7 +53,7 @@ class Chatroom extends React.Component {
             message: this.state.message
         };
 
-        console.log( `Post details: ${post}` );
+        // console.log( `Post details: ${post}` );
         return this.saveChat( post );
     }
 
@@ -67,6 +67,8 @@ class Chatroom extends React.Component {
                 console.log( `Here are the results: ${JSON.stringify( results, null, 2 )}` );
                 this.setState( {
                     chats: results.data.data,
+                    message: '',
+                    username: ''
                 } );
                 console.log( this.state.chats );
             } )
