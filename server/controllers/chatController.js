@@ -13,7 +13,6 @@ module.exports = {
     },
     // Add Chat to Database
     create: ( req, res ) => {
-        console.log( `/** LOGGING: req.body: ${JSON.stringify( req, null, 2 )} **/` );
         db.Chat
             .create( req )
             .then( dbModel => res.json( dbModel ) )
