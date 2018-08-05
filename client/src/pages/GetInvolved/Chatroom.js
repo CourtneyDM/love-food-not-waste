@@ -19,7 +19,7 @@ class Chatroom extends React.Component {
     componentDidMount() {
         this.setState( {
             message: '',
-            username: ''
+            username: 'Anonymous'
         } );
         this.getChat();
         this.scrollToBot();
@@ -41,11 +41,6 @@ class Chatroom extends React.Component {
         if ( window.sessionStorage.getItem( 'username' ) ) {
             this.setState( {
                 username: window.sessionStorage.getItem( 'username' ),
-            } );
-        }
-        else {
-            this.setState( {
-                username: 'Anonymous',
             } );
         }
         const post = {
