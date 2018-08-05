@@ -45,11 +45,10 @@ class Chatroom extends React.Component {
     // Handle button click
     handleClick = event => {
         event.preventDefault();
-        this.setState( {
-            post: {
-                message: this.state.message
-            }
-        } );
+        const post = {
+            message: this.state.message,
+            username: 'Anonymous'
+        }
         console.log( `Message submitted: ${this.state.message}` );
         return this.saveChat( post );
     }
