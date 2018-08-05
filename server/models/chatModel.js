@@ -6,18 +6,20 @@ const Schema = mongoose.Schema;
 
 // Create ChatSchema
 const ChatSchema = new Schema( {
-    userName: {
+    username: {
         type: String,
-        required: true
+        trim: true,
+        required: true,
+        index: true
     },
     message: {
         type: String,
-        required: false
+        required: true,
+        trim: true
     },
-    date: {
+    dateCreated: {
         type: Date,
         default: Date.now,
-        required: false
     }
 } );
 
@@ -26,5 +28,3 @@ const Chat = mongoose.model( 'Chat', ChatSchema );
 
 // Export Chat Model
 module.exports = Chat;
-
-// TODO: Look at Firebase for realtime chat functionality
