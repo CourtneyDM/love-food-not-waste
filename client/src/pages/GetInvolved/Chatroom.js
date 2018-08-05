@@ -14,7 +14,6 @@ class Chatroom extends React.Component {
             message: '',
             chats: []
         };
-        // this.getChat = this.getChat.bind( this );
     }
 
     componentDidMount() {
@@ -28,13 +27,6 @@ class Chatroom extends React.Component {
 
     componentDidUpdate() {
         this.scrollToBot();
-    }
-
-    // Save recent post to chat database
-    saveChat = post => {
-        return API.saveChat( post )
-            .then( this.getChat() )
-            .catch( error => { throw error } );
     }
 
     // Handle input field changes
@@ -70,16 +62,23 @@ class Chatroom extends React.Component {
     }
 
     getChat = () => {
-        API.getChat().then( results => {
-            this.setState( {
-                chats: results.data.data,
-            } );
-            console.log( this.state.chats );
-        } )
+        return API.getChat()
+            .then( results => {
+                console.log( `Results: ${results}` );
+                this.setState( {
+                    chats: results.data.data,
+                } );
+                console.log( this.state.chats );
+            } )
             .catch( error => { throw error } );
     }
 
-
+    // Save recent post to chat database
+    saveChat = post => {
+        return API.saveChat( post )
+            .then( this.getChat() )
+            .catch( error => { throw error } );
+    }
 
     render() {
         return (
