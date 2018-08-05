@@ -10,7 +10,9 @@ class Chatroom extends React.Component {
     constructor( props ) {
         super( props );
         this.state = {
-            message: '',
+            post: {
+                message: ''
+            },
             chats: []
         };
         // this.getChat = this.getChat.bind( this );
@@ -28,7 +30,7 @@ class Chatroom extends React.Component {
     // Save recent post to chat database
     saveChat = message => {
         return API.saveChat( message )
-            .then( res => console.log( `saveChat response: ${res}` ) )
+            .then( res => console.log( `saveChat response: ${JSON.stringify( res, null, 2 )}` ) )
             .catch( error => { throw error } );
         // TODO: update chat array with response from API call - call getChat method
     }
@@ -43,13 +45,14 @@ class Chatroom extends React.Component {
     handleClick = event => {
         event.preventDefault();
         this.setState( {
-            message: this.state.message
+            post: {
+                username: 'Anonymous',
+                message: this.state.message
+            }
         } );
         console.log( `Message submitted: ${this.state.message}` );
-        return this.saveChat( this.state.message );
+        return this.saveChat( post );
     }
-
-
 
     scrollToBot() {
         ReactDOM.findDOMNode( this.refs.chats ).scrollTop = ReactDOM.findDOMNode( this.refs.chats ).scrollHeight;
