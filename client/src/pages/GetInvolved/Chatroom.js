@@ -51,7 +51,7 @@ class Chatroom extends React.Component {
             message: this.state.message
         };
 
-        console.log( `Post details: ${post}` );
+        console.log( `Post details: ${JSON.stringify( post, null, 2 )}` );
         // return this.saveChat( post );
     }
 
