@@ -6,7 +6,7 @@ import Message from './Message';
 import API from '../../utils/API'
 import { Input, Button } from '../../components/Form';
 
-class Chatroom extends React.Component {
+export default class Chatroom extends React.Component {
     constructor( props ) {
         super( props );
         this.state = {
@@ -17,6 +17,12 @@ class Chatroom extends React.Component {
     }
 
     componentDidMount() {
+        if ( window.sessionStorage.getItem( 'username' ) ) {
+            this.setState( { username: window.sessionStorage.getItem( 'username' ) } );
+        }
+        else {
+            this.setState( { username: "Anonymous" } );
+        }
         this.getChat();
         this.scrollToBot();
     }
@@ -34,42 +40,26 @@ class Chatroom extends React.Component {
     // Handle button click
     handleClick = event => {
         event.preventDefault();
-        if ( window.sessionStorage.getItem( 'username' ) ) {
-            this.setState( {
-                username: window.sessionStorage.getItem( 'username' ),
-            } );
-        }
-        else {
-            this.setState( { username: 'Anonymous' } );
-        }
         const post = {
             username: this.state.username,
             message: this.state.message
         };
+        return this.saveChat( post );
+    }
 
-        console.log( `Post details: ${JSON.stringify( post, null, 2 )}` );
-        // return this.saveChat( post );
+    // Retrieve and display messages from Chat database
+    getChat = () => {
+        return API.getChat()
+            .then( results => this.setState( { chats: results.data.data, } ) )
+            .catch( error => { throw error } );
     }
 
     scrollToBot() {
         ReactDOM.findDOMNode( this.refs.chats ).scrollTop = ReactDOM.findDOMNode( this.refs.chats ).scrollHeight;
     }
 
-    getChat = () => {
-        return API.getChat()
-            .then( results => {
-                this.setState( {
-                    chats: results.data.data,
-                    message: '',
-                    username: ''
-                } );
-            } )
-            .catch( error => { throw error } );
-    }
-
-    // Save recent post to chat database
+    // Save recent post to Chat database
     saveChat = post => {
-        console.log( `Posting: ${JSON.stringify( post, null, 2 )}` );
         return API.saveChat( post )
             .then( this.getChat() )
             .catch( error => { throw error } );
@@ -97,6 +87,7 @@ class Chatroom extends React.Component {
                         <Input
                             id="chatMessageInput"
                             name='message'
+                            type='text'
                             placeholder='Enter your message here'
                             onChange={ this.handleInputChange } >
 
@@ -105,6 +96,7 @@ class Chatroom extends React.Component {
                                 text='Post Message'
                                 onClick={ this.handleClick } />
                         </Input>
+
                     </div>
                 </CardBasic>
             </CardDeck >
@@ -112,4 +104,3 @@ class Chatroom extends React.Component {
     }
 }
 
-export default Chatroom;
