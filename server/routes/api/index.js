@@ -19,9 +19,9 @@ router.use( '/inventory', inventoryRoutes );
 router.use( '/users', userRoutes );
 
 // If no API routes are hit, send the React app pages
-router.use( function ( req, res ) {
-    res.sendFile( path.join( __dirname, 'client/build/index.html' ) );
-} );
+// router.use( function ( req, res ) {
+//     res.sendFile( path.join( __dirname, 'client/build/index.html' ) );
+// } );
 
 // Export Router Routes
 module.exports = router;

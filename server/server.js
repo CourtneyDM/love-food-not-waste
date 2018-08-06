@@ -61,12 +61,15 @@ app.use( passport.session() );
 
 // Serve up static routes om Heroku
 if ( process.env.NODE_ENV === "production" ) {
-    app.use( express.static( path.join( __dirname, "client/build" ) ) );
+    app.use( express.static( "client/build" ) );
 }
 
 // Configure Routes
 app.use( '/auth', authRoutes );
 app.use( '/api', apiRoutes );
+app.get( '/', ( req, res ) => {
+    res.sendFile( path.join( __dirname, 'client/build/index.html' ) );
+} );
 
 // Start Express Server
 app.listen( PORT, () => { console.log( `Server now listening on PORT ${PORT}...` ) } );
