@@ -18,5 +18,10 @@ router.use( '/inventory', inventoryRoutes );
 // Routes for Saved Users -> /api/users
 router.use( '/users', userRoutes );
 
+// Use React Router if no other route is found
+app.get( '*', ( req, res ) => {
+    res.sendFile( path.resolve( __dirname, '../../../client/build', 'index.html' ) );
+} );
+
 // Export Router Routes
 module.exports = router;
