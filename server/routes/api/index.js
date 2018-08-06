@@ -22,9 +22,6 @@ router.use( '/users', userRoutes );
 // router.use( function ( req, res ) {
 //     res.sendFile( path.join( __dirname, '../client/build/index.html' ) );
 // } );
-router.get( '*', ( req, res ) => {
-    res.sendFile( path.resolve( __dirname, '../../../client/build', 'index.html' ) );
-} );
 
 // Export Router Routes
 module.exports = router;

@@ -59,17 +59,17 @@ app.use( session( {
 app.use( passport.initialize() );
 app.use( passport.session() );
 
-// Serve up static routes om Heroku
+// Serve static routes on Heroku
 if ( process.env.NODE_ENV === "production" ) {
-    app.use( express.static( "client/build" ) );
+    app.use( express.static( path.resolve( __dirname, "../client/build" ) ) );
 }
 
 // Configure Routes
 app.use( '/auth', authRoutes );
 app.use( '/api', apiRoutes );
-// app.get( '/', ( req, res ) => {
-//     res.sendFile( path.join( __dirname, 'client/build/index.html' ) );
-// } );
 
+app.get( '*', ( req, res ) => {
+    res.sendFile( path.resolve( __dirname, '../client/build', 'index.html' ) );
+} );
 // Start Express Server
 app.listen( PORT, () => { console.log( `Server now listening on PORT ${PORT}...` ) } );
