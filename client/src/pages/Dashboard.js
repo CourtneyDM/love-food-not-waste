@@ -166,7 +166,7 @@ export class Dashboard extends Component {
                     </ React.Fragment>
                     :
                     // If user is not logged in, redirect to home page
-                    <Redirect to='/' />
+                    <Redirect to='/login' />
             )
             } />
         );
