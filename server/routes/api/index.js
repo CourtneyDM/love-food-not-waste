@@ -19,7 +19,7 @@ router.use( '/inventory', inventoryRoutes );
 router.use( '/users', userRoutes );
 
 // Use React Router if no other route is found
-app.get( '*', ( req, res ) => {
+router.get( '*', ( req, res ) => {
     res.sendFile( path.resolve( __dirname, '../../../client/build', 'index.html' ) );
 } );
 
