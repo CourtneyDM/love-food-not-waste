@@ -1,11 +1,13 @@
-// Import Dependencies
+// Use Environment Variables
+require( 'dotenv' ).config();
+
+// Import Dependencies - Love Food Not Waste
 const passport = require( 'passport' );
 const LocalStrategy = require( 'passport-local' ).Strategy;
 const GoogleStrategy = require( 'passport-google-oauth20' );
 const bcrypt = require( 'bcryptjs' );
 
-// Import Keys and User Model
-// const keys = require( './keys' );
+// Import User Model
 const User = require( '../models/userModel' );
 
 // Create Local Strategy
@@ -41,8 +43,8 @@ passport.deserializeUser( ( id, done ) => {
 passport.use( new GoogleStrategy( {
     // Options for Google Strategy
     callbackURL: '/auth/google/redirect',
-    clientID: process.env.clientID, // || keys.google.clientID,
-    clientSecret: process.env.clientSecret, // || keys.google.clientSecret
+    clientID: process.env.clientID,
+    clientSecret: process.env.clientSecret,
 }, ( accessToken, refreshToken, profile, done ) => {
     // Check if user exists in our database
     User.findOne( {
