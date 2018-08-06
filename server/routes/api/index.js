@@ -6,11 +6,6 @@ const foodRoutes = require( './foodRoutes' );
 const inventoryRoutes = require( './inventoryRoutes' );
 const userRoutes = require( './userRoutes' );
 
-// If no API routes are hit, send the React app pages
-router.use( function ( req, res ) {
-    res.sendFile( path.join( __dirname, '../../../client/build/index.html' ) );
-} );
-
 // Routes for Saved Chats -> /api/chats
 router.use( '/chats', chatRoutes );
 
@@ -23,6 +18,10 @@ router.use( '/inventory', inventoryRoutes );
 // Routes for Saved Users -> /api/users
 router.use( '/users', userRoutes );
 
+// If no API routes are hit, send the React app pages
+router.use( function ( req, res ) {
+    res.sendFile( path.join( __dirname, 'client/build/index.html' ) );
+} );
 
 // Export Router Routes
 module.exports = router;
