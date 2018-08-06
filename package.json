@@ -10,7 +10,7 @@
     "scripts": {
         "server": "node server.js",
         "client": "cd server && node scripts/start-client.js",
-        "start": "nodemon --ignore sessions/ server",
+        "start": "node server",
         "app": "concurrently \"cd server && nodemon --ignore sessions/ server.js \" \"cd server && npm run client\"",
         "build": "cd server && node scripts/build.js",
         "test": "echo \"Error: no test specified\" && exit 1",
