@@ -69,7 +69,7 @@ export class Inventory extends Component {
 
     // Save food item to database
     saveFoodItem = foodData => {
-        console.log( foodData );
+        console.log( `saveFoodItem: ${foodData}` );
         API.saveFoodItem( foodData )
             .catch( error => { throw error } );
     }
@@ -90,7 +90,7 @@ export class Inventory extends Component {
     }
 
     // Save food item to database
-    saveFoodInventory = ( foodData ) => {
+    saveFoodInventory = foodData => {
         API.saveFoodInventory( foodData )
             .then( res => { console.log( res ) } )
             .catch( error => { throw error } );
@@ -103,10 +103,7 @@ export class Inventory extends Component {
             .catch( error => { throw error } );
     }
 
-
     render() {
-
-
         const tableSearch = $( '#searchTable' ).DataTable();
         tableSearch.clear();
 
