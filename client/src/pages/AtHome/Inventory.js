@@ -154,7 +154,6 @@ export class Inventory extends Component {
             const item = data.item;
 
             const quantity = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( 'input' ).val();
-
             const date = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( '#date' ).val();
 
             this.saveFoodItem( {
