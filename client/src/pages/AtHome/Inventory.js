@@ -79,6 +79,7 @@ export class Inventory extends Component {
         API.getFoodInventory( query )
             .then( console.log( query ) )
             .then( res => this.setState( { brands: res.data.data } ) )
+            .then( console.log( this.state.brands ) )
             .catch( error => { throw error } );
     }
 
