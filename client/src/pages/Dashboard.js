@@ -69,7 +69,7 @@ export class Dashboard extends Component {
     // Delete food item from database
     deleteItem = id => {
         API.deleteFoodItem( id )
-            .then( results => this.getInventory() )
+            .then( this.getInventory() )
             .catch( error => { throw error } );
     }
 

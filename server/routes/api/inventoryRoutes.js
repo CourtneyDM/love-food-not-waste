@@ -7,9 +7,11 @@ router.route( '/' )
     .get( inventoryController.findAll )
     .post( inventoryController.create );
 
-// Routes to /api/inventory:id
-router
-    .route( '/:id' )
+
+// Routes to /api/inventory/:id
+router.route( '/:id' )
+    .get( inventoryController.findById )
+    .put( inventoryController.update )
     .delete( inventoryController.remove );
 
 // Export Inventory Router Routes

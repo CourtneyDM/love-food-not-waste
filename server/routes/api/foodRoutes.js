@@ -7,10 +7,11 @@ router.route( '/' )
     .get( foodController.findAll )
     .post( foodController.create );
 
-// Routes to /api/food:item
-router.route( '/:item' )
-    .get( foodController.findAll )
-    .post( foodController.create );
+// Routes to /api/food/:id
+router.route( '/:id' )
+    .get( foodController.findById )
+    .put( foodController.update )
+    .delete( foodController.remove );
 
 // Export Food Router Routes
 module.exports = router;
