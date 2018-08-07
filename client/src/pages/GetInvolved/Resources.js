@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import { CardDeck, CardBasic } from '../../components/Card';
+import MapComponent from '../../components/Maps/MapComponent';
 import './Resources.css';
-
 export class Resources extends Component {
+    state = {
+        isMarkerShown: false,
+    }
+    componentDidMount() {
+        this.delayedShowMarker()
+    }
+    delayedShowMarker = () => {
+        setTimeout( () => {
+            this.setState( { isMarkerShown: true } )
+        }, 3000 )
+    }
+
+    handleMarkerClick = () => {
+        this.setState( { isMarkerShown: false } )
+        this.delayedShowMarker()
+    }
+
     render() {
         return (
             <div>
                 <CardDeck>
                     <CardBasic
+                        id='test'
                         header='Dallas Area Food Banks'>
                         <table id="foodBanks">
                             <thead>
@@ -53,6 +71,10 @@ export class Resources extends Component {
                         </table>
                     </CardBasic>
                 </CardDeck>
+                <MapComponent
+                    isMarkerShown={ this.state.isMarkerShown }
+                    onMarkerClick={ this.handleMarkerClick }
+                />
             </div>
         );
     };

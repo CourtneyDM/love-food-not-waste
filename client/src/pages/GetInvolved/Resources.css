@@ -27,3 +27,7 @@
     background-color: #00BAED;
     color: white;
 }
+
+#map {
+    height: 100%;
+}
