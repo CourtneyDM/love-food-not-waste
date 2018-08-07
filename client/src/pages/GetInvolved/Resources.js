@@ -73,8 +73,7 @@ export class Resources extends Component {
                 </CardDeck>
                 <MapComponent
                     isMarkerShown={ this.state.isMarkerShown }
-                    onMarkerClick={ this.handleMarkerClick }
-                />
+                    onMarkerClick={ this.handleMarkerClick } />
             </div>
         );
     };
