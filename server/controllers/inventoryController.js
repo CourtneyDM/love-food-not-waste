@@ -34,7 +34,6 @@ module.exports = {
     },
     // Remove Inventory Item from Database
     remove: ( req, res ) => {
-        console.log( req.params.id );
         db.Inventory
             .findById( { _id: req.params.id } )
             .then( dbModel => dbModel.remove() )

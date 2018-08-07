@@ -9,7 +9,7 @@ router.route( '/' )
 
 // Routes to /api/food/:id
 router.route( '/:id' )
-    .get( foodController.findAll )
+    .get( foodController.findById )
     .put( foodController.update )
     .delete( foodController.remove );
 

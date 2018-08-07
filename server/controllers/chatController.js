@@ -34,7 +34,6 @@ module.exports = {
     },
     // Remove Chat Message from Database
     remove: ( req, res ) => {
-        console.log( req.params.id );
         db.Chat
             .findById( { _id: req.params.id } )
             .then( dbModel => dbModel.remove() )

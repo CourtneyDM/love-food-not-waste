@@ -9,8 +9,16 @@ module.exports = {
         console.log( queryItem );
         db.Food
             .find( {
-                $or: [ { 'item': { $regex: queryItem, $options: 'i' } },
-                { 'category': { $regex: queryItem, $options: 'i' } } ]
+                $or: [ {
+                    'item': {
+                        $regex: queryItem, $options: 'i'
+                    }
+                },
+                {
+                    'category': {
+                        $regex: queryItem, $options: 'i'
+                    }
+                } ]
             } )
             .sort( { item: 1 } )
             .then( dbModel => res.json( { 'data': dbModel } ) )
@@ -39,7 +47,6 @@ module.exports = {
     },
     // Remove Food Item from Database
     remove: ( req, res ) => {
-        console.log( req.params.id );
         db.Food
             .findById( { _id: req.params.id } )
             .then( dbModel => dbModel.remove() )
