@@ -2,7 +2,7 @@
 const router = require( 'express' ).Router();
 const chatController = require( '../../controllers/chatController' );
 
-// Routes to /api/chat
+// Routes to /api/chats
 router.route( '/' )
     .get( chatController.findAll )
     .post( chatController.create );

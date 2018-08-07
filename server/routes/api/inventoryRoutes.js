@@ -9,7 +9,7 @@ router.route( '/' )
 
 // Routes to /api/inventory:id
 router
-    .get( '/:id' )
+    .route( '/:id' )
     .delete( inventoryController.remove );
 
 // Export Inventory Router Routes

@@ -22,5 +22,28 @@ module.exports = {
             .create( req.body )
             .then( dbModel => res.json( dbModel ) )
             .catch( error => res.status( 422 ).json( error ) );
+    },
+    // Find Food Item by ID
+    findById: ( req, res ) => {
+        db.Food
+            .findById( req.params.id )
+            .then( dbModel => res.json( dbModel ) )
+            .catch( err => res.status( 422 ).json( err ) );
+    },
+    // Update Food Item in Database
+    update: ( req, res ) => {
+        db.Food
+            .findOneAndUpdate( { _id: req.params.id }, req.body )
+            .then( dbModel => res.json( dbModel ) )
+            .catch( err => res.status( 422 ).json( err ) );
+    },
+    // Remove Food Item from Database
+    remove: ( req, res ) => {
+        console.log( req.params.id );
+        db.Food
+            .findById( { _id: req.params.id } )
+            .then( dbModel => dbModel.remove() )
+            .then( dbModel => res.json( dbModel ) )
+            .catch( error => res.status( 422 ).json( error ) );
     }
 };
