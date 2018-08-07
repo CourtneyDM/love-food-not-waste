@@ -61,7 +61,7 @@ app.use( session( {
 app.use( passport.initialize() );
 app.use( passport.session() );
 
-// Serve static routes on Heroku
+// Configure Server for Static React Routes on Heroku
 if ( process.env.NODE_ENV === "production" ) {
     app.use( express.static( path.resolve( __dirname, "../client/build" ) ) );
 }

@@ -2,7 +2,7 @@
 const router = require( 'express' ).Router();
 const foodController = require( '../../controllers/foodController' );
 
-// Routes to /api/food
+// Routes to /api/foods
 router.route( '/' )
     .get( foodController.findAll )
     .post( foodController.create );
