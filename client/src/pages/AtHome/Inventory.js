@@ -28,7 +28,7 @@ export class Inventory extends Component {
         this.saveFoodItem = this.saveFoodItem.bind( this );
         this.getFoodInventory = this.getFoodInventory.bind( this );
         this.saveFoodInventory = this.saveFoodInventory.bind( this );
-        this.getRecipe = this.getRecipe.bind( this );
+        // this.getRecipe = this.getRecipe.bind( this );
     }
     componentDidMount() {
         // Get the items saved in inventory database
@@ -39,9 +39,12 @@ export class Inventory extends Component {
         //     refrigerator: "6 Months",
         //     freezer: "1 Year"
         // });
-        console.log( "User ID:" + window.sessionStorage.getItem( "userID" ) );
+        // console.log( "User ID:" + window.sessionStorage.getItem( "userID" ) );
     }
 
+    login() {
+        this.props.auth.login();
+    }
 
     // Handle input field changes
     handleInputChange = event => {
@@ -69,7 +72,7 @@ export class Inventory extends Component {
 
     // Save food item to database
     saveFoodItem = foodData => {
-        console.log( `saveFoodItem: ${foodData}` );
+        console.log( `saveFoodItem: ${foodData.user}` );
         API.saveFoodItem( foodData )
             .catch( error => { throw error } );
     }
@@ -77,7 +80,7 @@ export class Inventory extends Component {
     // Get food item from database
     getFoodInventory = query => {
         API.getFoodInventory( query )
-            .then( console.log( query ) )
+            .then( console.log('Query:'+ query ) )
             .then( res => this.setState( { brands: res.data.data } ) )
             .then( console.log( this.state.brands ) )
             .catch( error => { throw error } );
@@ -97,15 +100,18 @@ export class Inventory extends Component {
     }
 
     // Find a recipe
-    getRecipe = ingredients => {
-        API.getIngredientRecipe( ingredients )
-            .then( res => console.log( `Recipe search results: ${JSON.stringify( res, null, 2 )}` ) )
-            .catch( error => { throw error } );
-    }
+    // getRecipe = ingredients => {
+    //     API.getIngredientRecipe( ingredients )
+    //         .then( res => console.log( `Recipe search results: ${JSON.stringify( res, null, 2 )}` ) )
+    //         .catch( error => { throw error } );
+    // }
 
     render() {
         const tableSearch = $( '#searchTable' ).DataTable();
         tableSearch.clear();
+        const { isAuthenticated } = this.props.auth;
+        const userId = localStorage.getItem('userId');
+        //console.log(idToken);
 
         $( document ).ready( function () {
             $( '#searchTable' ).DataTable( {
@@ -159,7 +165,8 @@ export class Inventory extends Component {
             this.saveFoodItem( {
                 itemName: item,
                 quantity: quantity,
-                bestByDate: date
+                bestByDate: date,
+                user: userId
             } );
             alert( 'Your item has been added.' );
         } );
@@ -180,7 +187,20 @@ export class Inventory extends Component {
                         </div>
 
                         <h5 className='text-center sectionHeader'>Manage your Inventory</h5>
-                        <Link id='viewSaved' className='text-center' to="/dashboard">If you've logged in, click here to view your saved inventory items.</Link>
+                        {
+                                !isAuthenticated() && (
+                                    <Link id='viewSaved' className='text-center' to='/dashboard' onClick={this.login.bind(this)}>Login to view your saved items.</Link>
+                                       
+                                )
+                            }
+                            {
+                                isAuthenticated() && (
+                                    <Link id='viewSaved' className='text-center' to='/dashboard'>View your saved items</Link>
+                                )
+                            }
+
+
+
 
                         {/* SEARCH FOR FOOD SECTION */ }
                         <h5 className='text-center sectionHeader'>Add to your Inventory</h5>

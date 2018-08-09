@@ -4,7 +4,7 @@ const router = require( 'express' ).Router();
 const chatRoutes = require( './chatRoutes' );
 const foodRoutes = require( './foodRoutes' );
 const inventoryRoutes = require( './inventoryRoutes' );
-const userRoutes = require( './userRoutes' );
+// const userRoutes = require( './userRoutes' );
 
 // Routes for Saved Chats -> /api/chats
 router.use( '/chats', chatRoutes );
@@ -16,7 +16,7 @@ router.use( '/foods', foodRoutes );
 router.use( '/inventory', inventoryRoutes );
 
 // Routes for Saved Users -> /api/users
-router.use( '/users', userRoutes );
+// router.use( '/users', userRoutes );
 
 // Export Router Routes
 module.exports = router;
