@@ -19,6 +19,7 @@
     "author": "'Lauren Abney', 'Avery Bruner', 'Jada Gonzales', 'Courtney Montgomery'",
     "license": "ISC",
     "dependencies": {
+        "auth0-js": "^9.7.3",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.3",
         "concurrently": "^3.6.0",
@@ -29,9 +30,7 @@
         "mime": "^2.3.1",
         "mongoose": "^5.2.4",
         "nodemon": "^1.18.3",
-        "passport": "^0.4.0",
-        "passport-google-oauth20": "^1.0.0",
-        "passport-local": "^1.0.0",
+        
         "qs": "^6.5.2",
         "react-google-maps": "^9.4.5",
         "recompose": "^0.28.2",

@@ -17,8 +17,8 @@ export default class Chatroom extends React.Component {
     }
 
     componentDidMount() {
-        if ( window.sessionStorage.getItem( 'username' ) ) {
-            this.setState( { username: window.sessionStorage.getItem( 'username' ) } );
+        if (localStorage.getItem('nickname') ) {
+            this.setState( { username: localStorage.getItem('nickname') } );
         }
         else {
             this.setState( { username: "Anonymous" } );
