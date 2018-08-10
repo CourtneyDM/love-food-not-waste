@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import { Input, Button } from '../../components/Form';
 import { CardDeck, CardBasic } from '../../components/Card'
 import API from '../../utils/API';
