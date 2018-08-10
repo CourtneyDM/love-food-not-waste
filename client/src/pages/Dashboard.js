@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { CardDeck, CardBasic } from '../components/Card';
 import API from '../utils/API';
 // import Auth from '../utils/Auth';
@@ -31,10 +31,12 @@ export class Dashboard extends Component {
 
     // Get inventory if component loaded successfully
     componentDidMount() {
-        console.log( window.sessionStorage );
+        const userId = localStorage.getItem('userId');
+        console.log(userId)
+        // console.log( localStorage.getItem('nickname')  );
         // Get the user's saved items from inventory database
-        if ( window.sessionStorage.getItem( 'username' ) ) {
-            this.getInventory();
+        if ( userId) {
+            this.getInventory(userId);
         }
     }
 
@@ -74,8 +76,9 @@ export class Dashboard extends Component {
     }
 
     // Get food items saved to database
-    getInventory = () => {
-        API.getInventory()
+    getInventory = id => {
+        console.log(id)
+        API.getInventory(id)
             .then( res => this.setState( { saved: res.data.data } ) )
             .catch( error => { throw error } );
     }
@@ -121,13 +124,14 @@ export class Dashboard extends Component {
         return (
             <Route exact path='/dashboard' render={ () => (
                 // Check if user data has been stored to session
-                window.sessionStorage.getItem( 'username' ) ?
+                // window.sessionStorage.getItem( 'username' ) ?
                     < React.Fragment >
                         <CardDeck>
                             <CardBasic
                                 header='My Foods'>
                                 <React.Fragment>
                                     <h6 className='text-center sectionHeader'>Search Results</h6>
+                                    <Link id='addItems' className='text-center' to='/AtHome/Inventory'>Add Items</Link>
                                     { this.state.saved.slice( 0, this.state.limit )
                                         .map( ( saved, index ) => {
                                             tableSaved.row.add( {
@@ -164,9 +168,9 @@ export class Dashboard extends Component {
                             </CardBasic>
                         </CardDeck>
                     </ React.Fragment>
-                    :
-                    // If user is not logged in, redirect to home page
-                    <Redirect to='/login' />
+                    // :
+                    // // If user is not logged in, redirect to home page
+                    // <Redirect to='/login' />
             )
             } />
         );

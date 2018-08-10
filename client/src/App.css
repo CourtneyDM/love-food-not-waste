@@ -30,3 +30,35 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+@media screen and (min-width: 1300px) {
+  .wrapper{
+   background-size: auto 950px;
+  }
+
+  #logo{
+      max-width: 320px;
+  }
+
+  .card-header-image{
+    padding-top: 10px;
+}
+   .card-img-top {
+       height: 300px;
+   }
+
+   .card-body {
+       font-size: 18px;
+   }
+
+   #foodWasteStats{
+       width:525px;
+       padding-right: 50px;
+   }
+
+   #quote {
+       line-height: 32px;
+   }
+  
+}

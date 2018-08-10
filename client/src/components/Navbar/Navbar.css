@@ -18,3 +18,29 @@
 .hidden {
     display: none;
 }
+
+#loginButton {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -8px;
+    background-color: #00BAED;
+    color: white;
+    border-radius: 8px;
+    border: 0px;
+    padding: 2px 12px;
+}
+
+#logoutButton {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -8px;
+    background-color: #B7060E;
+    color: white;
+    border-radius: 8px;
+    border: 0px;
+    padding: 2px 12px;
+}
+
+#viewProfile {
+    color:  #00BAED;
+}
