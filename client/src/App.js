@@ -8,7 +8,7 @@ import { Dashboard, Home, NoMatch } from './pages';
 import { Login, Signup } from './pages/Authentication';
 import { FoodWaste, Hunger } from './pages/Educate';
 import { Inventory } from './pages/AtHome';
-import { Recipes } from './pages/Recipes';
+import { Recipes, FullRecipe } from './pages/Recipes';
 import { FoodSupplier, Individual, Resources } from './pages/GetInvolved';
 import Auth from './utils/Auth/Auth';
 import Callback from './utils/Callback/Callback';
@@ -38,6 +38,7 @@ const App = () => (
                             <Route exact path='/dashboard' component={Dashboard} />
                             <Route exact path='/AtHome/Inventory' render={(props) => <Inventory auth={auth} {...props} />} />
                             <Route exact path='/AtHome/Recipes' component={Recipes} />
+                            <Route exact path='/AtHome/Recipe' component={FullRecipe}/>
                             <Route exact path='/Educate/FoodWaste' component={FoodWaste} />
                             <Route exact path='/Educate/Hunger' component={Hunger} />
                             <Route exact path='/GetInvolved/FoodSupplier' component={FoodSupplier} />

@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Input, Button } from '../../components/Form';
 import { CardDeck, CardBasic } from '../../components/Card'
 import API from '../../utils/API';
 import './Recipes.css'
+import { timingSafeEqual } from 'crypto';
 
 export class Recipes extends Component {
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
         this.state = {
             recipeSearch: '',
+            ingredients: 0,
             recipes: [],
-            limit: 5
+            limit: 1
         }
     }
 
     // Handle input field changes
     handleInputChange = event => {
         const { name, value } = event.target;
-        this.setState( { [ name ]: value } );
+        this.setState({ [name]: value });
     }
 
     // Handle button click
@@ -27,12 +30,17 @@ export class Recipes extends Component {
     }
 
     // Find a recipe
-    getRecipe = ingredients => {
-        console.log( ingredients )
-        API.getIngredientRecipe( ingredients )
-            .then( res => this.setState( { recipes: res.data } ) )
-            .then( res => console.log( `Recipe search results: ${JSON.stringify( res, null, 2 )}` ) )
-            .catch( error => { throw error } );
+    getRecipe = (ingredients, limit) => {
+        this.setState({ ingredients: (ingredients.match(/,/g) || []).length + 1 })
+        console.log(ingredients)
+        API.getIngredientRecipe(ingredients, limit)
+            //  .then(res => console.log(res))
+            .then(res => this.setState({ recipes: res.data }))
+            .catch(error => { throw error });
+    }
+
+    missedIngredients = (ingredients, usedIngredients) => {
+        return parseInt(ingredients) - parseInt(usedIngredients)
     }
 
     render() {
@@ -41,35 +49,39 @@ export class Recipes extends Component {
                 <CardDeck>
                     <CardBasic
                         header='Recipes'>
-                        <form className='form-control'>
+                        <p className='text-center'>Enter all ingredients you would like to use in the recipe, separated by commas.</p>
+                        <form className='form-control form-inline'>
                             <Input
-                                id="searchForm"
+                                id="ingredientSearchBox"
                                 name='itemName'
-                                label='Item Name: '
+                                label='Ingredient(s): '
                                 placeholder='Required'
-                                onChange={ this.handleInputChange } />
+                                onChange={this.handleInputChange} />
                             <Button
                                 className='btn btn-search'
                                 text='Find Recipes'
-                                onClick={ () => this.getRecipe( this.state.itemName )
+                                onClick={() => this.getRecipe(this.state.itemName, this.state.limit)
                                 }
                             />
                         </form>
                         <div className='recipes'>
-                            { this.state.recipes.slice( 0, this.state.recipes.length ).map( ( recipe, index ) => {
+                            {this.state.recipes.slice(0, this.state.recipes.length).map((recipe, index) => {
                                 return (
+
                                     <CardBasic
-                                        key={ index }
-                                        className='recipeCard'
-                                        header={ recipe.title }>
+                                        key={index}
+                                        id='recipeCard'
+                                        header={recipe.title}>
                                         <div className='recipeContainer'>
-                                            <img src={ recipe.image } className='recipeImg' alt={ `${recipe.title}` } width='200px' />
-                                            <br />
-                                            <a href="/dashboard" className='text-center'>View Recipe</a>
+                                            <img src={recipe.image} className='recipeImg' alt={`${recipe.title}`} />
+                                            <div>Used ingredients:  {recipe.usedIngredientCount}</div>
+                                            <div>Missed ingredients: {this.missedIngredients(this.state.ingredients, recipe.usedIngredientCount)}</div>
+                                            
+                                            <Link to={{ pathname: '/AtHome/Recipe', state: { title: recipe.title, id: recipe.id }, onclick: localStorage.setItem('recipeId', recipe.id)}}>View Recipe</Link>
                                         </div>
                                     </CardBasic>
                                 );
-                            } ) }
+                            })}
                         </div>
                     </CardBasic>
                 </CardDeck>

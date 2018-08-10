@@ -1,9 +1,40 @@
 .recipeImg {
     border-radius: 2px;
+    width: 30%;
     margin: 0 auto;
-  
+    display: inline;
+    float: left;
+    margin-right: 20px;
 }
+
 .recipes {
-    width: 40%;
+    width: 80%;
     margin: 0 auto;
+}
+
+#ingredientSearchBox{
+    width: 80%;
+    margin-top: 4px;
+}
+
+.form-control{
+    border: 0px;
+}
+
+#recipeCard {
+    background-color: #16AA7A;
+    color: white;
+    font-size: 18px;
+    padding: 4px;
+}
+
+.fullRecipeImg {
+    max-width: 70%;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+.bullets{
+    list-style-type: disc;
 }
