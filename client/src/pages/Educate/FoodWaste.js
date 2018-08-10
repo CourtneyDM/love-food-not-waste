@@ -44,4 +44,4 @@ export class FoodWaste extends Component {
     };
 };
 
-// export default FoodWaste;
+export default FoodWaste;
