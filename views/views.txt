@@ -1,0 +1,1 @@
+Directory to store any views or templates we may be using (i.e. Handlebars)
