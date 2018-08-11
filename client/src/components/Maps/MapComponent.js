@@ -26,7 +26,9 @@ const MapComponent = compose(
                 position={ { lat: 32.7767, lng: -96.7970 } }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ NTFB }
+            <Marker 
+                labelAnchor={'North Texas Food Bank'}
+                position={ NTFB }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
             <Marker position={ RFP }
