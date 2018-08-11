@@ -1,5 +1,6 @@
 .recipeImg {
     border-radius: 2px;
+
     width: 35%;
     margin: 0 auto;
     float: left;
@@ -8,11 +9,14 @@
 
 .recipes {
     width: 50%;
+
     margin: 0 auto;
 }
 
 #ingredientSearchBox{
+
     width: 70%;
+
     margin-top: 4px;
 }
 
@@ -20,10 +24,12 @@
     border: 0px;
 }
 
+
 .recipeSearchForm{
     width: 80%;
     margin: 0 auto;
 }
+
 #recipeCard {
     background-color: #16AA7A;
     color: white;
