@@ -72,6 +72,8 @@ export class Resources extends Component {
                     </CardBasic>
                 </CardDeck>
                 <MapComponent
+                    containerElement={ <div style={ { height: `400px` } } /> }
+                    mapElement={ <div style={ { height: `100%` } } /> }
                     isMarkerShown={ this.state.isMarkerShown }
                     onMarkerClick={ this.handleMarkerClick } />
             </div>

@@ -23,6 +23,7 @@ const MapComponent = compose(
         defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
         { props.isMarkerShown &&
             <Marker
+                labelAnchor={ `Dallas, Texas` }
                 position={ { lat: 32.7767, lng: -96.7970 } }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
