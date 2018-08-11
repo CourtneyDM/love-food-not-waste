@@ -9,12 +9,12 @@ const OCP = { lat: 32.7588686, lng: -96.7784619 };
 const CRCS = { lat: 32.7782536, lng: -96.7961399 };
 
 // TODO: Finish this
-// const pos = navigator.geolocation.getCurrentPosition( position => {
-//     const pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//     }
-// } );
+const pos = navigator.geolocation.getCurrentPosition( position => {
+    const pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    }
+} );
 
 const MapComponent = compose(
     withProps( {
