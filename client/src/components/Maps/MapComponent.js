@@ -22,10 +22,6 @@ const MapComponent = compose(
         defaultZoom={ 12 }
         defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
         { props.isMarkerShown &&
-            <Marker
-                position={ { lat: 32.7767, lng: -96.7970 } }
-                onClick={ props.onMarkerClick } /> }
-        { props.isMarkerShown &&
             <Marker 
                 defaultTitle={'North Texas Food Bank'}
                 position={ NTFB }
