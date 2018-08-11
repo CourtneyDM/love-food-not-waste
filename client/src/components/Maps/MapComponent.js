@@ -27,7 +27,7 @@ const MapComponent = compose(
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
             <Marker 
-                labelAnchor={'North Texas Food Bank'}
+                defaultTitle={'North Texas Food Bank'}
                 position={ NTFB }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
