@@ -31,16 +31,24 @@ const MapComponent = compose(
                 position={ NTFB }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ RFP }
+            <Marker
+                defaultTitle={'Resource Food Pantry'}
+                position={ RFP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ PGP }
+            <Marker
+                defaultTitle={'Pleasant Grove Pantry'}
+                position={ PGP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ OCP }
+            <Marker 
+                defaultTitle={'Our Community Pantry'}
+                position={ OCP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ CRCS }
+            <Marker
+                defaultTitle={'CrossRoads Community Services'}
+                position={ CRCS }
                 onClick={ props.onMarkerClick } /> }
     </GoogleMap>
 );
