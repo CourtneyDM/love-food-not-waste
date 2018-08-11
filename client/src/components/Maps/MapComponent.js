@@ -22,23 +22,29 @@ const MapComponent = compose(
         defaultZoom={ 12 }
         defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
         { props.isMarkerShown &&
+            <Marker 
+                defaultTitle={'North Texas Food Bank'}
+                position={ NTFB }
+                onClick={ props.onMarkerClick } /> }
+        { props.isMarkerShown &&
             <Marker
-                position={ { lat: 32.7767, lng: -96.7970 } }
+                defaultTitle={'Resource Food Pantry'}
+                position={ RFP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ NTFB }
+            <Marker
+                defaultTitle={'Pleasant Grove Pantry'}
+                position={ PGP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ RFP }
+            <Marker 
+                defaultTitle={'Our Community Pantry'}
+                position={ OCP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker position={ PGP }
-                onClick={ props.onMarkerClick } /> }
-        { props.isMarkerShown &&
-            <Marker position={ OCP }
-                onClick={ props.onMarkerClick } /> }
-        { props.isMarkerShown &&
-            <Marker position={ CRCS }
+            <Marker
+                defaultTitle={'CrossRoads Community Services'}
+                position={ CRCS }
                 onClick={ props.onMarkerClick } /> }
     </GoogleMap>
 );

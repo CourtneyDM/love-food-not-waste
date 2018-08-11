@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from '../Form';
 import "./Navbar.css";
 
-
-
-
 export class Navbar extends Component {
     // constructor( props ) {
     //     super( props );
