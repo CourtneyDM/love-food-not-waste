@@ -9,12 +9,12 @@ const OCP = { lat: 32.7588686, lng: -96.7784619 };
 const CRCS = { lat: 32.7782536, lng: -96.7961399 };
 
 // TODO: Finish this
-const pos = navigator.geolocation.getCurrentPosition( position => {
-    const pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    }
-} );
+// const pos = navigator.geolocation.getCurrentPosition( position => {
+//     const pos = {
+//         lat: position.coords.latitude,
+//         lng: position.coords.longitude
+//     }
+// } );
 
 const MapComponent = compose(
     withProps( {
@@ -22,40 +22,6 @@ const MapComponent = compose(
         loadingElement: <div style={ { height: `100%` } } />,
         containerElement: <div style={ { height: `400px` } } />,
         mapElement: <div style={ { height: `100%` } } />,
-<<<<<<< HEAD
-    } ), withScriptjs, withGoogleMap )( props =>
-        <GoogleMap
-            defaultZoom={ 12 }
-            defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
-            { props.isMarkerShown &&
-                <Marker
-                    // position={ { lat: 32.7767, lng: -96.7970 } }
-                    posititon={ navigator.geolocation.getCurrentPosition() }
-                    onClick={ props.onMarkerClick } /> }
-            { props.isMarkerShown &&
-                <Marker
-                    defaultTitle={ "North Texas Food Bank" }
-                    position={ NTFB }
-                    onClick={ props.onMarkerClick } /> }
-            { props.isMarkerShown &&
-                <Marker
-                    position={ RFP }
-                    onClick={ props.onMarkerClick } /> }
-            { props.isMarkerShown &&
-                <Marker
-                    position={ PGP }
-                    onClick={ props.onMarkerClick } /> }
-            { props.isMarkerShown &&
-                <Marker
-                    position={ OCP }
-                    onClick={ props.onMarkerClick } /> }
-            { props.isMarkerShown &&
-                <Marker
-                    position={ CRCS }
-                    onClick={ props.onMarkerClick } /> }
-        </GoogleMap>
-    );
-=======
     } ),
     withScriptjs,
     withGoogleMap
@@ -64,32 +30,31 @@ const MapComponent = compose(
         defaultZoom={ 12 }
         defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
         { props.isMarkerShown &&
-            <Marker 
-                defaultTitle={'North Texas Food Bank'}
+            <Marker
+                defaultTitle={ 'North Texas Food Bank' }
                 position={ NTFB }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
             <Marker
-                defaultTitle={'Resource Food Pantry'}
+                defaultTitle={ 'Resource Food Pantry' }
                 position={ RFP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
             <Marker
-                defaultTitle={'Pleasant Grove Pantry'}
+                defaultTitle={ 'Pleasant Grove Pantry' }
                 position={ PGP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
-            <Marker 
-                defaultTitle={'Our Community Pantry'}
+            <Marker
+                defaultTitle={ 'Our Community Pantry' }
                 position={ OCP }
                 onClick={ props.onMarkerClick } /> }
         { props.isMarkerShown &&
             <Marker
-                defaultTitle={'CrossRoads Community Services'}
+                defaultTitle={ 'CrossRoads Community Services' }
                 position={ CRCS }
                 onClick={ props.onMarkerClick } /> }
     </GoogleMap>
 );
->>>>>>> master
 
 export default MapComponent;
