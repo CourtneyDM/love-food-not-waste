@@ -1,6 +1,7 @@
 # dependencies
 .env
 /node_modules
+node_modules/
 /config/keys.js
 
 # testing
