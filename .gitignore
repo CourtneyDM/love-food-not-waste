@@ -2,11 +2,8 @@
 
 # dependencies
 /node_modules
-<<<<<<< HEAD
-=======
 node_modules/
 /config/keys.js
->>>>>>> master
 
 # testing
 /coverage
