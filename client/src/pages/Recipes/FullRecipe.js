@@ -54,12 +54,10 @@ export class FullRecipe extends Component {
                             Back
                         </Link>
                        
-
-
-
+                         <img src={this.state.recipe.image} className='fullRecipeImg' alt={`${this.state.recipe.title}`} />
                          <h6>Serving Size:{this.state.recipe.servings}</h6>
                          <h6>Ready in: {this.state.recipe.readyInMinutes} minutes</h6>
-                         <img src={this.state.recipe.image} className='fullRecipeImg' alt={`${this.state.recipe.title}`} />
+                         <br/>
                          <h6>Ingredients</h6>
                          <ul>
                          { this.state.ingredients.map((item) => (<li className='bullets' key={item.id}>{item.originalString}</li>)) }
@@ -69,8 +67,8 @@ export class FullRecipe extends Component {
                          <ol>
                          { this.state.steps.map((item,index) => (<li key={index}>{item.step}</li>)) }
 </ol>
-                         <a href={this.state.recipe.sourceUrl}>Orignally posted by {this.state.recipe.sourceName}</a>
-                         <a href={this.state.recipe.spoonacularSourceUrl}>Obtained from Spoonacular</a>
+                         <a href={this.state.recipe.sourceUrl} target='_blank'>Orignally posted by {this.state.recipe.sourceName}</a>
+                         <a href={this.state.recipe.spoonacularSourceUrl} target='_blank'>Obtained from Spoonacular</a>
 
 
                     </CardBasic>

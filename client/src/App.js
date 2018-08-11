@@ -3,6 +3,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import Wrapper from './components/Wrapper';
 import Jumbotron from './components/Jumbotron';
 import Navbar from './components/Navbar';
+import Social from './components/Social';
 import Footer from './components/Footer';
 import { Dashboard, Home, NoMatch } from './pages';
 import { Login, Signup } from './pages/Authentication';
@@ -52,7 +53,9 @@ const App = () => (
                             }} />
                             <Route component={NoMatch} />
                         </Switch>
+                        
                     </div>
+                    <Social/>
                     <Footer />
                 </Wrapper>
             </Router>
