@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Input, Button } from '../../components/Form';
 import { CardDeck, CardBasic } from '../../components/Card'
 import API from '../../utils/API';
 import './Recipes.css'
-import { timingSafeEqual } from 'crypto';
 
 export class Recipes extends Component {
     constructor( props ) {
         super( props );
         this.state = {
             recipeSearch: '',
-            ingredients: 0,
             recipes: [],
-            limit: 1
+            limit: 5
         }
     }
 
@@ -30,17 +28,12 @@ export class Recipes extends Component {
     }
 
     // Find a recipe
-    getRecipe = ( ingredients, limit ) => {
-        this.setState( { ingredients: ( ingredients.match( /,/g ) || [] ).length + 1 } )
+    getRecipe = ingredients => {
         console.log( ingredients )
-        API.getIngredientRecipe( ingredients, limit )
-            //  .then(res => console.log(res))
+        API.getIngredientRecipe( ingredients )
             .then( res => this.setState( { recipes: res.data } ) )
+            .then( res => console.log( `Recipe search results: ${JSON.stringify( res, null, 2 )}` ) )
             .catch( error => { throw error } );
-    }
-
-    missedIngredients = ( ingredients, usedIngredients ) => {
-        return parseInt( ingredients ) - parseInt( usedIngredients )
     }
 
     render() {
@@ -49,35 +42,31 @@ export class Recipes extends Component {
                 <CardDeck>
                     <CardBasic
                         header='Recipes'>
-                        <p className='text-center'>Enter all ingredients you would like to use in the recipe, separated by commas.</p>
-                        <form className='form-control form-inline'>
+                        <form className='form-control'>
                             <Input
-                                id="ingredientSearchBox"
+                                id="searchForm"
                                 name='itemName'
-                                label='Ingredient(s): '
+                                label='Item Name: '
                                 placeholder='Required'
                                 onChange={ this.handleInputChange } />
                             <Button
                                 className='btn btn-search'
                                 text='Find Recipes'
-                                onClick={ () => this.getRecipe( this.state.itemName, this.state.limit )
+                                onClick={ () => this.getRecipe( this.state.itemName )
                                 }
                             />
                         </form>
                         <div className='recipes'>
                             { this.state.recipes.slice( 0, this.state.recipes.length ).map( ( recipe, index ) => {
                                 return (
-
                                     <CardBasic
                                         key={ index }
-                                        id='recipeCard'
+                                        className='recipeCard'
                                         header={ recipe.title }>
                                         <div className='recipeContainer'>
-                                            <img src={ recipe.image } className='recipeImg' alt={ `${recipe.title}` } />
-                                            <div>Used ingredients:  { recipe.usedIngredientCount }</div>
-                                            <div>Missed ingredients: { this.missedIngredients( this.state.ingredients, recipe.usedIngredientCount ) }</div>
-
-                                            <Link to={ { pathname: '/AtHome/Recipe', state: { title: recipe.title, id: recipe.id }, onclick: localStorage.setItem( 'recipeId', recipe.id ) } }>View Recipe</Link>
+                                            <img src={ recipe.image } className='recipeImg' alt={ `${recipe.title}` } width='200px' />
+                                            <br />
+                                            <a href="/dashboard" className='text-center'>View Recipe</a>
                                         </div>
                                     </CardBasic>
                                 );

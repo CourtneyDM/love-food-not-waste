@@ -22,6 +22,7 @@ const MapComponent = compose(
         loadingElement: <div style={ { height: `100%` } } />,
         containerElement: <div style={ { height: `400px` } } />,
         mapElement: <div style={ { height: `100%` } } />,
+<<<<<<< HEAD
     } ), withScriptjs, withGoogleMap )( props =>
         <GoogleMap
             defaultZoom={ 12 }
@@ -54,5 +55,41 @@ const MapComponent = compose(
                     onClick={ props.onMarkerClick } /> }
         </GoogleMap>
     );
+=======
+    } ),
+    withScriptjs,
+    withGoogleMap
+)( props =>
+    <GoogleMap
+        defaultZoom={ 12 }
+        defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
+        { props.isMarkerShown &&
+            <Marker 
+                defaultTitle={'North Texas Food Bank'}
+                position={ NTFB }
+                onClick={ props.onMarkerClick } /> }
+        { props.isMarkerShown &&
+            <Marker
+                defaultTitle={'Resource Food Pantry'}
+                position={ RFP }
+                onClick={ props.onMarkerClick } /> }
+        { props.isMarkerShown &&
+            <Marker
+                defaultTitle={'Pleasant Grove Pantry'}
+                position={ PGP }
+                onClick={ props.onMarkerClick } /> }
+        { props.isMarkerShown &&
+            <Marker 
+                defaultTitle={'Our Community Pantry'}
+                position={ OCP }
+                onClick={ props.onMarkerClick } /> }
+        { props.isMarkerShown &&
+            <Marker
+                defaultTitle={'CrossRoads Community Services'}
+                position={ CRCS }
+                onClick={ props.onMarkerClick } /> }
+    </GoogleMap>
+);
+>>>>>>> master
 
 export default MapComponent;

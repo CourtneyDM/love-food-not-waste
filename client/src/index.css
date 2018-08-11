@@ -3,3 +3,38 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+@media screen and (min-width: 1300px) {
+  .wrapper{
+   background-size: auto 800px;
+   background-position: -195px -15px; 
+  }
+
+  #logo{
+      max-width: 330px;
+  }
+
+  .card-header-image{
+    padding-top: 10px;
+}
+   .card-img-top {
+       height: 300px;
+   }
+
+
+   .card-body {
+       font-size: 18px;
+   }
+
+
+
+   #foodWasteStats{
+       width:525px;
+       padding-right: 50px;
+   }
+
+   #quote {
+       line-height: 32px;
+   }
+  
+}

@@ -5,7 +5,7 @@ export const CardBasic = props => (
     <React.Fragment>
         <div className="card">
             <div
-                className=" card-header card-header-basic text-center"
+                className="card-header card-header-basic text-center"
                 id={ props.id }>
                 { props.header }
             </div>

@@ -1,6 +1,5 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
-
 # dependencies
+.env
 /node_modules
 node_modules/
 /config/keys.js
@@ -10,15 +9,12 @@ node_modules/
 
 # production
 /build
-/config
 /sessions
-./config
+./config/keys.js
 /sessions
-
 
 # misc
 .DS_Store
-.env
 .env.local
 .env.development.local
 .env.test.local
@@ -27,10 +23,3 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-
-waste-not-firebase-adminsdk-dy000-2aff960931.json
-node_modules
-node_modules
-node_modules
-npm-debug.log
