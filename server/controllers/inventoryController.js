@@ -5,8 +5,10 @@ const db = require( '../models' );
 module.exports = {
     // Retrieve All Inventory Items from Database
     findAll: ( req, res ) => {
+        let queryUser = req.query.user;
+        console.log( queryUser );
         db.Inventory
-            .find( req.query )
+            .find( { user: queryUser } )
             .sort( { date: -1 } )
             .then( dbModel => res.json( { 'data': dbModel } ) )
             .catch( error => res.status( 422 ).json( error ) );
