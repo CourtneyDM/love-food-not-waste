@@ -50,7 +50,9 @@ export class Recipes extends Component {
                     <CardBasic
                         header='Recipes'>
                         <p className='text-center'>Enter all ingredients you would like to use in the recipe, separated by commas.</p>
-                        <form className='form-control form-inline'>
+
+                        <form className='recipeSearchForm form-control form-inline'>
+
                             <Input
                                 id="ingredientSearchBox"
                                 name='itemName'
