@@ -1,0 +1,38 @@
+/* Call To Action Section
+--------------------------------*/
+#call-to-action {
+    background: linear-gradient(rgba(0, 142, 99, 0.1), rgba(0, 0, 0, 0.1)), url(/assets/images/CalltoAction/call-to-action-bg.png) fixed center center;
+    background-size: cover;
+    padding: 60px 0;
+  }
+  
+  #call-to-action h3 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  #call-to-action p {
+    color: #fff;
+  }
+  
+  #call-to-action .cta-btn {
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 8px 28px;
+    border-radius: 25px;
+    transition: 0.5s;
+    margin-top: 10px;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+  
+  #call-to-action .cta-btn:hover {
+    background: #528fff;
+    border: 2px solid #528fff;
+  }
+  
