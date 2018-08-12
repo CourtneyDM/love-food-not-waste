@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose, withProps } from 'recompose';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
 const NTFB = { lat: 32.6889959, lng: -96.8927529 };
 const RFP = { lat: 32.8078581, lng: -96.8159636 };
@@ -8,7 +8,6 @@ const PGP = { lat: 32.7347708, lng: -96.6798481 };
 const OCP = { lat: 32.7588686, lng: -96.7784619 };
 const CRCS = { lat: 32.7782536, lng: -96.7961399 };
 let coordinates;
-// let infoWindow = new GoogleMap.InfoWindow;
 
 if ( navigator.geolocation ) {
     navigator.geolocation.getCurrentPosition( position => {
@@ -32,7 +31,9 @@ const MapComponent = compose(
 )( props =>
     <GoogleMap
         defaultZoom={ 12 }
-        defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
+        // defaultCenter={ { lat: 32.7767, lng: -96.7970 } }
+        defaultCenter={ `${coordinates.lat}, ${coordinates.lng}` }
+    >
         { props.isMarkerShown &&
             <Marker
                 defaultTitle={ 'North Texas Food Bank' }
