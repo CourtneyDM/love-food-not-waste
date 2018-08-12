@@ -14,7 +14,8 @@ if ( navigator.geolocation ) {
         coordinates = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
-        }
+        };
+        console.log( `Coordinates - latitude: ${coordinates.lat}, longitude: ${coordinates.lng}` );
     } );
 }
 
