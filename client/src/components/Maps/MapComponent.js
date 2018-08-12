@@ -33,11 +33,18 @@ const MapComponent = compose(
 )( props =>
     <GoogleMap
         defaultZoom={ 12 }
+<<<<<<< HEAD
         // defaultCenter={ { lat: 32.7767, lng: -96.7970 } }
         defaultCenter={ props.center }
     >
         {
             props.isMarkerShown &&
+=======
+        defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
+        {
+            props.isMarkerShown &&
+
+>>>>>>> 1d1e3265b6723f01b8f9797bb6518452f9f93e3b
             <Marker
                 defaultTitle={ 'North Texas Food Bank' }
                 position={ NTFB }
