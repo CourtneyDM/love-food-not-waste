@@ -1,6 +1,7 @@
 import React from 'react';
 import { compose, withProps } from 'recompose';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+// import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox;'
 
 const NTFB = { lat: 32.6889959, lng: -96.8927529 };
 const RFP = { lat: 32.8078581, lng: -96.8159636 };
@@ -25,13 +26,16 @@ const MapComponent = compose(
         loadingElement: <div style={ { height: `100%` } } />,
         containerElement: <div style={ { height: `400px` } } />,
         mapElement: <div style={ { height: `100%` } } />,
+        center: coordinates
     } ),
     withScriptjs,
     withGoogleMap
 )( props =>
     <GoogleMap
         defaultZoom={ 12 }
-        defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
+        // defaultCenter={ { lat: 32.7767, lng: -96.7970 } }
+        defaultCenter={ props.center }
+    >
         {
             props.isMarkerShown &&
             <Marker
