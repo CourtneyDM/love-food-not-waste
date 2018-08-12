@@ -34,6 +34,7 @@ const MapComponent = compose(
         defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
         {
             props.isMarkerShown &&
+
             <Marker
                 defaultTitle={ 'North Texas Food Bank' }
                 position={ NTFB }
