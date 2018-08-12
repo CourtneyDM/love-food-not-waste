@@ -33,32 +33,42 @@ const MapComponent = compose(
     <GoogleMap
         defaultZoom={ 12 }
         defaultCenter={ { lat: 32.7767, lng: -96.7970 } } >
-        { props.isMarkerShown &&
+        {
+            props.isMarkerShown &&
             <Marker
                 defaultTitle={ 'North Texas Food Bank' }
                 position={ NTFB }
-                onClick={ props.onMarkerClick } /> }
-        { props.isMarkerShown &&
+                onClick={ props.onMarkerClick } />
+        }
+        {
+            props.isMarkerShown &&
             <Marker
                 defaultTitle={ 'Resource Food Pantry' }
                 position={ RFP }
-                onClick={ props.onMarkerClick } /> }
-        { props.isMarkerShown &&
+                onClick={ props.onMarkerClick } />
+        }
+        {
+            props.isMarkerShown &&
             <Marker
                 defaultTitle={ 'Pleasant Grove Pantry' }
                 position={ PGP }
-                onClick={ props.onMarkerClick } /> }
-        { props.isMarkerShown &&
+                onClick={ props.onMarkerClick } />
+        }
+        {
+            props.isMarkerShown &&
             <Marker
                 defaultTitle={ 'Our Community Pantry' }
                 position={ OCP }
-                onClick={ props.onMarkerClick } /> }
-        { props.isMarkerShown &&
+                onClick={ props.onMarkerClick } />
+        }
+        {
+            props.isMarkerShown &&
             <Marker
                 defaultTitle={ 'CrossRoads Community Services' }
                 position={ CRCS }
-                onClick={ props.onMarkerClick } /> }
-    </GoogleMap>
+                onClick={ props.onMarkerClick } />
+        }
+    </GoogleMap >
 );
 
 export default MapComponent;
