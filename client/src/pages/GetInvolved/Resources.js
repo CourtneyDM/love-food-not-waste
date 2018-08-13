@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
 import { CardDeck, CardBasic } from '../../components/Card';
+// import { GoogleMap, Marker } from 'react-google-maps';
 import MapComponent from '../../components/Maps/MapComponent';
 import './Resources.css';
 
 export class Resources extends Component {
     state = {
-        isMarkerShown: false
+        isMarkerShown: false,
+        currentPos: {
+            lat: '',
+            lng: ''
+        }
     };
+
+    getCurrentLocation = () => {
+        if ( navigator.geolocation ) {
+            navigator.geolocation.getCurrentPosition( position => {
+                this.setState( {
+                    currentPos: {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    }
+                } );
+            } );
+        }
+        else {
+            this.setState( {
+                currentPos: {
+                    lat: 32.7767,
+                    lng: -96.7970
+                }
+            } );
+        }
+    }
 
     componentDidMount() {
         this.delayedShowMarker()
@@ -18,6 +44,7 @@ export class Resources extends Component {
     }
 
     handleMarkerClick = () => {
+        alert( this.state.defaultTitle );
         this.setState( { isMarkerShown: false } )
         this.delayedShowMarker()
     }
@@ -74,9 +101,9 @@ export class Resources extends Component {
                     </CardBasic>
                 </CardDeck>
                 <MapComponent
-                    containerElement={ <div style={ { height: `400px` } } /> }
-                    mapElement={ <div style={ { height: `100%` } } /> }
+                    center={ this.getCurrentLocation }
                     isMarkerShown={ this.state.isMarkerShown }
+                    onMarkerClick={ this.handleMarkerClick }
                 />
             </div >
         );

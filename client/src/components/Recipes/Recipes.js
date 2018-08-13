@@ -1,12 +1,25 @@
 import React from "react";
+<<<<<<< HEAD
 import "./Recipes.css";
 
 const Recipes = () => (
     <section id="portfolio"  class="section-bg" >
+=======
+import { Link } from 'react-router-dom';
+import "./Recipes.css";
+
+const Recipes = () => (
+    <section id="recipes"  class="section-bg" >
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
       <div class="container">
 
         <header class="section-header">
           <h3 class="section-title">Recipes</h3>
+<<<<<<< HEAD
+=======
+          <p>Need ideas to help cut food waste?  Browse featured recipes below or click to search recipes by ingredients you have on hand.</p>
+          <Link className="cta-btn" to="/Recipes">Recipes</Link>
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
         </header>
 
         <div class="row portfolio-container">

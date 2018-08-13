@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Portfolio Section
 --------------------------------*/
 #portfolio {
@@ -5,13 +6,26 @@
   }
   
   #portfolio #portfolio-flters {
+=======
+/* Recipe Section
+--------------------------------*/
+#recipes {
+    padding: 60px 0;
+  }
+  
+  #recipes #portfolio-flters {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     padding: 0;
     margin: 5px 0 35px 0;
     list-style: none;
     text-align: center;
   }
   
+<<<<<<< HEAD
   #portfolio #portfolio-flters li {
+=======
+  #recipes #portfolio-flters li {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     cursor: pointer;
     margin: 15px 15px 15px 0;
     display: inline-block;
@@ -26,31 +40,55 @@
     transition: all 0.3s ease-in-out;
   }
   
+<<<<<<< HEAD
   #portfolio #portfolio-flters li:hover, #portfolio #portfolio-flters li.filter-active {
+=======
+  #recipes #portfolio-flters li:hover, #recipes #portfolio-flters li.filter-active {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     background: #18d26e;
     color: #fff;
   }
   
+<<<<<<< HEAD
   #portfolio #portfolio-flters li:last-child {
     margin-right: 0;
   }
   
   #portfolio .portfolio-wrap {
+=======
+  #recipes #portfolio-flters li:last-child {
+    margin-right: 0;
+  }
+  
+  #recipes .portfolio-wrap {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
     transition: 0.3s;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-wrap:hover {
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.16);
   }
   
   #portfolio .portfolio-item {
+=======
+  #recipes .portfolio-wrap:hover {
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.16);
+  }
+  
+  #recipes .portfolio-item {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     position: relative;
     height: 360px;
     overflow: hidden;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure {
+=======
+  #recipes .portfolio-item figure {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     background: #000;
     overflow: hidden;
     height: 240px;
@@ -59,12 +97,20 @@
     margin: 0;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure:hover img {
+=======
+  #recipes .portfolio-item figure:hover img {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     opacity: 0.4;
     transition: 0.3s;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure .link-preview, #portfolio .portfolio-item figure .link-details {
+=======
+  #recipes .portfolio-item figure .link-preview, #recipes .portfolio-item figure .link-details {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     position: absolute;
     display: inline-block;
     opacity: 0;
@@ -77,12 +123,17 @@
     transition: 0.2s linear;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure .link-preview i, #portfolio .portfolio-item figure .link-details i {
+=======
+  #recipes .portfolio-item figure .link-preview i, #recipes .portfolio-item figure .link-details i {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     padding-top: 6px;
     font-size: 22px;
     color: #333;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure .link-preview:hover, #portfolio .portfolio-item figure .link-details:hover {
     background: #18d26e;
   }
@@ -92,26 +143,53 @@
   }
   
   #portfolio .portfolio-item figure .link-preview {
+=======
+  #recipes .portfolio-item figure .link-preview:hover, #recipes .portfolio-item figure .link-details:hover {
+    background: #18d26e;
+  }
+  
+  #recipes .portfolio-item figure .link-preview:hover i, #recipes .portfolio-item figure .link-details:hover i {
+    color: #fff;
+  }
+  
+  #recipes .portfolio-item figure .link-preview {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     left: calc(50% - 38px);
     top: calc(50% - 18px);
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure .link-details {
+=======
+  #recipes .portfolio-item figure .link-details {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     right: calc(50% - 38px);
     top: calc(50% - 18px);
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure:hover .link-preview {
+=======
+  #recipes .portfolio-item figure:hover .link-preview {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     opacity: 1;
     left: calc(50% - 44px);
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item figure:hover .link-details {
+=======
+  #recipes .portfolio-item figure:hover .link-details {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     opacity: 1;
     right: calc(50% - 44px);
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item .portfolio-info {
+=======
+  #recipes .portfolio-item .portfolio-info {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     background: #fff;
     text-align: center;
     padding: 30px;
@@ -119,7 +197,11 @@
     border-radius: 0 0 3px 3px;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item .portfolio-info h4 {
+=======
+  #recipes .portfolio-item .portfolio-info h4 {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     font-size: 18px;
     line-height: 1px;
     font-weight: 700;
@@ -127,6 +209,7 @@
     padding-bottom: 0;
   }
   
+<<<<<<< HEAD
   #portfolio .portfolio-item .portfolio-info h4 a {
     color: #333;
   }
@@ -136,6 +219,17 @@
   }
   
   #portfolio .portfolio-item .portfolio-info p {
+=======
+  #recipes .portfolio-item .portfolio-info h4 a {
+    color: #333;
+  }
+  
+  #recipes .portfolio-item .portfolio-info h4 a:hover {
+    color: #18d26e;
+  }
+  
+  #recipes .portfolio-item .portfolio-info p {
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
     padding: 0;
     margin: 0;
     color: #b8b8b8;
@@ -143,4 +237,36 @@
     font-size: 14px;
     text-transform: uppercase;
   }
+<<<<<<< HEAD
   
+=======
+  
+
+  #recipes .cta-btn {
+    display: block;
+    width: 15%;
+   text-align: center;
+    margin: 0 auto;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding: 8px 28px;
+    border-radius: 25px;
+    transition: 0.5s;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    background-color: #528fff;
+    color: white;
+    border: 2px solid #fff;
+    color: #fff;
+  }
+  
+  #recipes .cta-btn:hover {
+    background-color: white;
+    color: #528fff;
+    border: 2px solid #528fff;
+    text-decoration: none;
+  }
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32

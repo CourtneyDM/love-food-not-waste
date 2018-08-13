@@ -8,7 +8,11 @@ const Footer = () => (
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-info">
+<<<<<<< HEAD
             <h3>Waste not</h3>
+=======
+            <h3>Waste Not</h3>
+>>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
             <p>Committed to fighting food waste and hunger.</p>
           </div>
 
