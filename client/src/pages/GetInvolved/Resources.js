@@ -94,13 +94,17 @@ export class Resources extends Component {
                     </CardBasic>
                 </CardDeck>
                 <MapComponent
+
                     center={ this.state.current_position }
+
                     // containerElement={ <div style={ { height: `400px` } } /> }
                     // mapElement={ <div style={ { height: `100%` } } /> }
                     isMarkerShown={ this.state.isMarkerShown }
                 // onMarkerClick={ this.handleMarkerClick } 
                 />
+
             </div >
+
         );
     };
 };
