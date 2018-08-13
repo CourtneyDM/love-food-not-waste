@@ -7,12 +7,34 @@ export class Resources extends Component {
         isMarkerShown: false,
     }
     componentDidMount() {
-        this.delayedShowMarker()
+        this.getCurrentPosition();
+        // this.delayedShowMarker()
     }
     delayedShowMarker = () => {
         setTimeout( () => {
             this.setState( { isMarkerShown: true } )
         }, 3000 )
+    }
+
+    getCurrentPosition = () => {
+        if ( navigator.geolocation ) {
+            navigator.geolocation.getCurrentPosition( position => {
+                this.setState( {
+                    current_position: {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    }
+                } );
+            } );
+        }
+        else {
+            this.setState( {
+                current_position: {
+                    lat: 32.7767,
+                    lng: -96.7970
+                }
+            } );
+        }
     }
 
     handleMarkerClick = () => {
@@ -72,12 +94,13 @@ export class Resources extends Component {
                     </CardBasic>
                 </CardDeck>
                 <MapComponent
+                    center={ this.state.current_position }
                     // containerElement={ <div style={ { height: `400px` } } /> }
                     // mapElement={ <div style={ { height: `100%` } } /> }
                     isMarkerShown={ this.state.isMarkerShown }
                 // onMarkerClick={ this.handleMarkerClick } 
                 />
-            </div>
+            </div >
         );
     };
 };
