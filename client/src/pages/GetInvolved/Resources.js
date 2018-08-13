@@ -2,39 +2,32 @@ import React, { Component } from 'react';
 import { CardDeck, CardBasic } from '../../components/Card';
 import MapComponent from '../../components/Maps/MapComponent';
 import './Resources.css';
-export class Resources extends Component {
-    state = {
-        isMarkerShown: false,
+
+let current_position;
+
+if ( navigator.geolocation ) {
+    navigator.geolocation.getCurrentPosition( position => {
+        current_position = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        }
+    } );
+}
+else {
+    current_position = {
+        lat: 32.7767,
+        lng: -96.7970
     }
+}
+export class Resources extends Component {
+
     componentDidMount() {
-        this.getCurrentPosition();
-        // this.delayedShowMarker()
+        this.delayedShowMarker()
     }
     delayedShowMarker = () => {
         setTimeout( () => {
             this.setState( { isMarkerShown: true } )
         }, 3000 )
-    }
-
-    getCurrentPosition = () => {
-        if ( navigator.geolocation ) {
-            navigator.geolocation.getCurrentPosition( position => {
-                this.setState( {
-                    current_position: {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    }
-                } );
-            } );
-        }
-        else {
-            this.setState( {
-                current_position: {
-                    lat: 32.7767,
-                    lng: -96.7970
-                }
-            } );
-        }
     }
 
     handleMarkerClick = () => {
@@ -94,17 +87,11 @@ export class Resources extends Component {
                     </CardBasic>
                 </CardDeck>
                 <MapComponent
-
-                    center={ this.state.current_position }
-
                     // containerElement={ <div style={ { height: `400px` } } /> }
                     // mapElement={ <div style={ { height: `100%` } } /> }
                     isMarkerShown={ this.state.isMarkerShown }
-                // onMarkerClick={ this.handleMarkerClick } 
                 />
-
             </div >
-
         );
     };
 };
