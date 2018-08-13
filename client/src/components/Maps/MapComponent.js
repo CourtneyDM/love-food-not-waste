@@ -35,7 +35,6 @@ const MapComponent = compose(
         defaultZoom={ 12 }
         defaultCenter={ { lat: 32.7767, lng: -96.7970 } }
     // defaultCenter={ props.center }
-
     >
         {
             props.isMarkerShown &&
