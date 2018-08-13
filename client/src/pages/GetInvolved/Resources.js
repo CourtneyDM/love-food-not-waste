@@ -3,23 +3,10 @@ import { CardDeck, CardBasic } from '../../components/Card';
 import MapComponent from '../../components/Maps/MapComponent';
 import './Resources.css';
 
-let current_position;
-
-if ( navigator.geolocation ) {
-    navigator.geolocation.getCurrentPosition( position => {
-        current_position = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        }
-    } );
-}
-else {
-    current_position = {
-        lat: 32.7767,
-        lng: -96.7970
-    }
-}
 export class Resources extends Component {
+    state = {
+        isMarkerShown: false
+    };
 
     componentDidMount() {
         this.delayedShowMarker()
@@ -27,7 +14,7 @@ export class Resources extends Component {
     delayedShowMarker = () => {
         setTimeout( () => {
             this.setState( { isMarkerShown: true } )
-        }, 3000 )
+        }, 1000 )
     }
 
     handleMarkerClick = () => {
