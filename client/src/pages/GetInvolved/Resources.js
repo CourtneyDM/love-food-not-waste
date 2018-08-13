@@ -6,33 +6,8 @@ import './Resources.css';
 
 export class Resources extends Component {
     state = {
-        isMarkerShown: false,
-        currentPos: {
-            lat: '',
-            lng: ''
-        }
+        isMarkerShown: false
     };
-
-    getCurrentLocation = () => {
-        if ( navigator.geolocation ) {
-            navigator.geolocation.getCurrentPosition( position => {
-                this.setState( {
-                    currentPos: {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    }
-                } );
-            } );
-        }
-        else {
-            this.setState( {
-                currentPos: {
-                    lat: 32.7767,
-                    lng: -96.7970
-                }
-            } );
-        }
-    }
 
     componentDidMount() {
         this.delayedShowMarker()
