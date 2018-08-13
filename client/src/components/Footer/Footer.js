@@ -9,6 +9,7 @@ const Footer = () => (
 
           <div class="col-lg-3 col-md-6 footer-info">
             <h3>Waste Not</h3>
+
             <p>Committed to fighting food waste and hunger.</p>
           </div>
 

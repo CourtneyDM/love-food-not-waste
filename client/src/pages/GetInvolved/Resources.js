@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import { CardDeck, CardBasic } from '../../components/Card';
 import MapComponent from '../../components/Maps/MapComponent';
 import './Resources.css';
+
 export class Resources extends Component {
     state = {
-        isMarkerShown: false,
-    }
+        isMarkerShown: false
+    };
+
     componentDidMount() {
         this.delayedShowMarker()
     }
     delayedShowMarker = () => {
         setTimeout( () => {
             this.setState( { isMarkerShown: true } )
-        }, 3000 )
+        }, 1000 )
     }
 
     handleMarkerClick = () => {
@@ -75,8 +77,8 @@ export class Resources extends Component {
                     containerElement={ <div style={ { height: `400px` } } /> }
                     mapElement={ <div style={ { height: `100%` } } /> }
                     isMarkerShown={ this.state.isMarkerShown }
-                    onMarkerClick={ this.handleMarkerClick } />
-            </div>
+                />
+            </div >
         );
     };
 };
