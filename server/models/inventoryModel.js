@@ -10,7 +10,7 @@ const InventorySchema = new Schema( {
         type: String,
         required: true
     },
-    itemBrandName: {
+    category: {
         type: String,
     },
     quantity: {
