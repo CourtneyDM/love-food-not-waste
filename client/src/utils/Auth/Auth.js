@@ -49,6 +49,7 @@ export default class Auth {
         localStorage.setItem( 'access_token', authResult.accessToken );
         localStorage.setItem( 'id_token', authResult.idToken );
         localStorage.setItem( 'expires_at', expiresAt );
+        localStorage.setItem('userId',authResult.idTokenPayload.sub);
         localStorage.setItem( 'nickname', authResult.idTokenPayload.nickname );
         // navigate to the home route
         history.replace( '/' );
@@ -107,8 +108,6 @@ export default class Auth {
             if ( profile ) {
                 this.userProfile = profile;
                 console.log( profile )
-                localStorage.setItem( 'nickname', profile.nickname )
-                localStorage.setItem( 'userId', profile.sub )
             }
             cb( err, profile );
         } );

@@ -6,6 +6,9 @@ import API from '../../utils/API';
 import './Recipes.css'
 import { timingSafeEqual } from 'crypto';
 
+
+const $ = require('jquery');
+
 export class Recipes extends Component {
     constructor( props ) {
         super( props );
@@ -29,6 +32,16 @@ export class Recipes extends Component {
         // alert(this.state.itemName);
     }
 
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+        $('#header').addClass('header-fill');
+        }
+
+    componentWillUnmount() {
+        $('#header').removeClass('header-fill');
+    }
+
     // Find a recipe
     getRecipe = ( ingredients, limit ) => {
         this.setState( { ingredients: ( ingredients.match( /,/g ) || [] ).length + 1 } )
@@ -45,7 +58,7 @@ export class Recipes extends Component {
 
     render() {
         return (
-            <div>
+            <div className="recipes">
                 <CardDeck>
                     <CardBasic
                         header='Recipes'>

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import "./CalltoAction.css";
+import "./FoodTracker.css";
 
-export class CalltoAction extends Component {
+export class FoodTracker extends Component {
   login() {
     this.props.auth.login();
   }
@@ -14,7 +14,7 @@ export class CalltoAction extends Component {
     const nickname = localStorage.getItem('nickname')
 
     return (
-      <section id="call-to-action" className="wow fadeIn">
+      <section id="food-tracker" className="wow fadeIn">
         <div className="container text-center">
           <h3>Food Tracker</h3>
           <p className='text-left'>Do you know how long your food lasts? The average American household wastes $2,200 of food each year - 90% of which is thrown away too soon.  Forgetting when your food expires or misinterpreting labels is a big contributer to food waste.</p>
@@ -26,7 +26,7 @@ export class CalltoAction extends Component {
           }
           {
             isAuthenticated() && (
-              <Link className="cta-btn" to="/AtHome/Inventory">Get Started</Link>
+              <Link className="cta-btn" to="/FoodTracker">Get Started</Link>
             )
           }
 
@@ -36,4 +36,4 @@ export class CalltoAction extends Component {
   }
 };
 
-export default CalltoAction;
+export default FoodTracker;
