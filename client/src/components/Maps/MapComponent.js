@@ -27,16 +27,11 @@ const MapWithInfoWindow = compose(
         isOpenCRCS: false
     } ), {
             // Method to check the visibility state of each marker
-            onToggleNTFB: ( { isOpenNTFB } ) => () => (
-                { isOpenNTFB: !isOpenNTFB } ),
-            onToggleRFP: ( { isOpenRFP } ) => () => (
-                { isOpenRFP: !isOpenRFP } ),
-            onTogglePGP: ( { isOpenPGP } ) => () => (
-                { isOpenPGP: !isOpenPGP } ),
-            onToggleOCP: ( { isOpenOCP } ) => () => (
-                { isOpenOCP: !isOpenOCP } ),
-            onToggleCRCS: ( { isOpenCRCS } ) => () => (
-                { isOpenCRCS: !isOpenCRCS } )
+            onToggleNTFB: ( { isOpenNTFB } ) => () => ( { isOpenNTFB: !isOpenNTFB } ),
+            onToggleRFP: ( { isOpenRFP } ) => () => ( { isOpenRFP: !isOpenRFP } ),
+            onTogglePGP: ( { isOpenPGP } ) => () => ( { isOpenPGP: !isOpenPGP } ),
+            onToggleOCP: ( { isOpenOCP } ) => () => ( { isOpenOCP: !isOpenOCP } ),
+            onToggleCRCS: ( { isOpenCRCS } ) => () => ( { isOpenCRCS: !isOpenCRCS } ),
         } ),
     withScriptjs,
     withGoogleMap
@@ -54,9 +49,7 @@ const MapWithInfoWindow = compose(
                     4500 S. Cockerill Hill Rd.<br />
                     Dallas, Texas 75236<br />
                     (214) 330-1396<br />
-                    <a
-                        href={ 'https://www.ntfb.org/' }
-                        target={ '_blank' }>https://www.ntfb.org</a>
+                    <a href={ 'https://www.ntfb.org/' } target={ '_blank' }>Visit Website</a>
                 </address>
             </InfoWindow> }
         </Marker>
@@ -70,10 +63,7 @@ const MapWithInfoWindow = compose(
                     2701 Reagan St.<br />
                     Dallas, Texas 75219<br />
                     (214) 528-0144< br />
-                    <a
-                        href={ 'http://www.myresourcecenter.org/' }
-                        target={ '_blank' }>
-                        http://www.myresourcecenter.org</a>
+                    <a href={ 'http://www.myresourcecenter.org/' } target={ '_blank' }>Visit Website</a>
                 </address>
             </InfoWindow> }
         </Marker>
@@ -91,6 +81,7 @@ const MapWithInfoWindow = compose(
             </InfoWindow> }
         </Marker>
         <Marker
+            defaultAnimation={ 'drop' }
             defaultTitle={ 'Our Community Pantry' }
             position={ OCP }
             onClick={ props.onToggleOCP }       >
@@ -113,14 +104,11 @@ const MapWithInfoWindow = compose(
                     1822 Young St.<br />
                     Dallas, Texas 75201<br />
                     (214) 560-2511<br />
-                    <a
-                        href={ 'http://www.ccsdallas.org/' }
-                        target={ '_blank' }>
-                        www.cscdallas.org</a>
+                    <a href={ 'http://www.ccsdallas.org/' } target={ '_blank' }>Visit Website</a>
                 </address>
             </InfoWindow> }
         </Marker>
-    </GoogleMap>
+    </GoogleMap >
 );
 
 export default MapWithInfoWindow;

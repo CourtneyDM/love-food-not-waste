@@ -4,23 +4,23 @@ import MapComponent from '../../components/Maps/MapComponent';
 import './Resources.css';
 
 export class Resources extends Component {
-    state = {
-        isMarkerShown: false
-    };
+    // state = {
+    //     isMarkerShown: false
+    // };
 
-    componentDidMount() {
-        this.delayedShowMarker()
-    }
-    delayedShowMarker = () => {
-        setTimeout( () => {
-            this.setState( { isMarkerShown: true } )
-        }, 1000 )
-    }
+    // componentDidMount() {
+    //     this.delayedShowMarker()
+    // }
+    // delayedShowMarker = () => {
+    //     setTimeout( () => {
+    //         this.setState( { isMarkerShown: true } )
+    //     }, 3000 )
+    // }
 
-    handleMarkerClick = () => {
-        this.setState( { isMarkerShown: false } )
-        this.delayedShowMarker()
-    }
+    // handleMarkerClick = () => {
+    //     this.setState( { isMarkerShown: false } )
+    //     this.delayedShowMarker()
+    // }
 
     render() {
         return (
@@ -76,7 +76,7 @@ export class Resources extends Component {
                 <MapComponent
                     containerElement={ <div style={ { height: `400px` } } /> }
                     mapElement={ <div style={ { height: `100%` } } /> }
-                    isMarkerShown={ this.state.isMarkerShown }
+                // isMarkerShown={ this.state.isMarkerShown } 
                 />
             </div >
         );
