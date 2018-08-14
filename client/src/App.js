@@ -32,6 +32,7 @@ const App = () => (
                     <div className='siteContent'>
                         <Switch>
                             
+
                             <Route exact path='/Dashboard' component={Dashboard} />
                             <Route exact path='/FoodTracker' render={(props) => <FoodTracker auth={auth} {...props} />} />
                             <Route exact path='/Recipes' component={Recipes} />
@@ -40,6 +41,7 @@ const App = () => (
                             <Route exact path='/GetInvolved/Individual' component={Individual} />
                             <Route exact path='/GetInvolved/Resources' component={Resources} />
                             <Route exact path='/' render={(props) => <Home auth={auth} {...props} />} />
+
                             <Route exact path='/home' render={(props) => <Home auth={auth} {...props} />} />
                             <Route exact path="/profile" render={(props) => <Profile auth={auth} {...props} />} />
                             <Route path="/callback" render={(props) => {

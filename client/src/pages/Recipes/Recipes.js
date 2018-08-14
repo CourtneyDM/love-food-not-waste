@@ -86,7 +86,20 @@ export class Recipes extends Component {
 
 
             <React.Fragment>
+<Modal isOpen={this.state.modal}>
+                        <form onSubmit={this.handleSubmit}>
 
+                            <ModalHeader>Test</ModalHeader>
+                            <ModalBody>
+                                Ingredients
+                                Instructions
+                            </ModalBody>
+                            <ModalFooter>
+
+                                <Button text='Close' onClick={this.toggle} />
+                            </ModalFooter>
+                        </form>
+                    </Modal>
 
                 <div class="recipes text-center section-header">
 
@@ -145,20 +158,6 @@ export class Recipes extends Component {
                                                 <div>Missed ingredients: {this.missedIngredients(this.state.ingredients, recipe.usedIngredientCount)}</div>
                                                 <Link id={recipe.id} to="#" onClick={this.toggle}>View Recipe</Link>
                                                 
-                    <Modal isOpen={this.state.modal}>
-                        <form onSubmit={this.handleSubmit}>
-
-                            <ModalHeader>Test</ModalHeader>
-                            <ModalBody>
-                                Ingredients
-                                Instructions
-                            </ModalBody>
-                            <ModalFooter>
-
-                                <Button text='Close' onClick={this.toggle} />
-                            </ModalFooter>
-                        </form>
-                    </Modal>
                                             </div>
                                         </div>
 

@@ -4,12 +4,14 @@ import "./Recipes.css";
 
 const Recipes = () => (
     <section id="recipes"  class="section-bg" >
+
       <div class="container">
 
         <header class="section-header">
           <h3 class="section-title">Recipes</h3>
           <p>Need ideas to help cut food waste?  Browse featured recipes below or click to search recipes by ingredients you have on hand.</p>
           <Link className="cta-btn" to="/Recipes">Recipes</Link>
+
         </header>
 
         <div class="row portfolio-container">
