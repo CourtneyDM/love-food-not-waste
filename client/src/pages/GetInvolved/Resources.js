@@ -4,23 +4,23 @@ import MapComponent from '../../components/Maps/MapComponent';
 import './Resources.css';
 
 export class Resources extends Component {
-    state = {
-        isMarkerShown: false
-    };
+    // state = {
+    //     isMarkerShown: false
+    // };
 
-    componentDidMount() {
-        this.delayedShowMarker()
-    }
-    delayedShowMarker = () => {
-        setTimeout( () => {
-            this.setState( { isMarkerShown: true } )
-        }, 1000 )
-    }
+    // componentDidMount() {
+    //     this.delayedShowMarker()
+    // }
+    // delayedShowMarker = () => {
+    //     setTimeout( () => {
+    //         this.setState( { isMarkerShown: true } )
+    //     }, 3000 )
+    // }
 
-    handleMarkerClick = () => {
-        this.setState( { isMarkerShown: false } )
-        this.delayedShowMarker()
-    }
+    // handleMarkerClick = () => {
+    //     this.setState( { isMarkerShown: false } )
+    //     this.delayedShowMarker()
+    // }
 
     render() {
         return (
@@ -48,7 +48,7 @@ export class Resources extends Component {
                                 <tr>
                                     <td>Resource Food Pantry</td>
                                     <td>2701 Reagan St, Dallas, TX 75219</td>
-                                    <td>(214) 330-1396</td>
+                                    <td>(214) 528-0144</td>
                                     <td><a href='http://www.myresourcecenter.org/'>View</a></td>
                                 </tr>
                                 <tr>
@@ -76,7 +76,7 @@ export class Resources extends Component {
                 <MapComponent
                     containerElement={ <div style={ { height: `400px` } } /> }
                     mapElement={ <div style={ { height: `100%` } } /> }
-                    isMarkerShown={ this.state.isMarkerShown }
+                // isMarkerShown={ this.state.isMarkerShown } 
                 />
             </div >
         );
