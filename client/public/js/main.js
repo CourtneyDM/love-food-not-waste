@@ -64,10 +64,9 @@ jQuery(document).ready(function( $ ) {
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
 
-<<<<<<< HEAD
-=======
+
   
->>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
+
   // Smooth scroll for the menu and links with .scrollto classes
   $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -101,11 +100,6 @@ jQuery(document).ready(function( $ ) {
       }
     }
   });
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
   // Header scroll class
   $(window).scroll(function() {
     if ($(this).scrollTop() > 100) {
@@ -179,7 +173,3 @@ jQuery(document).ready(function( $ ) {
   });
 
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> 2933083952a67dbcfc00fda8f80cfb31347cdd32
