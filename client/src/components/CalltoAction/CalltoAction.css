@@ -1,22 +1,22 @@
 /* Call To Action Section
 --------------------------------*/
-#food-tracker {
+#call-to-action {
     background: linear-gradient(rgba(0, 142, 99, 0.1), rgba(0, 0, 0, 0.1)), url(/assets/images/CalltoAction/call-to-action-bg.png) fixed center center;
     background-size: cover;
     padding: 60px 0;
   }
   
-  #food-tracker h3 {
+  #call-to-action h3 {
     color: #fff;
     font-size: 28px;
     font-weight: 700;
   }
   
-  #food-tracker p {
+  #call-to-action p {
     color: #fff;
   }
   
-  #food-tracker .cta-btn {
+  #call-to-action .cta-btn {
     font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
     font-weight: 500;
@@ -31,7 +31,7 @@
     color: #fff;
   }
   
-  #food-tracker .cta-btn:hover {
+  #call-to-action .cta-btn:hover {
     background: #528fff;
     border: 2px solid #528fff;
   }

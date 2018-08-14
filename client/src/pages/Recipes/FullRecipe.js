@@ -22,6 +22,10 @@ export class FullRecipe extends Component {
         this.getFullRecipe( recipeId );
     }
 
+    componentWillUnmount() {
+    localStorage.removeItem( 'recipeId' );
+    }
+    
     // Handle input field changes
     handleInputChange = event => {
         const { name, value } = event.target;

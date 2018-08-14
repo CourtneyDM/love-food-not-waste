@@ -35,7 +35,10 @@
         "mongoose": "^5.2.4",
         "nodemon": "^1.18.3",
         "qs": "^6.5.2",
+        "react": "^16.4.2",
+        "react-dom": "^16.4.2",
         "react-google-maps": "^9.4.5",
+        "react-icons": "^3.0.5",
         "recompose": "^0.28.2",
         "session-file-store": "^1.2.0",
         "uuid": "^3.3.2"

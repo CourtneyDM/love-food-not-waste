@@ -99,5 +99,22 @@ export default {
                 'X-Mashape-Key': KEY
             }
         } );
-    }
+    },
+
+    getFullRecipe: id => {
+        const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+id+'/information';
+        const HOST = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
+        const KEY = 'jQfnjagUlOmsh6jakRb6pEeFbK99p1ebYpGjsnhQRHifZupNG2';
+        return axios( {
+            method: 'GET',
+            url: URL,
+            headers: {
+                'X-Mashape-Host': HOST,
+                'X-Mashape-Key': KEY
+            }
+        } );
+    }	    
+
+
+
 }
