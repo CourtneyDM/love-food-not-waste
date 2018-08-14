@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 import { Home, NoMatch } from './pages';
 import { Dashboard } from './pages/Dashboard';
 import { FoodTracker } from './pages/FoodTracker';
-import { Recipes } from './pages/Recipes';
+import { Recipes, FullRecipe } from './pages/Recipes';
 import { FoodSupplier, Individual, Resources } from './pages/GetInvolved';
 import Auth from './utils/Auth/Auth';
 import Callback from './utils/Callback/Callback';
@@ -35,6 +35,7 @@ const App = () => (
                             <Route exact path='/Dashboard' component={Dashboard} />
                             <Route exact path='/FoodTracker' render={(props) => <FoodTracker auth={auth} {...props} />} />
                             <Route exact path='/Recipes' component={Recipes} />
+                            <Route exact path='/FullRecipe' component={FullRecipe}/>
                             <Route exact path='/GetInvolved/FoodSupplier' component={FoodSupplier} />
                             <Route exact path='/GetInvolved/Individual' component={Individual} />
                             <Route exact path='/GetInvolved/Resources' component={Resources} />

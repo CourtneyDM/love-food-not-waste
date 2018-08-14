@@ -187,7 +187,6 @@ export class FoodTracker extends Component {
 
                 <div class="inventory text-center section-header">
 
-
                     <h3>Food Tracker</h3>
                     <p>Don't forget what you have on hand or miss upcoming expiration dates!  Search for food to add to your personal tracker.</p>
                     {/* SEARCH FOR FOOD SECTION */}

@@ -1,50 +1,63 @@
-.header-fill{
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px 0;
-    height: 50px;
-}
-
 .recipes{
-    margin-top:150px;
+  margin-top:150px;
 }
 
-.recipeImg {
-    border-radius: 2px;
-    width: 30%;
-    margin: 0 auto;
-    display: inline;
-    float: left;
-    margin-right: 20px;
+.recipe-container{
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 35px;
+  min-height: 16vh;
 }
 
-.recipes {
-    width: 80%;
-    margin: 0 auto;
+.recipe-message{
+  width: 52%;
+  margin: 0 auto;
 }
 
-#ingredientSearchBox{
-    width: 80%;
-    margin-top: 4px;
+.recipe-wrap {
+  box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  width: 300px;
 }
 
-.form-control{
-    border: 0px;
+.recipe-wrap:hover {
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.16);
 }
 
-#recipeCard {
-    background-color: #16AA7A;
-    color: white;
-    font-size: 18px;
-    padding: 4px;
+.recipe-item {
+  position: relative;
+  height: 460px;
+  overflow: hidden;
 }
 
-.fullRecipeImg {
-    max-width: 70%;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom:20px;
+.recipe-title{
+  text-transform: uppercase;
+  color: darkslategray;
 }
 
-.bullets{
-    list-style-type: disc;
+.recipe-item figure {
+  background: #000;
+  overflow: hidden;
+  height: 225px;
+  position: relative;
+  border-radius: 4px 4px 0 0;
+  margin: 0;
+}
+
+.recipe-item .recipe-info {
+  background: #fff;
+  text-align: center;
+  padding: 30px;
+  height: 190px;
+  border-radius: 0 0 3px 3px;
+}
+
+
+.recipe-item figure:hover img {
+  opacity: 0.4;
+  transition: 0.3s;
+}
+
+body{
+  overflow: scroll;
 }
