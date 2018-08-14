@@ -4,25 +4,6 @@ import { Button } from '../Form';
 import "./Navbar.css";
 
 export class Navbar extends Component {
-    // constructor( props ) {
-    //     super( props );
-    //     this.endSession = this.endSession.bind( this );
-    // }
-
-    // If user is login in or signing up, hide login/signup buttons in navbar
-    // componentDidUpdate() {
-    //     if ( window.location.pathname === '/login' || window.location.pathname === '/signup' ) {
-    //         document.getElementById( 'login-btn' ).setAttribute( 'class', 'hidden' );
-    //         document.getElementById( 'signup-btn' ).setAttribute( 'class', 'hidden' );
-    //     }
-    // }
-
-    // Logout user and clear information from session storage
-    // endSession = () => {
-    //     console.log( 'clicked' );
-    //     window.sessionStorage.clear();
-    //     window.location = '/';
-    // }
 
 
     login() {
@@ -38,95 +19,54 @@ export class Navbar extends Component {
         const nickname = localStorage.getItem('nickname')
         
         return (
-            < nav className="navbar navbar-expand-lg navbar-dark" >
-                <a className="navbar-brand" href="/">Dallas, TX</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
+           
+           
+        <header id="header">
+    <div class="container-fluid">
 
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
+      <div id="logo" class="pull-left">
 
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="Educate" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                What's the Problem? </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item" to="/Educate/FoodWaste">Food Waste</Link>
-                                <Link className="dropdown-item" to="/Educate/Hunger">Hunger</Link>
-                            </div>
-                        </li>
+        <h1><Link to="/home#intro" class="scrollto">Waste Not</Link></h1>
+        
+      </div>
 
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="AtHome" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Help at Home </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item" to="/AtHome/Inventory">Food Inventory</Link>
-                                <Link className="dropdown-item" to="/AtHome/Recipes">Recipes</Link>
-                            </div>
-                        </li>
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
 
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="GetInvolved" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Get Involved </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item" to="/GetInvolved/Individual">Message Board</Link>
-                                <Link className="dropdown-item" to="/GetInvolved/Resources">Resources</Link>
-                            </div>
-                        </li>
-                    </ul >
-                    <form className="form-inline my-2 my-lg-0">
-                        {/* { sessionStorage.length > 0 ?
-                            <ul className='navbar-nav'>
-                                <li className='userInfo nav-item'>Welcome, { `${window.sessionStorage.getItem( 'fullname' )}` }</li>
-                                <li onClick={ this.endSession } className='nav-item btn'>
-                                    <Button
-                                        id='logout-btn'
-                                        className='btn btn-danger'
-                                        text='Logout' />
-                                </li>
-                            </ul>
-                            : <React.Fragment>
-                                <Link className='nav-link' to='/login'>
-                                    <Button
-                                        id='login-btn'
-                                        className='btn btn-login'
-                                        text='Login' />
-                                </Link>
-                                <Link className='nav-link' to='/signup'>
-                                    <Button
-                                        id='signup-btn'
-                                        className='btn btn-signup'
-                                        text='Signup' />
-                                </Link>
-                            </React.Fragment>
-                        } */}
+          <li class="menu-active"><Link to="/home#intro">Home</Link></li>
+          
+          <li><Link to="/home#about" >About</Link></li>
+          <li><Link to="/home#food-tracker">Food Tracker</Link></li>
+          <li><Link to="/home#recipes">Recipes</Link></li>
 
-                        {
-                                !isAuthenticated() && (
-                                    <Button
-                                        text="Log In"
-                                        id="loginButton"
-                                        onClick={this.login.bind(this)}
-                                    />
-                                       
-                                )
-                            }
-                            {
-                                isAuthenticated() && (
-                                    <div>
-                                        <Link to="/profile" id="viewProfile">Welcome, {nickname} </Link>
-                                        <Button
-                                            text="Log Out"
-                                            id="logoutButton"
-                                            onClick={this.logout.bind(this)}
-                                        />
+          <li class="menu-has-children"><a href="">Get Involved</a>
+            <ul>
+              <li><a href="#">Business</a></li>
+              <li><a href="#">Individual</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+          
+          {
+                                 !isAuthenticated() && (
+                                  <li><a href="#" onClick={this.login.bind(this)}><i className="ion-ios-contact"></i> Login/Signup</a></li>                                      
+                                 )
+                             }
+                             {
+                                 isAuthenticated() && (
                                          
-                                    </div>
-                                )
-                            }
-                    </form>
-                </div >
-            </nav >
+                                         <li><a href="#" onClick={this.logout.bind(this)}><i className="ion-ios-contact"></i> Logout</a></li>                                      
+                                         
+                                     
+                                 )
+                             }
+
+        </ul>
+                     
+        
+      </nav>
+    </div>
+  </header>
         );
     }
 }

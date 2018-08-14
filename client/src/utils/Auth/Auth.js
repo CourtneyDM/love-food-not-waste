@@ -33,9 +33,9 @@ export default class Auth {
         this.auth0.parseHash( ( err, authResult ) => {
             if ( authResult && authResult.accessToken && authResult.idToken ) {
                 this.setSession( authResult );
-                history.replace( '/profile' );
+                history.replace( '/' );
             } else if ( err ) {
-                history.replace( '/profile' );
+                history.replace( '/' );
                 console.log( err );
                 alert( `Error: ${err.error}. Check the console for further details.` );
             }
@@ -49,6 +49,7 @@ export default class Auth {
         localStorage.setItem( 'access_token', authResult.accessToken );
         localStorage.setItem( 'id_token', authResult.idToken );
         localStorage.setItem( 'expires_at', expiresAt );
+        localStorage.setItem('userId',authResult.idTokenPayload.sub);
         localStorage.setItem( 'nickname', authResult.idTokenPayload.nickname );
         // navigate to the home route
         history.replace( '/' );
@@ -107,8 +108,6 @@ export default class Auth {
             if ( profile ) {
                 this.userProfile = profile;
                 console.log( profile )
-                localStorage.setItem( 'nickname', profile.nickname )
-                localStorage.setItem( 'userId', profile.sub )
             }
             cb( err, profile );
         } );

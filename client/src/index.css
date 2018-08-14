@@ -1,40 +1,90 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
-@media screen and (min-width: 1300px) {
-  .wrapper{
-   background-size: auto 800px;
-   background-position: -195px -15px; 
+/*--------------------------------------------------------------
+# Sections
+--------------------------------------------------------------*/
+/* Sections Header
+--------------------------------*/
+.section-header h3 {
+    font-size: 32px;
+    color: #111;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
   }
-
-  #logo{
-      max-width: 330px;
-  }
-
-  .card-header-image{
-    padding-top: 10px;
-}
-   .card-img-top {
-       height: 300px;
-   }
-
-
-   .card-body {
-       font-size: 18px;
-   }
-
-
-
-   #foodWasteStats{
-       width:525px;
-       padding-right: 50px;
-   }
-
-   #quote {
-       line-height: 32px;
-   }
   
-}
+  .section-header h3::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+  }
+  
+  .section-header h3::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #528fff;
+    bottom: 0;
+    left: calc(50% - 20px);
+  }
+  
+  .section-header p {
+    text-align: center;
+    padding-bottom: 30px;
+    color: #333;
+  }
+  
+  /* Section with background
+  --------------------------------*/
+  .section-bg {
+    background: #f7f7f7;
+  }
+  
+  /* Featured Services Section
+  --------------------------------*/
+  #featured-services {
+    background: #000;
+  }
+  
+  #featured-services .box {
+    padding: 30px 20px;
+  }
+  
+  #featured-services .box-bg {
+    background-image: linear-gradient(0deg, #000000 0%, #242323 50%, #000000 100%);
+  }
+  
+  #featured-services i {
+    color: #528fff;
+    font-size: 48px;
+    display: inline-block;
+    line-height: 1;
+  }
+  
+  #featured-services h4 {
+    font-weight: 400;
+    margin: 15px 0;
+    font-size: 18px;
+  }
+  
+  #featured-services h4 a {
+    color: #fff;
+  }
+  
+  #featured-services h4 a:hover {
+    color: #528fff;
+  }
+  
+  #featured-services p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #fff;
+    margin-bottom: 0;
+  }
