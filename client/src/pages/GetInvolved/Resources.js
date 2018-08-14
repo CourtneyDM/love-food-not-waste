@@ -48,7 +48,7 @@ export class Resources extends Component {
                                 <tr>
                                     <td>Resource Food Pantry</td>
                                     <td>2701 Reagan St, Dallas, TX 75219</td>
-                                    <td>(214) 330-1396</td>
+                                    <td>(214) 528-0144</td>
                                     <td><a href='http://www.myresourcecenter.org/'>View</a></td>
                                 </tr>
                                 <tr>
