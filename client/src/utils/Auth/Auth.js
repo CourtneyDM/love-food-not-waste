@@ -1,6 +1,8 @@
+import React from 'react';
 import history from './history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -49,10 +51,13 @@ export default class Auth {
         localStorage.setItem( 'access_token', authResult.accessToken );
         localStorage.setItem( 'id_token', authResult.idToken );
         localStorage.setItem( 'expires_at', expiresAt );
-        localStorage.setItem('userId',authResult.idTokenPayload.sub);
+        localStorage.setItem( 'userId', authResult.idTokenPayload.sub );
         localStorage.setItem( 'nickname', authResult.idTokenPayload.nickname );
         // navigate to the home route
-        history.replace( '/dashboard' );
+        // history.replace( '/' );
+
+        // TODO: Test this in production
+        <Redirect to={ '/dashboard' } />
     }
 
     logout() {
