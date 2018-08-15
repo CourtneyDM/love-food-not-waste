@@ -35,7 +35,7 @@ export default class Auth {
         this.auth0.parseHash( ( err, authResult ) => {
             if ( authResult && authResult.accessToken && authResult.idToken ) {
                 this.setSession( authResult );
-                history.replace( '/' );
+                history.replace( '/dashboard' );
             } else if ( err ) {
                 history.replace( '/' );
                 console.log( err );
@@ -54,10 +54,7 @@ export default class Auth {
         localStorage.setItem( 'userId', authResult.idTokenPayload.sub );
         localStorage.setItem( 'nickname', authResult.idTokenPayload.nickname );
         // navigate to the home route
-        // history.replace( '/' );
-
-        // TODO: Test this in production
-        <Redirect to={ '/dashboard' } />
+        history.replace( '/dashboard' );
     }
 
     logout() {
