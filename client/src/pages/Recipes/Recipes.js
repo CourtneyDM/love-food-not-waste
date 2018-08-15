@@ -14,11 +14,16 @@ export class Recipes extends Component {
             recipeSearch: '',
             ingredients: 0,
             recipes: [],
-            limit: 1,
-            modal: false
-
+            limit: 4,
+            modal: false,
+            recipe: [],
+            ingredientList: [],
+            steps: []
         }
         this.toggle = this.toggle.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.getFullRecipe = this.getFullRecipe.bind(this);
+
     }
 
     toggle() {
@@ -42,7 +47,7 @@ export class Recipes extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
         $('#header').addClass('header-fill');
-        console.log(this.state.show)
+
     }
 
     componentWillUnmount() {
@@ -78,28 +83,56 @@ export class Recipes extends Component {
 
     }
 
+    getFullRecipe = (id) => {
+        API.getFullRecipe(id)
+            //.then(res=> console.log(res.data.analyzedInstructions[0].steps))
+            .then(res => this.setState({ recipe: res.data, ingredientList: res.data.extendedIngredients, steps: res.data.analyzedInstructions[0].steps}))
+            .catch(error => { throw error });
+    }
 
+    showModal = (id) => {
+        console.log("Recipe ID: " + id);
+        this.getFullRecipe(id);
+        this.toggle();
+    }
 
-
+ 
     render() {
         return (
 
 
             <React.Fragment>
-<Modal isOpen={this.state.modal}>
-                        <form onSubmit={this.handleSubmit}>
+                <Modal className='modal-lg' isOpen={this.state.modal}>
 
-                            <ModalHeader>Test</ModalHeader>
-                            <ModalBody>
-                                Ingredients
-                                Instructions
+
+                    <ModalHeader>{this.state.recipe.title}</ModalHeader>
+                    <ModalBody className='recipe-modal-body'>
+                    
+                        <img src={ this.state.recipe.image } className='fullRecipeImg' alt={ `${this.state.recipe.title}` } />
+                        <p>Serving Size:{ this.state.recipe.servings }</p>
+                        <p>Ready in: { this.state.recipe.readyInMinutes } minutes</p>
+                        <p>Ingredients</p>
+                        <ul>
+                            { this.state.ingredientList.map( ( item ) => ( <li className='bullets' key={ item.id }>{ item.originalString }</li> ) ) }
+                        </ul>
+                        
+                        <br />
+                        <p>Instructions</p>
+                        <ol>
+                { this.state.steps.map( ( item, index ) => ( <li key={ index }>{ item.step }</li> ) ) }
+              </ol>
+                       
+                        <a href={ this.state.recipe.sourceUrl } target="_blank">Orignally posted by { this.state.recipe.sourceName }</a>
+                        <br/>
+                        <a href={ this.state.recipe.spoonacularSourceUrl } target="_blank">Obtained from Spoonacular</a>
+
                             </ModalBody>
-                            <ModalFooter>
+                    <ModalFooter>
 
-                                <Button text='Close' onClick={this.toggle} />
-                            </ModalFooter>
-                        </form>
-                    </Modal>
+                        <Button text='Close' onClick={this.toggle} />
+                    </ModalFooter>
+
+                </Modal>
 
                 <div class="recipes text-center section-header">
 
@@ -153,16 +186,15 @@ export class Recipes extends Component {
                                             </figure>
 
                                             <div class="recipe-info">
-                                                <p className='recipe-title'><b>{recipe.title}</b></p>
+                                                <p className='recipe-title block-with-text'><b>{recipe.title}</b></p>
                                                 <div>Used ingredients:  {recipe.usedIngredientCount}</div>
                                                 <div>Missed ingredients: {this.missedIngredients(this.state.ingredients, recipe.usedIngredientCount)}</div>
-                                                <Link id={recipe.id} to="#" onClick={this.toggle}>View Recipe</Link>
-                                                
-                                            </div>
+                                                <Button className='btn-view' text='View' onClick={() => this.showModal(recipe.id)}>{recipe.id}</Button>
+
                                         </div>
-
-
                                     </div>
+
+</div>
                                 );
                             })}
                         </React.Fragment>

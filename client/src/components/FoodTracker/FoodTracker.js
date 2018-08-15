@@ -26,7 +26,7 @@ export class FoodTracker extends Component {
           }
           {
             isAuthenticated() && (
-              <Link className="cta-btn" to="/FoodTracker">Get Started</Link>
+              <Link className="cta-btn" to="/FoodTracker">Start Tracking</Link>
             )
           }
 

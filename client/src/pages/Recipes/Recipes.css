@@ -26,13 +26,14 @@
 
 .recipe-item {
   position: relative;
-  height: 460px;
+  height: 480px;
   overflow: hidden;
 }
 
 .recipe-title{
   text-transform: uppercase;
   color: darkslategray;
+  height: 3.6em;
 }
 
 .recipe-item figure {
@@ -48,7 +49,7 @@
   background: #fff;
   text-align: center;
   padding: 30px;
-  height: 190px;
+  height: 210px;
   border-radius: 0 0 3px 3px;
 }
 
@@ -60,4 +61,35 @@
 
 body{
   overflow: scroll;
+}
+
+.block-with-text {
+  overflow: hidden;
+  position: relative; 
+  line-height: 1.2em;
+  max-height: 3.6em; 
+  margin-right: -1em;
+  padding-right: 1em;
+}
+
+.btn-view{
+  background-color: #528fff;
+  color: white;
+  border: 0px;
+  border-radius: 2px;
+  padding: 2px 10px;
+}
+
+.recipe-modal{
+ width:80% !important
+}
+
+.recipe-modal-body {
+  float: left;
+}
+
+.fullRecipeImg{
+  width: 50%;
+  float: left;
+  padding: 10px;
 }

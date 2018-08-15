@@ -108,7 +108,7 @@ export class Dashboard extends Component {
             <React.Fragment>
                  <div class="dashboard text-center section-header">
                <h3>My Tracked Foods</h3>
-               <Link className='add-to-your-items' to="/FoodTracker">Add Items</Link>
+               <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link>
                </div>
                 {this.state.saved.slice(0, this.state.limit)
                     .map((saved, index) => {
@@ -136,7 +136,7 @@ export class Dashboard extends Component {
                             <tr>
                                 <th className="id">Id</th>
                                 <th className="category">Category</th>
-                                <th className="itemName">Item</th>
+                                <th className="itemName">Food Item</th>
                                 <th className="quantity">Quantity</th>
                                 <th className="bestByDate">Best By</th>
                                 <th className="remove">Remove </th>
