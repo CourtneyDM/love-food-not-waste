@@ -35,7 +35,7 @@ export class Navbar extends Component {
 
                             <li className="menu-active"><Link to="/">Home</Link></li>
 
-                            <li><Link to="#about" >About</Link></li>
+                            <li id="about-link"><Link to="#about" >About</Link></li>
                             <li><Link to="#food-tracker">Food Tracker</Link></li>
                             <li><Link to="#recipes">Recipes</Link></li>
                             <li><Link to="#localResources">Donate</Link></li>

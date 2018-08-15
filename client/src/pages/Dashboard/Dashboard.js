@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import API from '../../utils/API';
 import './Dashboard.css';
 
@@ -68,6 +69,7 @@ export class Dashboard extends Component {
         $( document ).ready( function () {
             $( '#savedTable' ).DataTable( {
                 retrieve: true,
+                "deferLoading": 0,
                 "columns": [
                     { "data": "id", "visible": false, "searchable": false },
                     { "data": "category" },
