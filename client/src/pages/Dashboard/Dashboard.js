@@ -54,12 +54,18 @@ export class Dashboard extends Component {
     }
 
     // Get food items saved to database
-    getInventory = id => {
-        console.log( id )
-        API.getInventory( id )
+    async getInventory( id ) {
+        console.log( id );
+        await API.getInventory( id )
             .then( res => this.setState( { saved: res.data.data } ) )
             .catch( error => { throw error } );
     }
+    // getInventory = id => {
+    //     console.log( id )
+    //     API.getInventory( id )
+    //         .then( res => this.setState( { saved: res.data.data } ) )
+    //         .catch( error => { throw error } );
+    // }
 
     render() {
         const tableSaved = $( '#savedTable' ).DataTable();
