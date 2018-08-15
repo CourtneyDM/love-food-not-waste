@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../Form';
+import { NavHashLink } from 'react-router-hash-link';
 import "./Navbar.css";
 
-export class Navbar extends Component {
+const $ = require('jquery');
 
+export class Navbar extends Component {
+  
 
     login() {
         this.props.auth.login();
@@ -13,6 +15,8 @@ export class Navbar extends Component {
     logout() {
         this.props.auth.logout();
     }
+
+ 
 
     render() {
         const { isAuthenticated } = this.props.auth;
@@ -33,12 +37,11 @@ export class Navbar extends Component {
                     <nav id="nav-menu-container">
                         <ul className="nav-menu">
 
-                            <li className="menu-active"><Link to="/">Home</Link></li>
-
-                            <li id="about-link"><Link to="#about" >About</Link></li>
-                            <li><Link to="#food-tracker">Food Tracker</Link></li>
-                            <li><Link to="#recipes">Recipes</Link></li>
-                            <li><Link to="#localResources">Donate</Link></li>
+                            <li className="menu-active"><NavHashLink smooth to="/home#intro">Home</NavHashLink></li>
+                            <li id="about-link"><NavHashLink smooth to="/home#about">About</NavHashLink></li>
+                            <li><NavHashLink smooth to="/home#food-tracker">Food Tracker</NavHashLink></li>
+                            <li><NavHashLink smooth to="/home#recipes">Recipes</NavHashLink></li>
+                            <li><NavHashLink smooth to="/home#localResources">Donate</NavHashLink></li>
 
 
 
