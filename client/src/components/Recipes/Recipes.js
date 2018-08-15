@@ -11,6 +11,7 @@ export class Recipes extends Component {
 
     render() {
         const { isAuthenticated } = this.props.auth;
+
         return (
             <section id="recipes" className="section-bg" >
 
@@ -61,9 +62,7 @@ export class Recipes extends Component {
                                     <p>Buried Avocado Chocolate Mousse</p>
                                 </div>
                             </div>
-
                         </div>
-
 
                         <div className="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
                             <div className="portfolio-wrap">
@@ -77,7 +76,6 @@ export class Recipes extends Component {
                                     <p>Blonde Chicken Stock</p>
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
@@ -92,7 +90,6 @@ export class Recipes extends Component {
                                     <p>Rustic Potato Chips</p>
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
@@ -107,7 +104,6 @@ export class Recipes extends Component {
                                     <p>Tandoori Marinade</p>
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
@@ -122,9 +118,7 @@ export class Recipes extends Component {
                                     <p>Panzanella</p>
                                 </div>
                             </div>
-
                         </div>
-
 
                         <div className="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
                             <div className="portfolio-wrap">
@@ -138,7 +132,6 @@ export class Recipes extends Component {
                                     <p>Fromage Fort</p>
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
@@ -153,7 +146,6 @@ export class Recipes extends Component {
                                     <p>Scraps Falafel</p>
                                 </div>
                             </div>
-
                         </div>
 
                         <div className="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
@@ -169,7 +161,6 @@ export class Recipes extends Component {
                                     <p>Banana Bread</p>
                                 </div>
                             </div>
-
                         </div>
 
                     </div>
