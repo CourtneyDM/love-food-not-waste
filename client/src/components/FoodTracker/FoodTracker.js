@@ -21,7 +21,7 @@ export class FoodTracker extends Component {
           <p className='text-left'>  We believe we can do better! Use our food tracker to keep an inventory of items you have on hand.</p>
           {
             !isAuthenticated() && (
-              <a className="cta-btn" href="#" onClick={this.login.bind(this)}>Log In</a>
+              <a className="cta-btn" href="#" onClick={this.login.bind(this)}>Start Tracking</a>
             )
           }
           {
