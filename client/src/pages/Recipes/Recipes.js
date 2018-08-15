@@ -85,8 +85,17 @@ export class Recipes extends Component {
 
     getFullRecipe = (id) => {
         API.getFullRecipe(id)
-            //.then(res=> console.log(res.data.analyzedInstructions[0].steps))
-            .then(res => this.setState({ recipe: res.data, ingredientList: res.data.extendedIngredients, steps: res.data.analyzedInstructions[0].steps}))
+           // .then(res=> console.log(res.data))
+            .then(response => {
+                if ( response.data.analyzedInstructions.length == 0) {
+                    this.setState({ recipe: response.data, ingredientList: response.data.extendedIngredients})
+                    
+                } else {
+                    
+                    this.setState({ recipe: response.data, ingredientList: response.data.extendedIngredients, steps: response.data.analyzedInstructions[0].steps})
+                }
+              })
+            
             .catch(error => { throw error });
     }
 
@@ -107,17 +116,25 @@ export class Recipes extends Component {
 
                     <ModalHeader>{this.state.recipe.title}</ModalHeader>
                     <ModalBody className='recipe-modal-body'>
-                    
-                        <img src={ this.state.recipe.image } className='fullRecipeImg' alt={ `${this.state.recipe.title}` } />
-                        <p>Serving Size:{ this.state.recipe.servings }</p>
-                        <p>Ready in: { this.state.recipe.readyInMinutes } minutes</p>
-                        <p>Ingredients</p>
-                        <ul>
+                    <img src={ this.state.recipe.image } className='fullRecipeImg' alt={ `${this.state.recipe.title}` } />
+                    <div className='recipe-top'>
+                       
+                        <p><b>Serving Size:</b> { this.state.recipe.servings }</p>
+                        <p><b>Ready in:</b> { this.state.recipe.readyInMinutes } minutes</p>
+                        <p><b>Ingredients:</b></p>
+                        <ul className='recipe-ingredients'>
                             { this.state.ingredientList.map( ( item ) => ( <li className='bullets' key={ item.id }>{ item.originalString }</li> ) ) }
                         </ul>
+                        </div>
+                        <div className="clearfix"></div>
+                        <p><b>Instructions:</b></p>
+                      
+                        {
+                this.state.steps.length ==0 && (
+                  <p><i>Instructions currently unavailable.  Please check the websites below.</i></p>
+                )
+              }
                         
-                        <br />
-                        <p>Instructions</p>
                         <ol>
                 { this.state.steps.map( ( item, index ) => ( <li key={ index }>{ item.step }</li> ) ) }
               </ol>
