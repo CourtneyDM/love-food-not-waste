@@ -82,7 +82,7 @@ export default {
     },
 
     // Get a recipe by ingredient
-    getIngredientRecipe: ingredients => {
+    getIngredientRecipe: (ingredients,limit) => {
         // API call will go here
         const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients';
         const HOST = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
@@ -92,12 +92,30 @@ export default {
             url: URL,
             params: {
                 ingredients: ingredients,
-                number: 5  //We have a limit of 500 results a day (free plan), so can change this accordingly
+                number: limit
+
             },
             headers: {
                 'X-Mashape-Host': HOST,
                 'X-Mashape-Key': KEY
             }
         } );
-    }
+    },
+
+    getFullRecipe: id => {
+        const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+id+'/information';
+        const HOST = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
+        const KEY = 'jQfnjagUlOmsh6jakRb6pEeFbK99p1ebYpGjsnhQRHifZupNG2';
+        return axios( {
+            method: 'GET',
+            url: URL,
+            headers: {
+                'X-Mashape-Host': HOST,
+                'X-Mashape-Key': KEY
+            }
+        } );
+    }	    
+
+
+
 }
