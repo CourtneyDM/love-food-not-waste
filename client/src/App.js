@@ -21,9 +21,6 @@ const handleAuthentication = (nextState, replace) => {
     }
 }
 
-
-
-
 const App = () => (
    
             <Router history={history} >
@@ -32,12 +29,11 @@ const App = () => (
                     <div className='siteContent'>
                         <Switch>
                             
-                            
                             <Route exact path='/Dashboard' component={Dashboard} />
                             <Route exact path='/FoodTracker' render={(props) => <FoodTracker auth={auth} {...props} />} />
                             <Route exact path='/Recipes' render={(props) => <Recipes auth={auth} {...props} />} />
                             <Route exact path='/' render={(props) => <Home auth={auth} {...props} />} />
-                            <Route exact path='/home' render={(props) => <Home auth={auth} {...props} />} />
+                            <Route path='/home' render={(props) => <Home auth={auth} {...props} />} />
                             <Route exact path="/profile" render={(props) => <Profile auth={auth} {...props} />} />
                             <Route path="/callback" render={(props) => {
                                 handleAuthentication(props);
