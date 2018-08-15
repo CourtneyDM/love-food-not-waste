@@ -17,7 +17,7 @@ export class Home extends Component {
                 <About />
                 <Facts />
                 <FoodTracker auth={ this.props.auth } />
-                <Recipes />
+                <Recipes auth={ this.props.auth } />
                 <div className="section-bg">
                     <div id="localResources">
                         <header className={ "section-header" }>
