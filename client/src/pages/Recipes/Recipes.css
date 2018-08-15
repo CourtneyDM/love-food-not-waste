@@ -85,11 +85,24 @@ body{
 }
 
 .recipe-modal-body {
-  float: left;
+  height: 80vh;
+  overflow: auto;
 }
 
 .fullRecipeImg{
   width: 50%;
   float: left;
   padding: 10px;
+  margin-right: 10px;
 }
+
+.recipe-top{
+  float: left;
+  padding-top: 4px;
+}
+
+.recipe-ingredients {
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
