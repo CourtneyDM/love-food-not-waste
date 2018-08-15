@@ -33,12 +33,12 @@ export class Navbar extends Component {
                     <nav id="nav-menu-container">
                         <ul className="nav-menu">
 
-                            <li className="menu-active"><Link to="/home#intro">Home</Link></li>
+                            <li className="menu-active"><Link to="/">Home</Link></li>
 
-                            <li><Link to="/home#about" >About</Link></li>
-                            <li><Link to="/home#food-tracker">Food Tracker</Link></li>
-                            <li><Link to="/home#recipes">Recipes</Link></li>
-                            <li><Link to="/home#resources">Donate</Link></li>
+                            <li><Link to="#about" >About</Link></li>
+                            <li><Link to="#food-tracker">Food Tracker</Link></li>
+                            <li><Link to="#recipes">Recipes</Link></li>
+                            <li><Link to="#localResources">Donate</Link></li>
 
 
 
