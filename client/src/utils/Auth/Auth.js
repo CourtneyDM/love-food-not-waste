@@ -2,9 +2,6 @@ import React from 'react';
 import history from './history';
 import auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth0-variables';
-import { Redirect } from 'react-router-dom';
-
-
 
 export default class Auth {
     auth0 = new auth0.WebAuth( {
@@ -35,7 +32,7 @@ export default class Auth {
         this.auth0.parseHash( ( err, authResult ) => {
             if ( authResult && authResult.accessToken && authResult.idToken ) {
                 this.setSession( authResult );
-                history.replace( '/dashboard' );
+                history.replace( '/' );
             } else if ( err ) {
                 history.replace( '/' );
                 console.log( err );
@@ -54,7 +51,7 @@ export default class Auth {
         localStorage.setItem( 'userId', authResult.idTokenPayload.sub );
         localStorage.setItem( 'nickname', authResult.idTokenPayload.nickname );
         // navigate to the home route
-        history.replace( '/dashboard' );
+        history.replace( '/' );
     }
 
     logout() {
