@@ -38,7 +38,7 @@ export class Navbar extends Component {
                             <li><Link to="/home#about" >About</Link></li>
                             <li><Link to="/home#food-tracker">Food Tracker</Link></li>
                             <li><Link to="/home#recipes">Recipes</Link></li>
-                            <li><Link to="/home#resources">Donate</Link></li>
+                            <li><Link to="/home#localResources">Donate</Link></li>
 
 
 
