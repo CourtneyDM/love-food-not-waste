@@ -52,7 +52,7 @@ export default class Auth {
         localStorage.setItem('userId',authResult.idTokenPayload.sub);
         localStorage.setItem( 'nickname', authResult.idTokenPayload.nickname );
         // navigate to the home route
-        history.replace( '/' );
+        history.replace( '/dashboard' );
     }
 
     logout() {
