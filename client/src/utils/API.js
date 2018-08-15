@@ -37,23 +37,14 @@ export default {
     },
 
     // Get food from user inventory
-    async getInventory( query ) {
-        const res = await axios.get( `/api/inventory`, {
+    getInventory: query => {
+        console.log( 'getting inventory...' );
+        return axios.get( `/api/inventory`, {
             params: {
                 user: query
             }
-        } );
-
-        return res.json;
+        } )
     },
-    // getInventory: query => {
-    //     console.log( 'getting inventory...' );
-    //     return axios.get( `/api/inventory`, {
-    //         params: {
-    //             user: query
-    //         }
-    //     } )
-    // },
 
 
     // Delete food item from user inventory

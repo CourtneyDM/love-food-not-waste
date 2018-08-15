@@ -32,7 +32,7 @@ const App = () => (
                     <div className='siteContent'>
                         <Switch>
                             
-
+                            
                             <Route exact path='/Dashboard' component={Dashboard} />
                             <Route exact path='/FoodTracker' render={(props) => <FoodTracker auth={auth} {...props} />} />
                             <Route exact path='/Recipes' render={(props) => <Recipes auth={auth} {...props} />} />

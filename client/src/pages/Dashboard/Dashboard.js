@@ -55,22 +55,12 @@ export class Dashboard extends Component {
     }
 
     // Get food items saved to database
-    async getInventory( query ) {
-        const res = await axios.get( `/api/inventory`, {
-            params: {
-                user: query
-            }
-        } );
-
-        console.log( res );
+    getInventory = id => {
+        console.log( id )
+        API.getInventory( id )
+            .then( res => this.setState( { saved: res.data.data } ) )
+            .catch( error => { throw error } );
     }
-
-    // getInventory = id => {
-    //     console.log( id )
-    //     API.getInventory( id )
-    //         .then( res => this.setState( { saved: res.data.data } ) )
-    //         .catch( error => { throw error } );
-    // }
 
     render() {
         const tableSaved = $( '#savedTable' ).DataTable();
@@ -79,6 +69,7 @@ export class Dashboard extends Component {
         $( document ).ready( function () {
             $( '#savedTable' ).DataTable( {
                 retrieve: true,
+                "deferLoading": 0,
                 "columns": [
                     { "data": "id", "visible": false, "searchable": false },
                     { "data": "category" },
