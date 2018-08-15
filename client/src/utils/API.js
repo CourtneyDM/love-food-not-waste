@@ -37,14 +37,23 @@ export default {
     },
 
     // Get food from user inventory
-    getInventory: query => {
-        console.log( 'getting inventory...' );
-        return axios.get( `/api/inventory`, {
+    async getInventory( query ) {
+        const res = await axios.get( `/api/inventory`, {
             params: {
                 user: query
             }
-        } )
+        } );
+
+        return res.json;
     },
+    // getInventory: query => {
+    //     console.log( 'getting inventory...' );
+    //     return axios.get( `/api/inventory`, {
+    //         params: {
+    //             user: query
+    //         }
+    //     } )
+    // },
 
 
     // Delete food item from user inventory
@@ -82,7 +91,7 @@ export default {
     },
 
     // Get a recipe by ingredient
-    getIngredientRecipe: (ingredients,limit) => {
+    getIngredientRecipe: ( ingredients, limit ) => {
         // API call will go here
         const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients';
         const HOST = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
@@ -103,7 +112,7 @@ export default {
     },
 
     getFullRecipe: id => {
-        const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/'+id+'/information';
+        const URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + '/information';
         const HOST = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
         const KEY = 'jQfnjagUlOmsh6jakRb6pEeFbK99p1ebYpGjsnhQRHifZupNG2';
         return axios( {
@@ -114,7 +123,7 @@ export default {
                 'X-Mashape-Key': KEY
             }
         } );
-    }	    
+    }
 
 
 
