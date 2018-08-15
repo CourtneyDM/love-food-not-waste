@@ -62,7 +62,7 @@ export class Dashboard extends Component {
             }
         } );
         console.log( res );
-        this.setState( { saved: res.data.data } );
+        return this.setState( { saved: res.data.data } );
     }
 
     // getInventory = id => {
