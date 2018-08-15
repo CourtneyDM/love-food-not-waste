@@ -1,5 +1,10 @@
 jQuery( document ).ready( function ( $ ) {
 
+    lightbox.option({
+        'albumLabel': "Recipe %1 of %2",
+        'wrapAround':true
+      })
+
     // Back to top button
     $( window ).scroll( function () {
         if ( $( this ).scrollTop() > 100 ) {
