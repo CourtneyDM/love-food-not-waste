@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import API from '../../utils/API';
 import './Dashboard.css';
 
@@ -54,12 +55,16 @@ export class Dashboard extends Component {
     }
 
     // Get food items saved to database
-    async getInventory( id ) {
-        console.log( id );
-        await API.getInventory( id )
-            .then( res => this.setState( { saved: res.data.data } ) )
-            .catch( error => { throw error } );
+    async getInventory( query ) {
+        const res = await axios.get( `/api/inventory`, {
+            params: {
+                user: query
+            }
+        } );
+
+        console.log( res );
     }
+
     // getInventory = id => {
     //     console.log( id )
     //     API.getInventory( id )
