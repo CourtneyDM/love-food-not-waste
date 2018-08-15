@@ -61,8 +61,8 @@ export class Dashboard extends Component {
                 user: query
             }
         } );
-
         console.log( res );
+        this.setState( { saved: res.data.data } );
     }
 
     // getInventory = id => {
