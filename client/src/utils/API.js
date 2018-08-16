@@ -62,6 +62,11 @@ export default {
         } )
     },
 
+    saveNewFoodItem: foodData => {
+        console.log( 'saving to inventory...' );
+        return axios.post( '/api/inventory', foodData );
+    },
+
     // Delete food item from user inventory
     deleteFoodItem: id => {
         // console.log( id );
