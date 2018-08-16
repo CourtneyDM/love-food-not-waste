@@ -2,5 +2,6 @@
 module.exports = {
     ChatController: require( './chatController' ),
     FoodController: require( './foodController' ),
-    InventoryController: require( './inventoryController' )
+    InventoryController: require( './inventoryController' ),
+    RecipeController: require( './recipeController' )
 };
