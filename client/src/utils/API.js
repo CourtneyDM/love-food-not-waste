@@ -38,6 +38,7 @@ export default {
 
     // Get food from user inventory
     getInventory: query => {
+        console.log( `getInventory Query: ${JSON.stringify( query )}` );
         console.log( 'getting inventory...' );
         return axios.get( `/api/inventory`, {
             params: {
@@ -46,15 +47,30 @@ export default {
         } )
     },
 
-       // Get food from user inventory
-       editInventory: (id, category, item, quantity, date) => {
+    // Get recipe from user inventory
+    getUserRecipes: query => {
+        return axios.get( '/api/recipes', {
+            params: {
+                user: query
+            }
+        } )
+    },
+
+    // Save recipe to user inventory
+    saveRecipe: query => {
+        console.log( `saveRecipe Query: ${JSON.stringify( query, null, 2 )}` );
+        return axios.post( '/api/recipes', query );
+
+    },
+    // Get food from user inventory
+    editInventory: ( id, category, item, quantity, date ) => {
         console.log( 'editing inventory...' );
-        console.log('ID: ' + id);
-        console.log('Update:' + quantity);
-        return axios.put('/api/inventory/' + id, {
-            category:category,
-            itemName:item,
-            quantity:quantity,
+        console.log( 'ID: ' + id );
+        console.log( 'Update:' + quantity );
+        return axios.put( '/api/inventory/' + id, {
+            category: category,
+            itemName: item,
+            quantity: quantity,
             bestByDate: date,
             params: {
                 id: id,
