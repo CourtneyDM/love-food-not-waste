@@ -84,6 +84,11 @@ export default {
         return axios.delete( '/api/inventory/' + id );
     },
 
+    // Delete recipe from user inventory
+    deleteRecipe: id => {
+        return axios.delete( '/api/recipes/' + id );
+    },
+
     // Get food database
     getFoodInventory: query => {
         // console.log( 'API.js getting food: ', query );
