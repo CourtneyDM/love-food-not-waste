@@ -29,6 +29,7 @@ module.exports = {
     },
     // Update Inventory Item in Database
     update: ( req, res ) => {
+       
         db.Inventory
             .findOneAndUpdate( { _id: req.params.id }, req.body )
             .then( dbModel => res.json( dbModel ) )

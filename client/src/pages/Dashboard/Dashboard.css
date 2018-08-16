@@ -38,20 +38,23 @@
     text-decoration: none;
   }
 
-  #deleteRow{
+ 
+#deleteRow{
     background-color: #f92a46;
     color: white;
     border: 0px;
     border-radius: 50px;
     padding: 4px 12px;
+    margin: 0px 5px;
     font-size: 12px;
 }
 
 #editRow{
-    background-color: #528fff;
+    background-color: rgb(141, 146, 146);
     color: white;
     border: 0px;
     border-radius: 50px;
-    padding: 4px 12px;
+    padding: 4px 10px;
+    margin: 0px 5px;
     font-size: 12px;
 }

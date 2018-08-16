@@ -16,8 +16,11 @@ export class Dashboard extends Component {
             isAuthenticated: true,
             modalEdit: false,
             modalDelete: false,
-            row: []
+            row: [],
+            fetchComplete:false
         }
+        this.edit = this.edit.bind(this);
+        this.delete = this.delete.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);
         this.toggleDelete = this.toggleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -43,14 +46,15 @@ export class Dashboard extends Component {
         window.scrollTo(0, 0);
         $('#header').addClass('header-fill');
         const userId = localStorage.getItem('userId');
-        console.log(userId)
         if (userId) {
             this.getInventory(userId);
         }
+        
     }
 
     componentWillUnmount() {
         $('#header').removeClass('header-fill');
+        
     }
 
     // Handle input field changes
@@ -74,12 +78,50 @@ export class Dashboard extends Component {
 
     // Get food items saved to database
     getInventory = id => {
-        console.log(id)
         API.getInventory(id)
-            .then(res => this.setState({ saved: res.data.data }))
+            .then(res => this.setState({ saved: res.data.data,fetchComplete:true }))
             .catch(error => { throw error });
     }
 
+    editItem = (id, category, item, quantity, date) =>{
+        API.editInventory(id, category, item, quantity, date)
+        .then(() => this.getInventory(localStorage.getItem('userId')))
+        .catch(error => { throw error });
+    }
+
+
+    delete = () => {
+        console.log(this.state.row);
+        this.deleteItem(this.state.row.id)
+        this.toggleDelete();
+    }
+
+
+    edit = () => {
+     console.log(this.state.row)   
+     let category = $("#category").val()
+     let foodItem = $("#item").val()
+     let quantity = $("#quantity").val()
+     let bestByDate = $("#date").val()
+
+     if(category==''){
+         category=this.state.row.category;
+     }
+     if(foodItem==''){
+         foodItem=this.state.row.itemName;
+     }
+     if(quantity==''){
+         quantity=this.state.row.quantity;
+     }
+     if(bestByDate==''){
+         bestByDate=this.state.row.bestByDate;
+     }
+     
+     const id = this.state.row.id
+     const data = {"itemName":foodItem,"category":category,"quantity":quantity,"bestByDate":bestByDate}
+     this.editItem(id,category,foodItem,quantity,bestByDate)
+     this.toggleEdit()
+    }
 
 
     render() {
@@ -104,8 +146,14 @@ export class Dashboard extends Component {
                         }
                     }
                 ]
+               
             });
         });
+
+        if(this.state.fetchComplete===true){
+            tableSaved.draw();
+        }
+       
 
         $('#savedTable tbody').on('click', 'button', (event) => {
             // When the click is received, turn off the click handler
@@ -116,9 +164,8 @@ export class Dashboard extends Component {
 
             const button = event.currentTarget
             const data = tableSaved.row(button.closest('tr')).data();
-            const id = data.id;
             const action = event.currentTarget.id;
-            console.log(data)
+          
             this.setState({ row: data })
 
             if (action === 'editRow') {
@@ -133,19 +180,21 @@ export class Dashboard extends Component {
 
         });
 
-        $('body').on('click', '.confirmDelete', (event) => {
-            $('button').off("click");
-            event.stopPropagation();
-            event.stopImmediatePropagation();
-            event.preventDefault();
-            const id = event.currentTarget.id
-            console.log(id)
+        // $('body').on('click', '.confirmDelete', (event) => {
+        //     $('button').off("click");
+        //     event.stopPropagation();
+        //     event.stopImmediatePropagation();
+        //     event.preventDefault();
+        //     const id = event.currentTarget.id
+           
+        //     console.log('Delete: ' + id)
             
-            this.deleteItem(id);
-            this.toggleDelete();
-            tableSaved.draw();
+        //     // this.deleteItem(id);
+        //     // this.toggleDelete();
+           
+          
 
-        })
+        // })
 
         return (
 
@@ -183,7 +232,7 @@ export class Dashboard extends Component {
                         </form>
                     </ModalBody>
                     <ModalFooter>
-                        <Button text='Submit' />
+                        <Button text='Submit' onClick={this.edit} />
                         <Button text='Cancel' onClick={this.toggleEdit} />
                     </ModalFooter>
 
@@ -198,7 +247,7 @@ export class Dashboard extends Component {
                         <p>Are you sure you would like to delete  {this.state.row.itemName} - ({this.state.row.quantity})?</p>
                     </ModalBody>
                     <ModalFooter>
-                        <Button text='Remove' className="confirmDelete" id={this.state.row.id} />
+                        <Button text='Remove' className="confirmDelete" onClick={this.delete} />
                         <Button text='Cancel' onClick={this.toggleDelete} />
                     </ModalFooter>
 
