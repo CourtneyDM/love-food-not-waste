@@ -107,6 +107,12 @@ jQuery( document ).ready( function ( $ ) {
         //     }
         // }
     } );
+
+    $( '#logo' ).on( 'click', function () {
+        $( '.nav-menu .menu-active' ).removeClass( 'menu-active' );
+    })
+
+
     // Header scroll class
     $( window ).scroll( function () {
         if ( $( this ).scrollTop() > 100 ) {

@@ -18,18 +18,18 @@ export class Home extends Component {
                 <Facts />
                 <FoodTracker auth={this.props.auth} />
                 <Recipes auth={this.props.auth} />
-                <section id="localResources" className="section-bg" >
+                <section id="localResources" >
 
                     <div className="container">
 
                         <header className="section-header">
                             <h3 className="section-title">Donate</h3>
                             <p>Click on one of the map markers below to find your nearest food donation center.</p>
-</header>
-                            <MapComponent />
+                        </header>
+                        <MapComponent />
                     </div>
                 </section>
             </div>
-                )
-            };
+        )
+    };
 };
