@@ -15,12 +15,18 @@ export class FoodTracker extends Component {
             quantity: '',
             bestByDate: '',
             items: [],
-            saved: []
+            saved: [],
+            category:'',
+            item:'',
+            quantity:0,
+            date:''
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.getFoodInventory = this.getFoodInventory.bind(this);
         this.saveFoodItem = this.saveFoodItem.bind(this);
+        this.saveNewFoodItem=this.saveNewFoodItem.bind(this)
+        
     }
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -86,7 +92,7 @@ export class FoodTracker extends Component {
         console.log("Searching for: " + this.state.itemName);
         this.getFoodInventory(this.state.itemName);
         $(".messages").empty();
-
+       
     }
 
     getInventory = id => {
@@ -97,12 +103,24 @@ export class FoodTracker extends Component {
     }
 
 
+
+    saveNewFoodItem = (addData) =>{
+        API.saveNewFoodItem(addData)
+        .catch(error => { throw error });
+    }
+
     render() {
         const tableSearch = $('#searchTable').DataTable();
         tableSearch.clear();
 
         const { isAuthenticated } = this.props.auth;
         const userId = localStorage.getItem('userId');
+
+        {
+            !isAuthenticated() && (
+                this.login()
+            )
+        } 
 
         $(document).ready(function () {
             $('#searchTable').DataTable({
@@ -145,7 +163,7 @@ export class FoodTracker extends Component {
             })
         });
 
-        $('#searchTable tbody').on('click', 'button', (event) => {
+        $('#searchTable tbody').on('click', '#addButton', (event) => {
             // When the click is received, turn off the click handler
             $('button').off("click");
 
@@ -176,8 +194,48 @@ export class FoodTracker extends Component {
             $(".messages").append(message);
             $(".your-inventory-container").prepend(add)
 
-        
+                tableSearch.clear()
+                .draw();
 
+                window.scrollTo(0, 0);
+        });
+
+
+        $('body').on('click', '.addButton', (event) => {
+            $('button').off("click");
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            event.preventDefault();
+
+            const newCategory = $("#newCategory").val();
+            const newItem = $("#newItem").val();
+            const newQuantity = $("#newQuantity").val();
+            const newDate = $("#newDate").val();
+            const user = localStorage.getItem('userId')
+
+            
+            this.saveNewFoodItem({
+                category: newCategory,
+                itemName: newItem,
+                quantity: newQuantity,
+                bestByDate: newDate,
+                user: user
+            });
+
+            $("#newCategory").val('');
+            $("#newItem").val('');
+            $("#newQuantity").val('');
+            $("#newDate").val('');
+
+
+            const message = '<div class="alert alert-success col-sm-7 mx-auto" role="alert">' + newItem + ' was added sucessfully.</div>'
+            const add = '<p>'+ newItem +', ' + newQuantity +'</p>'
+            $(".messages").append(message);
+            $(".your-inventory-container").prepend(add)
+
+            
+
+            window.scroll(0,0);
                 tableSearch.clear()
                 .draw();
         });
@@ -257,7 +315,8 @@ export class FoodTracker extends Component {
                             </tbody>
                         </table>
                     </div>
-                    <div className="card newItem">
+                    <div className="sidebar">
+                    <div className="card yourItems">
                     <div className="card-header">
                     <h5 className="text-center">Your Items</h5>
                         <Link className='your-tracker' to="/dashboard">Your Tracker</Link>
@@ -276,7 +335,49 @@ export class FoodTracker extends Component {
                     </div>
                 </div>
                
+                <div className="card addItem">
+                <div className="card-header addItemHeader">
+                    <h6 className="text-center addItemHeaderText">Didn't find what you were looking for?</h6>
+                   
+                    </div>
+                    <p className='text-center addItemPText'>Add your own item here</p>
+                        
+                    <form>
+                    <div class="form-group row">
+                        <label for="category" class="col-sm-6 col-form-label">Category:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newCategory" placeholder="Fruit" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="item" class="col-sm-6 col-form-label">Food Item:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newItem" placeholder="Pear" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="quantity" class="col-sm-6 col-form-label">Quantity:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newQuantity" placeholder="1" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="date" class="col-sm-6 col-form-label">Best By:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newDate" placeholder="12/31/2018" />
+                        </div>
+                    </div>
+                </form>
+                <button class='addButton'>Add</button>
+               
+                
+               </div>
+            
+            
+                </div>
                 <div class="clearfix"></div>
+
+                
                 </div>
                 </React.Fragment>
 
