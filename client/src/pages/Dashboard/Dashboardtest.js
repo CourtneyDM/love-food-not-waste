@@ -16,16 +16,17 @@ export class Dashboard extends Component {
             isAuthenticated: true,
             modalEdit: false,
             modalDelete: false,
-            row: []
+            row: [],
+            _isMounted: false
         }
+
         this.toggleEdit = this.toggleEdit.bind(this);
         this.toggleDelete = this.toggleDelete.bind(this);
+        this.showEditModal = this.showEditModal.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleClick = this.handleClick.bind(this);
         this.getInventory = this.getInventory.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
     }
-
 
     toggleEdit() {
         this.setState({
@@ -38,8 +39,10 @@ export class Dashboard extends Component {
             modalDelete: !this.state.modalDelete
         });
     }
+
     // Get inventory if component loaded successfully
     componentDidMount() {
+        
         window.scrollTo(0, 0);
         $('#header').addClass('header-fill');
         const userId = localStorage.getItem('userId');
@@ -47,9 +50,12 @@ export class Dashboard extends Component {
         if (userId) {
             this.getInventory(userId);
         }
+        this.setState({ _isMounted: true })
+
     }
 
     componentWillUnmount() {
+        this.setState({ _isMounted: false })
         $('#header').removeClass('header-fill');
     }
 
@@ -59,11 +65,6 @@ export class Dashboard extends Component {
         this.setState({ [name]: value });
     }
 
-    // Handle button click
-    handleClick = event => {
-        event.preventDefault();
-        return this.logoutUser();
-    }
 
     // Delete food item from database
     deleteItem = id => {
@@ -80,13 +81,33 @@ export class Dashboard extends Component {
             .catch(error => { throw error });
     }
 
+    showEditModal = (data) => {
+        this.setState({ _isMounted: true })
 
+        if(this.state._isMounted===true){
+            this.setState({row: data})
+            this.toggleEdit();
+        }
+        
+        
+    }
+
+    showDeleteModal = (data) => {
+        if(this.state._isMounted===true){
+        this.setState({ row: data })
+        this.toggleDelete();
+        }
+        
+    }
+
+    
 
     render() {
         const tableSaved = $('#savedTable').DataTable();
         tableSaved.clear();
 
-        $(document).ready(function () {
+        $(document).ready(() => {
+
             $('#savedTable').DataTable({
                 retrieve: true,
                 "deferLoading": 0,
@@ -99,13 +120,15 @@ export class Dashboard extends Component {
                     {
                         "data": "remove",
                         "render": function (data) {
-                            data = "<button id='editRow'>Edit</button>  <button id='deleteRow'>Remove</button>";
+                            data = "<button id='editRow'>Edit</button>  <button id='deleteRow'>Delete</button>";
                             return data;
                         }
                     }
                 ]
             });
         });
+
+
 
         $('#savedTable tbody').on('click', 'button', (event) => {
             // When the click is received, turn off the click handler
@@ -118,37 +141,36 @@ export class Dashboard extends Component {
             const data = tableSaved.row(button.closest('tr')).data();
             const id = data.id;
             const action = event.currentTarget.id;
-            console.log(data)
-            this.setState({ row: data })
 
             if (action === 'editRow') {
-                this.toggleEdit();
+                this.showEditModal(data)
 
             }
             if (action === 'deleteRow') {
-                this.toggleDelete();
+                this.showDeleteModal(data)
             }
-
+            
             ;
 
         });
 
-        $('body').on('click', '.confirmDelete', (event) => {
+
+        $('body').on('click', '.modal-xs #confirmDelete', (event) => {
             $('button').off("click");
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
-            const id = event.currentTarget.id
-            console.log(id)
+
             
-            this.deleteItem(id);
+            console.log('Delete: ' + this.state.row.id )
+
+            this.deleteItem(this.state.row.id);
             this.toggleDelete();
             tableSaved.draw();
-
+            
         })
 
         return (
-
             <React.Fragment>
                 <Modal className='modal-md' isOpen={this.state.modalEdit}>
 
@@ -198,7 +220,7 @@ export class Dashboard extends Component {
                         <p>Are you sure you would like to delete  {this.state.row.itemName} - ({this.state.row.quantity})?</p>
                     </ModalBody>
                     <ModalFooter>
-                        <Button text='Remove' className="confirmDelete" id={this.state.row.id} />
+                        <Button text='Remove' id="confirmDelete"/>
                         <Button text='Cancel' onClick={this.toggleDelete} />
                     </ModalFooter>
 
