@@ -2,5 +2,6 @@
 module.exports = {
     Chat: require( './chatModel' ),
     Food: require( './foodModel' ),
-    Inventory: require( './inventoryModel' )
+    Inventory: require( './inventoryModel' ),
+    Recipe: require( './recipeModel' )
 };
