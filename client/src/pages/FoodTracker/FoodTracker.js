@@ -4,38 +4,44 @@ import { Input, Button } from '../../components/Form';
 import API from '../../utils/API'
 import './FoodTracker.css';
 
-const $ = require( 'jquery' );
-$.DataTable = require( 'datatables.net' );
+const $ = require('jquery');
+$.DataTable = require('datatables.net');
 
 export class FoodTracker extends Component {
-    constructor( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
         this.state = {
             itemName: '',
             quantity: '',
             bestByDate: '',
             items: [],
-            saved: []
+            saved: [],
+            category:'',
+            item:'',
+            quantity:0,
+            date:''
         }
-        this.handleInputChange = this.handleInputChange.bind( this );
-        this.handleClick = this.handleClick.bind( this );
-        this.getFoodInventory = this.getFoodInventory.bind( this );
-        this.saveFoodItem = this.saveFoodItem.bind( this );
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.getFoodInventory = this.getFoodInventory.bind(this);
+        this.saveFoodItem = this.saveFoodItem.bind(this);
+        this.saveNewFoodItem=this.saveNewFoodItem.bind(this)
+        
     }
     componentDidMount() {
-        window.scrollTo( 0, 0 );
-        $( '#header' ).addClass( 'header-fill' );
-        const userId = localStorage.getItem( 'userId' );
-        console.log( userId )
+        window.scrollTo(0, 0);
+        $('#header').addClass('header-fill');
+        const userId = localStorage.getItem('userId');
+        console.log(userId)
         // console.log( localStorage.getItem('nickname')  );
         // Get the user's saved items from inventory database
-        if ( userId ) {
-            this.getInventory( userId );
+        if ( userId) {
+            this.getInventory(userId);
         }
     }
 
     componentWillUnmount() {
-        $( '#header' ).removeClass( 'header-fill' );
+        $('#header').removeClass('header-fill');
     }
 
     login() {
@@ -45,7 +51,7 @@ export class FoodTracker extends Component {
     // Handle input field changes
     handleInputChange = event => {
         const { name, value } = event.target;
-        this.setState( { [ name ]: value } );
+        this.setState({ [name]: value });
     }
 
     // Handle button click
@@ -55,56 +61,69 @@ export class FoodTracker extends Component {
 
     // Search API for specified food item
     getFoodDetails = query => {
-        API.getFoodDetails( query )
-            .then( results => {
-                this.setState( {
+        API.getFoodDetails(query)
+            .then(results => {
+                this.setState({
                     items: results.data.branded,
-                } );
-                console.log( this.state.items );
-            } )
-            .catch( error => { throw error } );
+                });
+                console.log(this.state.items);
+            })
+            .catch(error => { throw error });
         // TODO: display results for failed request with status code 400
     }
 
     // Save food item to database
     saveFoodItem = foodData => {
-        console.log( `Food data: ${JSON.stringify( foodData, null, 2 )}` );
-        console.log( `saveFoodItem: ${foodData.user}` );
-        API.saveFoodItem( foodData )
-            .catch( error => { throw error } );
+        console.log(`saveFoodItem: ${foodData.user}`);
+        API.saveFoodItem(foodData)
+            .catch(error => { throw error });
     }
 
     // Get food item from database
     getFoodInventory = query => {
-        API.getFoodInventory( query )
-            .then( console.log( 'Query:' + query ) )
-            .then( res => this.setState( { items: res.data.data } ) )
-            .then( console.log( this.state.items ) )
-            .catch( error => { throw error } );
+        API.getFoodInventory(query)
+            .then(console.log('Query:' + query))
+            .then(res => this.setState({ items: res.data.data }))
+            .then(console.log(this.state.items))
+            .catch(error => { throw error });
     }
 
     searchButtonClick = () => {
-        console.log( "Searching for: " + this.state.itemName );
-        this.getFoodInventory( this.state.itemName );
-        $( ".messages" ).empty();
-
+        console.log("Searching for: " + this.state.itemName);
+        this.getFoodInventory(this.state.itemName);
+        $(".messages").empty();
+       
     }
 
     getInventory = id => {
-        console.log( id )
-        API.getInventory( id )
+        console.log(id)
+        API.getInventory(id)
             .then( res => this.setState( { saved: res.data.data } ) )
             .catch( error => { throw error } );
     }
 
 
-    render() {
-        const tableSearch = $( '#searchTable' ).DataTable();
-        tableSearch.clear();
-        const userId = localStorage.getItem( 'userId' );
 
-        $( document ).ready( function () {
-            $( '#searchTable' ).DataTable( {
+    saveNewFoodItem = (addData) =>{
+        API.saveNewFoodItem(addData)
+        .catch(error => { throw error });
+    }
+
+    render() {
+        const tableSearch = $('#searchTable').DataTable();
+        tableSearch.clear();
+
+        const { isAuthenticated } = this.props.auth;
+        const userId = localStorage.getItem('userId');
+
+        {
+            !isAuthenticated() && (
+                this.login()
+            )
+        } 
+
+        $(document).ready(function () {
+            $('#searchTable').DataTable({
                 retrieve: true,
                 "language": {
                     "search": "Filter"
@@ -119,107 +138,151 @@ export class FoodTracker extends Component {
                     {
                         "data": "quantity",
                         "width": "10%",
-                        "render": function ( data ) {
-                            data = "<input class='quantityInput' ></input>"
+                        "render": function (data) {
+                            data = "<input className='quantityInput' ></input>"
                             return data;
                         }
                     },
                     {
                         "data": "bestBy",
                         "width": "10%",
-                        "render": function ( data ) {
-                            data = "<input type='date' id='date' class='bestByInput'></input>"
+                        "render": function (data) {
+                            data = "<input type='date' id='date' className='bestByInput'></input>"
                             return data;
                         }
                     },
                     {
                         "data": "add",
                         "width": "10%",
-                        "render": function ( data ) {
+                        "render": function (data) {
                             data = "<button id='addButton'>" + data + "</button>";
                             return data;
                         }
                     }
                 ]
-            } )
-        } );
+            })
+        });
 
-        $( '#searchTable tbody' ).on( 'click', 'button', ( event ) => {
+        $('#searchTable tbody').on('click', '#addButton', (event) => {
             // When the click is received, turn off the click handler
-            $( 'button' ).off( "click" );
+            $('button').off("click");
 
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
             const button = event.currentTarget
-            console.log( tableSearch.row( button.closest( 'tr' ) ) );
+            console.log(tableSearch.row(button.closest('tr')));
 
-            const data = tableSearch.row( button.closest( 'tr' ) ).data();
-            console.log( data );
+            const data = tableSearch.row(button.closest('tr')).data();
+            console.log(data);
             const item = data.item;
-            const category = data.category
-            const quantity = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( 'input' ).val();
-            const date = tableSearch.row( button.closest( 'tr' ) ).nodes().to$().find( '#date' ).val();
+            const category= data.category
+            const quantity = tableSearch.row(button.closest('tr')).nodes().to$().find('input').val();
+            const date = tableSearch.row(button.closest('tr')).nodes().to$().find('#date').val();
+            
 
-
-            this.saveFoodItem( {
+            this.saveFoodItem({
                 category: category,
                 itemName: item,
                 quantity: quantity,
                 bestByDate: date,
                 user: userId
-            } );
+            });
 
             const message = '<div class="alert alert-success col-sm-7 mx-auto" role="alert">' + item + ' was added sucessfully.</div>'
-            const add = '<p>' + item + ', ' + quantity + '</p>'
-            $( ".messages" ).append( message );
-            $( ".your-inventory-container" ).prepend( add )
+            const add = '<p>'+ item +', ' + quantity +'</p>'
+            $(".messages").append(message);
+            $(".your-inventory-container").prepend(add)
 
-
-
-            tableSearch.clear()
+                tableSearch.clear()
                 .draw();
-        } );
+
+                window.scrollTo(0, 0);
+        });
+
+
+        $('body').on('click', '.addButton', (event) => {
+            $('button').off("click");
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+            event.preventDefault();
+
+            const newCategory = $("#newCategory").val();
+            const newItem = $("#newItem").val();
+            const newQuantity = $("#newQuantity").val();
+            const newDate = $("#newDate").val();
+            const user = localStorage.getItem('userId')
+
+            
+            this.saveNewFoodItem({
+                category: newCategory,
+                itemName: newItem,
+                quantity: newQuantity,
+                bestByDate: newDate,
+                user: user
+            });
+
+            $("#newCategory").val('');
+            $("#newItem").val('');
+            $("#newQuantity").val('');
+            $("#newDate").val('');
+
+
+            const message = '<div class="alert alert-success col-sm-7 mx-auto" role="alert">' + newItem + ' was added sucessfully.</div>'
+            const add = '<p>'+ newItem +', ' + newQuantity +'</p>'
+            $(".messages").append(message);
+            $(".your-inventory-container").prepend(add)
+
+            
+
+            window.scroll(0,0);
+                tableSearch.clear()
+                .draw();
+        });
 
         return (
             <React.Fragment>
 
-                <div className="inventory text-center section-header">
+                <div class="inventory text-center section-header">
 
                     <h3>Food Tracker</h3>
                     <p>Don't forget what you have on hand or miss upcoming expiration dates!  Search for food to add to your personal tracker.</p>
-                    {/* SEARCH FOR FOOD SECTION */ }
+                    {/* SEARCH FOR FOOD SECTION */}
                     <form>
                         <div className='form-inline '>
-                            <div className="form-group mb-2 mx-auto">
+                            <div class="form-group mb-2 mx-auto">
                                 <Input
                                     id="searchForm"
                                     name='itemName'
                                     label='Item: '
                                     placeholder='Required'
-                                    onChange={ this.handleInputChange } />
+                                    onChange={this.handleInputChange} />
+
 
                                 <Button
                                     className='btn btn-search '
                                     text='Search'
-                                    onClick={ () => this.searchButtonClick() } />
+                                    onClick={() => this.searchButtonClick()
+                                    }
+                                />
                             </div>
                         </div>
                     </form>
                 </div>
-                {/* DISPLAY SEARCH RESULTS SECTION */ }
+                {/* DISPLAY SEARCH RESULTS SECTION */}
 
                 <React.Fragment>
 
-                    {/* Branded Foods */ }
+                    {/* Branded Foods */}
 
 
-                    {/* // { this.state.items.slice( 0, this.state.limit ).map( ( brand, index ) => { */ }
-                    {/* //     tableSearch.row.add( { */ }
-                    {/* //         item: brand.food_name, */ }
-                    {/* //         quantity: 0, */ }
-                    { this.state.items.slice( 0, this.state.items.length ).map( ( brand, index ) => {
-                        tableSearch.row.add( {
+                    {/* // { this.state.items.slice( 0, this.state.limit ).map( ( brand, index ) => { */}
+
+                    {/* //     tableSearch.row.add( { */}
+                    {/* //         item: brand.food_name, */}
+                    {/* //         quantity: 0, */}
+                    {this.state.items.slice(0, this.state.items.length).map((brand, index) => {
+                        tableSearch.row.add({
                             key: index,
                             category: brand.category,
                             item: brand.item,
@@ -227,53 +290,101 @@ export class FoodTracker extends Component {
                             quantity: 1,
                             bestByDate: "",
                             add: "Add"
-                        } ).draw();
+                        }).draw();
 
-                    } ) }
+                    })}
 
                     <div className="messages"></div>
                     <div className="content-container mx-auto">
-                        <div id='tableContainer' className='container-fluid mx-auto'>
-                            <table
-                                id='searchTable'
-                                className='table-striped table-bordered table-condensed text-left'
-                                width="100%">
-                                <thead>
-                                    <tr>
-                                        <th className="category">Category</th>
-                                        <th className="item_name">Item</th>
-                                        <th className="guidelines">Guidelines</th>
-                                        <th className="quantity">Quantity</th>
-                                        <th className="bestByDate">Best By</th>
-                                        <th className="add">Add </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="card newItem">
-                            <div className="card-header">
-                                <h5 className="text-center">Your Items</h5>
-                                <Link className='your-tracker' to="/dashboard">Your Tracker</Link>
-                            </div>
-                            <div className="card-body">
-
-                                <React.Fragment>
-                                    <div className="your-inventory-container">
-                                        { this.state.saved.slice( 0, this.state.limit )
-                                            .map( ( saved, index ) => {
-                                                return ( <p>{ saved.itemName }, { saved.quantity }</p> );
-                                            }
-                                            ) }
-                                    </div>
-                                </React.Fragment>
-                            </div>
-                        </div>
-
-                        <div className="clearfix"></div>
+                    <div id='tableContainer' className='container-fluid mx-auto'>
+                        <table
+                            id='searchTable'
+                            className='table-striped table-bordered table-condensed text-left'
+                            width="100%">
+                            <thead>
+                                <tr>
+                                    <th className="category">Category</th>
+                                    <th className="item_name">Item</th>
+                                    <th className="guidelines">Guidelines</th>
+                                    <th className="quantity">Quantity</th>
+                                    <th className="bestByDate">Best By</th>
+                                    <th className="add">Add </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
                     </div>
+                    <div className="sidebar">
+                    <div className="card yourItems">
+                    <div className="card-header">
+                    <h5 className="text-center">Your Items</h5>
+                        <Link className='your-tracker' to="/dashboard">Your Tracker</Link>
+                    </div>
+                    <div className="card-body">
+                        
+                        <React.Fragment>
+                            <div className="your-inventory-container">
+                        { this.state.saved.slice( 0, this.state.limit )
+                                        .map( ( saved, index ) => {
+                                          return(<p>{saved.itemName}, {saved.quantity}</p>);
+                                        }
+                                    )}
+                                    </div>
+                                    </React.Fragment>
+                    </div>
+                </div>
+               
+                <div className="card addItem">
+                <div className="card-header addItemHeader">
+                    <h6 className="text-center addItemHeaderText">Didn't find what you were looking for?</h6>
+                   
+                    </div>
+                    <p className='text-center addItemPText'>Add your own item here</p>
+                        
+                    <form>
+                    <div class="form-group row">
+                        <label for="category" class="col-sm-6 col-form-label">Category:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newCategory" placeholder="Fruit" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="item" class="col-sm-6 col-form-label">Food Item:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newItem" placeholder="Pear" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="quantity" class="col-sm-6 col-form-label">Quantity:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newQuantity" placeholder="1" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="date" class="col-sm-6 col-form-label">Best By:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="newDate" placeholder="12/31/2018" />
+                        </div>
+                    </div>
+                </form>
+                <button class='addButton'>Add</button>
+               
+                
+               </div>
+            
+            
+                </div>
+                <div class="clearfix"></div>
+
+                
+                </div>
                 </React.Fragment>
+
+
+                
+
+
             </React.Fragment>
 
         )
