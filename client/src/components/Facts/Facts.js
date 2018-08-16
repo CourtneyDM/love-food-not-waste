@@ -38,10 +38,6 @@ const Facts = () => (
 
             </div>
 
-            <div className="facts-img">
-                <img src="img/facts-img.png" alt="" className="img-fluid" />
-            </div>
-
         </div>
     </section>
 );

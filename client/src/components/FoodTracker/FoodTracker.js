@@ -11,7 +11,6 @@ export class FoodTracker extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
-    const nickname = localStorage.getItem('nickname')
 
     return (
       <section id="food-tracker" className="wow fadeIn">

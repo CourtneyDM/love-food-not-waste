@@ -16,11 +16,27 @@ export class Navbar extends Component {
         this.props.auth.logout();
     }
 
- 
+    scroll(section) {
+        var top_space = 0;
+
+        if ($('#header').length) {
+            top_space = $('#header').outerHeight();
+
+            if (!$('#header').hasClass('header-fixed')) {
+                top_space = top_space - 20;
+            }
+
+            $('html, body').animate({
+                scrollTop: $("#" + section.id).offset().top - top_space
+            }, 1500);
+
+        }
+    }
+
 
     render() {
         const { isAuthenticated } = this.props.auth;
-        const nickname = localStorage.getItem( 'nickname' )
+        const nickname = localStorage.getItem('nickname')
 
         return (
 
@@ -30,24 +46,24 @@ export class Navbar extends Component {
 
                     <div id="logo" className="pull-left">
 
-                        <h1><Link to="/home#intro" className="scrollto">Waste Not</Link></h1>
+                        <h1><NavHashLink smooth to="/home#intro" scroll={el => this.scroll(el)}>Home</NavHashLink></h1>
 
                     </div>
 
                     <nav id="nav-menu-container">
                         <ul className="nav-menu">
 
-                            <li className="menu-active"><NavHashLink smooth to="/home#intro">Home</NavHashLink></li>
-                            <li id="about-link"><NavHashLink smooth to="/home#about">About</NavHashLink></li>
-                            <li><NavHashLink smooth to="/home#food-tracker">Food Tracker</NavHashLink></li>
-                            <li><NavHashLink smooth to="/home#recipes">Recipes</NavHashLink></li>
-                            <li><NavHashLink smooth to="/home#localResources">Donate</NavHashLink></li>
+                            <li className="menu-active"><NavHashLink smooth to="/home#intro" scroll={el => this.scroll(el)}>Home</NavHashLink></li>
+                            <li id="about-link"><NavHashLink smooth to="/home#about" scroll={el => this.scroll(el)}>About</NavHashLink></li>
+                            <li><NavHashLink to="/home#food-tracker" scroll={el => this.scroll(el)}>Food Tracker</NavHashLink></li>
+                            <li><NavHashLink smooth to="/home#recipes" scroll={el => this.scroll(el)}>Recipes</NavHashLink></li>
+                            <li><NavHashLink smooth to="/home#localResources" scroll={el => this.scroll(el)}>Donate</NavHashLink></li>
 
 
 
                             {
                                 !isAuthenticated() && (
-                                    <li><a href="#" onClick={ this.login.bind( this ) }><i className="ion-ios-contact"></i> Login/Signup</a></li>
+                                    <li><a href="#" onClick={this.login.bind(this)}><i className="ion-ios-contact"></i> Login/Signup</a></li>
                                 )
                             }
                             {
@@ -55,7 +71,7 @@ export class Navbar extends Component {
                                     <React.Fragment>
                                         <li><Link to="/dashboard">My Dashboard</Link></li>
 
-                                        <li><a href="#" onClick={ this.logout.bind( this ) }><i className="ion-ios-contact"></i> Logout</a></li>
+                                        <li><a href="#" onClick={this.logout.bind(this)}><i className="ion-ios-contact"></i> Logout</a></li>
                                     </React.Fragment>
 
                                 )
