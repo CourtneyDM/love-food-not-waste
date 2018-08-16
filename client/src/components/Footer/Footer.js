@@ -1,7 +1,12 @@
-import React from "react";
+import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import "./Footer.css";
 
-const Footer = () => (
+export class Footer extends Component {
+   
+    render() {
+        const { isAuthenticated } = this.props.auth;
+        return(
     <footer id="footer">
         <div className="footer-top">
             <div className="container">
@@ -10,17 +15,22 @@ const Footer = () => (
                     <div className="col-lg-3 col-md-6 footer-info">
                         <h3>Waste Not</h3>
 
-                        <p>Committed to fighting food waste and hunger.</p>
+                        <p>Committed to fighting food waste and hunger in Dallas, TX.</p>
                     </div>
 
                     <div className="col-lg-3 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><i className="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-                            <li><i className="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-                            <li><i className="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-                            <li><i className="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-                            <li><i className="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+                            <li><i className="ion-ios-arrow-right"></i> <a href="/">Home</a></li>
+                            <li><i className="ion-ios-arrow-right"></i> <Link to="/FoodTracker">Food Tracker</Link></li>
+                            <li><i className="ion-ios-arrow-right"></i> <Link to="/Recipes">Recipes</Link></li>
+
+                            {
+                                isAuthenticated() && (
+                                    <li><i className="ion-ios-arrow-right"></i> <Link to="/Dashboard">Dashboard</Link></li>
+                                )
+                            }
+                            
                         </ul>
                     </div>
 
@@ -66,7 +76,8 @@ const Footer = () => (
 
         <a href="#" className="back-to-top"><i className="fa fa-chevron-up"></i></a>
     </footer>
-
-);
+        )
+    }
+}
 
 export default Footer;
