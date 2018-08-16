@@ -7,9 +7,9 @@ const Facts = () => (
 
             <header className="section-header">
                 <h3>Facts</h3>
-                <p>
+                <p id='featuredFacts'>
                     <img src="assets/images/facts/quote-sign-left.png" className="quote-sign-left" alt="" />
-                    Getting food to our tables eats up 10% of the total U.S. energy budget, uses 50% of U.S. land and swallows 80% of freshwater consumed in the United States...and yet, 40% of it is wasted.
+                    Getting food to our tables eats up 10% of the total U.S. energy budget, uses 50% of U.S. land and swallows 80% of freshwater consumed in the United States...and yet, 40% of it is wasted while 1 in 6 people struggle with hunger.
               <img src="assets/images/facts/quote-sign-right.png" className="quote-sign-right" alt="" />
                 </p>
             </header>

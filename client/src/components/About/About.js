@@ -7,7 +7,7 @@ const About = () => (
 
         <header className="section-header">
           <h3>About</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p>Waste Not is a Dallas, TX based organization committed to tackling two big problems that go hand in hand -  food waste and hunger.  We serve the greater Dallas area by educating consumers, providing easy solutions for cutting food waste and resources for fighting hunger.</p>
         </header>
 
         <div className="row about-cols">
@@ -18,9 +18,10 @@ const About = () => (
                 <img src="/assets/images/about/about-waste.jpg" alt="" className="img-fluid"/>
                 <div className="icon"><i className="ion-ios-nutrition"></i></div>
               </div>
-              <h2 className="title"><a href="#">Food Waste</a></h2>
+              <h2 className="title">Food Waste</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Did you know that between 30 to 40% of food in the US is wasted each year? That amounts to about $165 billion dollars we are throwing in the trash or about $2,200 per family of four.  That's like throwing away 24 boxes of cereal each month!
+                We believe we can do better!  
               </p>
             </div>
           </div>
@@ -31,9 +32,9 @@ const About = () => (
                 <img src="/assets/images/about/about-hunger.jpg" alt="" className="img-fluid"/>
                 <div className="icon"><i className="ion-android-restaurant"></i></div>
               </div>
-              <h2 className="title"><a href="#">Hunger</a></h2>
+              <h2 className="title">Hunger</h2>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                49 million Americans struggle to put food on the table.  1 in 6 are hungry.  That statistic jumps even higher among minorities.  It's really shocking, especially considering it's not due to a lack of food.  We think instead of tossing 30-40% of our food, we should be using it to fight hunger! 
               </p>
             </div>
           </div>
@@ -44,9 +45,9 @@ const About = () => (
                 <img src="/assets/images/about/about-vision.jpg" alt="" className="img-fluid"/>
                 <div className="icon"><i className="ion-ios-eye-outline"></i></div>
               </div>
-              <h2 className="title"><a href="#">Our Vision</a></h2>
+              <h2 className="title">Our Vision</h2>
               <p>
-                Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.
+                We see a future where we approach food smarter.  At Waste Not, we love food and don't want to see it wind up in the trash - especially when so many people in our community are going hungry.  Our aim is to change the way think about food and to make it easy to donate to those in need.
               </p>
             </div>
           </div>
