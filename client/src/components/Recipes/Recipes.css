@@ -4,7 +4,10 @@
     padding: 60px 0;
   }
  
-  
+#localResources {
+  padding: 30px 0;
+}
+
   #recipes #portfolio-flters {
 
     padding: 0;
