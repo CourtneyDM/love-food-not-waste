@@ -73,7 +73,8 @@ export class Recipes extends Component {
             user: localStorage.getItem( 'userId' )
         };
         API.saveRecipe( newRecipe )
-            .then( res => console.log( res ) );
+            .then( alert( "Recipe has been saved to your profile!" ) )
+            .then( this.toggle() );
         // console.log( `Saving recipe: ${JSON.stringify( recipe, null, 2 )}` );
         // console.log( `ID: ${recipe.id}\nTitle: ${recipe.title}\nImage URL: ${recipe.image}\nUserID: ${localStorage.getItem( 'userId' )}` );
     }

@@ -33,6 +33,7 @@ export class Dashboard extends Component {
         this.handleClick = this.handleClick.bind( this );
         this.getInventory = this.getInventory.bind( this );
         this.deleteItem = this.deleteItem.bind( this );
+        this.deleteRecipe = this.deleteRecipe.bind( this );
     }
 
     // 
@@ -89,6 +90,12 @@ export class Dashboard extends Component {
             .catch( error => { throw error } );
     }
 
+    // Delete recipe from database
+    deleteRecipe = id => {
+        API.deleteRecipe( id )
+            .then( () => this.getInventory( localStorage.getItem( 'userId' ) ) )
+            .catch( error => { throw error } );
+    }
 
     // Get food items saved to database
     getInventory = id => {
@@ -373,14 +380,15 @@ export class Dashboard extends Component {
                     {
                         this.state.recipes.length === 0 && (
                             <div className='recipe-message'>
-                                <p><b>Instructions:</b>  To search, enter all ingredients you would like to use in the recipe separated by commas.
-                                  For example, if you have strawberries and kale that are nearing expiration, search for "Strawberries,Kale".</p>
-                                <p>Once you find a recipe you like, save it to your account for future use.</p>
+                                <h5><b>No Saved Recipes</b></h5>
+                                <p>To save a recipe to your profile, simple click the "Save for Later"  button when viewing a recipe card. </p>
                             </div>
                         )
                     }
                     { this.state.recipes.length > 0 && (
                         <React.Fragment>
+                            {/* TODO: ENTER A HEADER OF SOME SORT HERE TO BE CENTERED */ }
+                            <br />
                             { this.state.recipes.slice( 0, this.state.recipes.length ).map( ( recipe, index ) => {
                                 console.log( `Recipe details: ${JSON.stringify( recipe, null, 2 )}` );
                                 return (
@@ -392,7 +400,8 @@ export class Dashboard extends Component {
 
                                             <div className="recipe-info">
                                                 <p className='recipe-title block-with-text'><b>{ recipe.title }</b></p>
-                                                <Button className='btn-view' text='View' onClick={ () => this.showRecipeModal( recipe.recipeID ) }>{ recipe.recipeID }</Button>
+                                                <Button className='btn btn-sm btn-view' text='View' onClick={ () => this.showRecipeModal( recipe.recipeID ) }>{ recipe.recipeID }</Button><br />
+                                                <Button className="btn btn-sm btn-danger " text='Delete Recipe' onClick={ () => this.deleteRecipe( recipe._id ) }>{ recipe._id }</Button>
 
                                             </div>
                                         </div>
