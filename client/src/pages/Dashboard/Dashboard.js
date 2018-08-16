@@ -11,7 +11,8 @@ export class Dashboard extends Component {
     constructor( props ) {
         super( props );
         this.state = {
-            saved: []
+            saved: [],
+            recipes: []
         }
         this.handleInputChange = this.handleInputChange.bind( this );
         this.handleClick = this.handleClick.bind( this );
@@ -58,6 +59,16 @@ export class Dashboard extends Component {
         console.log( id )
         API.getInventory( id )
             .then( res => this.setState( { saved: res.data.data } ) )
+            .then( () => this.getUserRecipes( localStorage.getItem( 'userId' ) ) )
+            .catch( error => { throw error } );
+    }
+
+    // Get recipes saved to database
+    getUserRecipes = id => {
+        API.getUserRecipes( id )
+            .then( res => console.log( res ) )
+            // .then( res => this.setState( { recipes: res.data.data } ) )
+            // .then( console.log( this.state.recipes ) )
             .catch( error => { throw error } );
     }
 
@@ -103,13 +114,20 @@ export class Dashboard extends Component {
         } );
 
         return (
-
             <React.Fragment>
                 <div className="dashboard text-center section-header">
                     <h3>My Tracked Foods</h3>
-                    <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link>
-                    <Link className='modify-food-items' to="/FoodTracker">Update Food</Link>
+                    {/* If user has at least 1 item saved in database, show the Update Food button */ }
+                    { this.state.saved.length > 0 ?
+                        <React.Fragment>
+                            <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link>
+                            <Link className='modify-food-items' to="/FoodTracker">Update Food</Link>
+                        </React.Fragment> :
+                        // If user has no item saved, show only Add Food button
+                        <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link> }
                 </div>
+
+                {/* Get the saved items and display in the table */ }
                 { this.state.saved.slice( 0, this.state.limit )
                     .map( ( saved, index ) => {
                         tableSaved.row.add( {
@@ -120,18 +138,13 @@ export class Dashboard extends Component {
                             quantity: saved.quantity,
                             bestByDate: saved.bestByDate,
                             remove: "Remove"
-                        } ).draw()
-                    }
-
-                    ) }
-
-
+                        } ).draw();
+                    } ) }
 
                 <div id='saved-table-container' className='container-fluid mx-auto'>
                     <table
                         id='savedTable'
-                        className='table-striped table-bordered table-condensed text-left'
-                    >
+                        className='table-striped table-bordered table-condensed text-left' >
                         <thead>
                             <tr>
                                 <th className="id">Id</th>
@@ -146,9 +159,9 @@ export class Dashboard extends Component {
                         </tbody>
                     </table>
                 </div>
-
             </ React.Fragment>
-
         );
     }
 }
+
+// TODO: run getFullRecipe from dashboard - look at Recipes file, method "getFullRecipe"
