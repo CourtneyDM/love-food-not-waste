@@ -11,8 +11,7 @@ export class Dashboard extends Component {
     constructor( props ) {
         super( props );
         this.state = {
-            saved: [],
-            isAuthenticated: true
+            saved: []
         }
         this.handleInputChange = this.handleInputChange.bind( this );
         this.handleClick = this.handleClick.bind( this );
@@ -99,10 +98,8 @@ export class Dashboard extends Component {
             const id = data.id;
 
             console.log( "Delete" + id )
-            this.deleteItem( id )
+            this.deleteItem( id );
             tableSaved.draw();
-            ;
-
         } );
 
         return (
@@ -111,6 +108,7 @@ export class Dashboard extends Component {
                 <div className="dashboard text-center section-header">
                     <h3>My Tracked Foods</h3>
                     <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link>
+                    <Link className='modify-food-items' to="/FoodTracker">Update Food</Link>
                 </div>
                 { this.state.saved.slice( 0, this.state.limit )
                     .map( ( saved, index ) => {
