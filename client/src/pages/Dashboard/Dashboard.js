@@ -344,6 +344,7 @@ export class Dashboard extends Component {
                     <h3>My Dashboard</h3>
                     <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link>
                 </div>
+                <h4>My Saved Food</h4>
                 { this.state.saved.slice( 0, this.state.limit )
                     .map( ( saved, index ) => {
                         tableSaved.row.add( {
@@ -391,7 +392,7 @@ export class Dashboard extends Component {
                     }
                     { this.state.recipes.length > 0 && (
                         <React.Fragment>
-                            <h5>My Recipes</h5>
+                            <h4>My Recipes</h4>
                             <Link className='add-to-your-items' to="/Recipes">Add Recipes</Link>
                             <br />
                             { this.state.recipes.slice( 0, this.state.recipes.length ).map( ( recipe, index ) => {
