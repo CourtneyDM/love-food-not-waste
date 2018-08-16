@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import { CardDeck, CardBasic } from '../components/Card';
+
+
+const $ = require('jquery');
 
 export class NoMatch extends Component {
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
+        $('#header').addClass('header-fill');
+        
+    }
+
+    componentWillUnmount() {
+        $('#header').removeClass('header-fill');
+    }
+
     render() {
         return (
-            <div>
-                <CardDeck>
-                    <CardBasic
-                        header='Page Not Found'>
-                        <p>404 Error:  The page you requested was not found.</p>
-                    </CardBasic>
-                </CardDeck>
-            </div>
+            <section name="notFound" id="notFound">
+            <div className="container text-center">
+      
+              <header className="section-header">
+                <h3>404</h3>
+                <p>Sorry!  We cannot find that page.  Either something went wrong or the page no longer exists.</p>
+                <a className="cta-btn" href="/">Home</a>
+              </header>
+              </div>
+              </section>
         );
     };
 };
