@@ -392,7 +392,7 @@ export class Dashboard extends Component {
                     }
                     { this.state.recipes.length > 0 && (
                         <React.Fragment>
-                            
+
                             <Link className='add-to-your-items' to="/Recipes">Add Recipes</Link>
                             <br />
                             { this.state.recipes.slice( 0, this.state.recipes.length ).map( ( recipe, index ) => {
