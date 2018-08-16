@@ -13,10 +13,14 @@ export class Dashboard extends Component {
         super( props );
         this.state = {
             saved: [],
+            recipe: [],
             recipes: [],
+            ingredientList: [],
+            steps: [],
             isAuthenticated: true,
             modalEdit: false,
             modalDelete: false,
+            modalRecipe: false,
             row: [],
             fetchComplete: false
         }
@@ -24,12 +28,19 @@ export class Dashboard extends Component {
         this.delete = this.delete.bind( this );
         this.toggleEdit = this.toggleEdit.bind( this );
         this.toggleDelete = this.toggleDelete.bind( this );
+        this.toggleRecipe = this.toggleRecipe.bind( this );
         this.handleInputChange = this.handleInputChange.bind( this );
         this.handleClick = this.handleClick.bind( this );
         this.getInventory = this.getInventory.bind( this );
         this.deleteItem = this.deleteItem.bind( this );
     }
 
+    // 
+    toggleRecipe() {
+        this.setState( {
+            modalRecipe: !this.state.modalRecipe
+        } );
+    }
 
     toggleEdit() {
         this.setState( {
@@ -42,6 +53,7 @@ export class Dashboard extends Component {
             modalDelete: !this.state.modalDelete
         } );
     }
+
     // Get inventory if component loaded successfully
     componentDidMount() {
         window.scrollTo( 0, 0 );
@@ -89,8 +101,8 @@ export class Dashboard extends Component {
     // Get recipes saved to database
     getUserRecipes = id => {
         API.getUserRecipes( id )
-            .then( res => console.log( res ) )
-            // .then( res => this.setState( { recipes: res.data.data } ) )
+            // .then( res => console.log( res ) )
+            .then( res => this.setState( { recipes: res.data.data } ) )
             // .then( console.log( this.state.recipes ) )
             .catch( error => { throw error } );
     }
@@ -101,6 +113,31 @@ export class Dashboard extends Component {
             .catch( error => { throw error } );
     }
 
+    getFullRecipe = ( id ) => {
+        API.getFullRecipe( id )
+            // .then(res=> console.log(res.data))
+            .then( response => {
+                if ( response.data.analyzedInstructions.length === 0 ) {
+                    this.setState( {
+                        recipe: response.data,
+                        ingredientList: response.data.extendedIngredients
+                    } );
+                } else {
+                    this.setState( {
+                        recipe: response.data,
+                        ingredientList: response.data.extendedIngredients,
+                        steps: response.data.analyzedInstructions[ 0 ].steps
+                    } );
+                }
+            } )
+            .catch( error => { throw error } );
+    }
+
+    showRecipeModal = ( id ) => {
+        console.log( "Recipe ID: " + id );
+        this.getFullRecipe( id );
+        this.toggleRecipe();
+    }
 
     delete = () => {
         console.log( this.state.row );
@@ -178,7 +215,7 @@ export class Dashboard extends Component {
             const data = tableSaved.row( button.closest( 'tr' ) ).data();
             const action = event.currentTarget.id;
 
-            this.setState( { row: data } )
+            this.setState( { row: data } );
 
             if ( action === 'editRow' ) {
                 this.toggleEdit();
@@ -188,7 +225,7 @@ export class Dashboard extends Component {
                 this.toggleDelete();
             }
 
-            ;
+
 
         } );
 
@@ -211,8 +248,6 @@ export class Dashboard extends Component {
         return (
             <React.Fragment>
                 <Modal className='modal-md' isOpen={ this.state.modalEdit }>
-
-
                     <ModalHeader>Edit Food Item</ModalHeader>
                     <ModalBody className='modal-body'>
                         <form>
@@ -251,8 +286,6 @@ export class Dashboard extends Component {
 
 
                 <Modal className='modal-xs' isOpen={ this.state.modalDelete }>
-
-
                     <ModalHeader>Confirm Removal</ModalHeader>
                     <ModalBody className='modal-body'>
                         <p>Are you sure you would like to delete  { this.state.row.itemName } - ({ this.state.row.quantity })?</p>
@@ -261,20 +294,44 @@ export class Dashboard extends Component {
                         <Button text='Remove' className="confirmDelete" onClick={ this.delete } />
                         <Button text='Cancel' onClick={ this.toggleDelete } />
                     </ModalFooter>
+                </Modal>
 
+                {/* Recipe Modal */ }
+                <Modal className='modal-lg' isOpen={ this.state.modalRecipe }>
+                    <ModalHeader>{ this.state.recipe.title }</ModalHeader>
+                    <ModalBody className='recipe-modal-body'>
+                        <img src={ this.state.recipe.image } className='fullRecipeImg' alt={ `${this.state.recipe.title}` } />
+                        <div className='recipe-top'>
+                            <p><b>Serving Size:</b> { this.state.recipe.servings }</p>
+                            <p><b>Ready in:</b> { this.state.recipe.readyInMinutes } minutes</p>
+                            <p><b>Ingredients:</b></p>
+                            <ul className='recipe-ingredients'>
+                                { this.state.ingredientList.map( ( item ) => ( <li className='bullets' key={ item.id }>{ item.originalString }</li> ) ) }
+                            </ul>
+                        </div>
+                        <div className="clearfix"></div>
+                        <p><b>Instructions:</b></p>
+                        {
+                            this.state.steps.length === 0 && ( <p><i>Instructions currently unavailable.  Please check the websites below.</i></p> )
+                        }
+
+                        <ol>
+                            { this.state.steps.map( ( item, index ) => ( <li key={ index }>{ item.step }</li> ) ) }
+                        </ol>
+
+                        <a href={ this.state.recipe.sourceUrl } target="_blank">Orignally posted by { this.state.recipe.sourceName }</a>
+                        <br />
+                        <a href={ this.state.recipe.spoonacularSourceUrl } target="_blank">Obtained from Spoonacular</a>
+
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button text='Close' onClick={ this.toggleRecipe } />
+                    </ModalFooter>
                 </Modal>
 
 
                 <div className="dashboard text-center section-header">
                     <h3>My Tracked Foods</h3>
-                    {/* If user has at least 1 item saved in database, show the Update Food button */ }
-                    { this.state.saved.length > 0 ?
-                        <React.Fragment>
-                            <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link>
-                            <Link className='modify-food-items' to="/FoodTracker">Update Food</Link>
-                        </React.Fragment> :
-                        // If user has no item saved, show only Add Food button
-                        <Link className='add-to-your-items' to="/FoodTracker">Add Food</Link> }
                 </div>
                 { this.state.saved.slice( 0, this.state.limit )
                     .map( ( saved, index ) => {
@@ -310,6 +367,43 @@ export class Dashboard extends Component {
                         <tbody>
                         </tbody>
                     </table>
+                </div>
+                {/* SECTION TO DISPLAY RECIPES */ }
+                <div className="row recipe-container">
+                    {
+                        this.state.recipes.length === 0 && (
+                            <div className='recipe-message'>
+                                <p><b>Instructions:</b>  To search, enter all ingredients you would like to use in the recipe separated by commas.
+                                  For example, if you have strawberries and kale that are nearing expiration, search for "Strawberries,Kale".</p>
+                                <p>Once you find a recipe you like, save it to your account for future use.</p>
+                            </div>
+                        )
+                    }
+                    { this.state.recipes.length > 0 && (
+                        <React.Fragment>
+                            { this.state.recipes.slice( 0, this.state.recipes.length ).map( ( recipe, index ) => {
+                                console.log( `Recipe details: ${JSON.stringify( recipe, null, 2 )}` );
+                                return (
+                                    <div className="col-lg-3 col-md-6 recipe-item" id={ index }>
+                                        <div className="recipe-wrap">
+                                            <figure>
+                                                <img src={ recipe.imageURL } className="img-fluid" alt="" />
+                                            </figure>
+
+                                            <div className="recipe-info">
+                                                <p className='recipe-title block-with-text'><b>{ recipe.title }</b></p>
+                                                <Button className='btn-view' text='View' onClick={ () => this.showRecipeModal( recipe.recipeID ) }>{ recipe.recipeID }</Button>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                );
+                            } ) }
+                        </React.Fragment>
+                    )
+                    }
+
                 </div>
             </ React.Fragment >
         );

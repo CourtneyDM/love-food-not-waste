@@ -56,10 +56,11 @@ export default {
         } )
     },
 
+    // Save recipe to user inventory
     saveRecipe: query => {
         console.log( `saveRecipe Query: ${JSON.stringify( query, null, 2 )}` );
         return axios.post( '/api/recipes', query );
-        // return console.log( 'Back from API call' );
+
     },
     // Get food from user inventory
     editInventory: ( id, category, item, quantity, date ) => {
