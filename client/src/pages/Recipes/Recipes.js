@@ -26,10 +26,6 @@ export class Recipes extends Component {
 
     }
 
-    login() {
-        this.props.auth.login();
-    }
-    
     toggle() {
         this.setState( {
             modal: !this.state.modal
@@ -130,12 +126,6 @@ export class Recipes extends Component {
 
 
     render() {
-        const { isAuthenticated } = this.props.auth;
-        {
-            !isAuthenticated() && (
-                this.login()
-            )
-        } 
         return (
             <React.Fragment>
                 <Modal className='modal-lg' isOpen={ this.state.modal }>
