@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import Wrapper from './components/Wrapper';
 import Navbar from './components/Navbar';
@@ -7,7 +7,6 @@ import { Home, NoMatch } from './pages';
 import { Dashboard } from './pages/Dashboard';
 import { FoodTracker } from './pages/FoodTracker';
 import { Recipes } from './pages/Recipes';
-import { FoodSupplier, Individual, Resources } from './pages/GetInvolved';
 import Auth from './utils/Auth/Auth';
 import Callback from './utils/Callback/Callback';
 import Profile from './pages/Profile/Profile';
@@ -42,7 +41,7 @@ const App = () => (
                         </Switch>
                         
                     </div>
-                    <Footer />
+                    <Footer auth={auth}/>
                 </Wrapper>
             </Router>
         );

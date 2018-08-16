@@ -61,6 +61,21 @@ export default {
         return axios.post( '/api/recipes', query );
         // return console.log( 'Back from API call' );
     },
+    // Get food from user inventory
+    editInventory: ( id, category, item, quantity, date ) => {
+        console.log( 'editing inventory...' );
+        console.log( 'ID: ' + id );
+        console.log( 'Update:' + quantity );
+        return axios.put( '/api/inventory/' + id, {
+            category: category,
+            itemName: item,
+            quantity: quantity,
+            bestByDate: date,
+            params: {
+                id: id,
+            }
+        } )
+    },
 
     // Delete food item from user inventory
     deleteFoodItem: id => {

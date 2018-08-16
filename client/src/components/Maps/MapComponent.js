@@ -16,7 +16,7 @@ const MapWithInfoWindow = compose(
         googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyCYUCuWg5hDZOmPFegBDjf5rDE6SAqofMc&v=3.exp&libraries=geometry,drawing,places",
         loadingElement: <div style={ { height: `100%` } } />,
         containerElement: <div style={ { height: `400px` } } />,
-        mapElement: <div style={ { height: `100%` } } />,
+        mapElement: <div style={ { height: `100%`,width:`100%` } } />,
     } ),
     // Wrapper helper for state changes
     withStateHandlers( () => ( {
