@@ -6,7 +6,7 @@ import "./Navbar.css";
 const $ = require('jquery');
 
 export class Navbar extends Component {
-
+  
 
     login() {
         this.props.auth.login();
@@ -46,7 +46,7 @@ export class Navbar extends Component {
 
                     <div id="logo" className="pull-left">
 
-                        <h1><Link to="/home#intro" className="scrollto">Waste Not</Link></h1>
+                        <h1><NavHashLink smooth to="/home#intro" scroll={el => this.scroll(el)}>Home</NavHashLink></h1>
 
                     </div>
 
