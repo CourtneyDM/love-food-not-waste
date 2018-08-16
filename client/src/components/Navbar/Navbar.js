@@ -46,7 +46,7 @@ export class Navbar extends Component {
 
                     <div id="logo" className="pull-left">
 
-                        <h1><NavHashLink smooth to="/home#intro" scroll={el => this.scroll(el)}>Home</NavHashLink></h1>
+                        <h1><NavHashLink smooth to="/home#intro" scroll={el => this.scroll(el)}>Waste Not</NavHashLink></h1>
 
                     </div>
 
