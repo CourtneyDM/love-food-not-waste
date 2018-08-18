@@ -3,7 +3,8 @@
 
     <head>
         <!-- Google Tag Manager -->
-        <script>( function ( w, d, s, l, i ) {
+        <script>
+            ( function ( w, d, s, l, i ) {
                 w[ l ] = w[ l ] || []; w[ l ].push( {
                     'gtm.start':
                         new Date().getTime(), event: 'gtm.js'
@@ -12,13 +13,13 @@
                         'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore( j, f );
             } )( window, document, 'script', 'dataLayer', 'GTM-NXK5V7T' );</script>
         <!-- End Google Tag Manager -->
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-123636083-1"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push( arguments ); }
             gtag( 'js', new Date() );
-
             gtag( 'config', 'UA-123636083-1' );
         </script>
 
@@ -37,8 +38,6 @@
         <!-- Bootstrap CSS File -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-
-
         <!-- Libraries CSS Files -->
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -47,8 +46,6 @@
         <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-
-
 
         <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -64,7 +61,10 @@
 
     <body>
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXK5V7T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXK5V7T" height="0" width="0" style="display:none;visibility:hidden">
+            </iframe>
+        </noscript>
         <!-- End Google Tag Manager (noscript) -->
 
         <noscript>
