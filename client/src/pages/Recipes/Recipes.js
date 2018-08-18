@@ -14,7 +14,7 @@ export class Recipes extends Component {
             recipeSearch: '',
             ingredients: 0,
             recipes: [],
-            limit: 4,
+            limit: 12,
             modal: false,
             recipe: [],
             ingredientList: [],
