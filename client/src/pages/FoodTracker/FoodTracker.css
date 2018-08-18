@@ -52,22 +52,30 @@ h6{
     padding: 2px 10px;
 }
 
-
-
 #searchTable{
     margin-bottom: 20px;
 }
 
+.addButton{
+    width: 50%;
+}
 
 .newItem {
-    margin-top: 100px;
     margin-bottom: 40px;
-    width: 15%;
-    float: left;
-    margin-left: 50px;
     height: 35vh;
 }
 
+.addItem {
+    margin-bottom: 40px;
+}
+
+.sidebar{
+    width: 15%;
+    margin-top: 100px;
+    margin-left: 50px;
+    float: left;
+    
+}
 
 .newItem .card-body{
     overflow: auto;
@@ -101,4 +109,23 @@ h6{
     background: white;
     border: 2px solid #528fff;
     text-decoration: none;
+  }
+
+  .addButton{
+    background-color:lightseagreen;color:white;width:30%;margin: 0 auto;border:0px;border-radius:50px;margin-top:20px;margin-bottom:20px;
+  }
+
+  .addItem{
+      margin-top:50px;
+  }
+  .addItemHeader{
+      height: 80px;
+  }
+
+  .addItemHeaderText{
+      margin-top:10px;
+  }
+
+  .addItemPText{
+      margin-top:20px;
   }
