@@ -93,9 +93,7 @@ export class Dashboard extends Component {
     // Delete recipe from database
     deleteRecipe = id => {
         API.deleteRecipe( id )
-
             .then( alert( "Recipe has been removed from your profile." ) )
-
             .then( () => this.getInventory( localStorage.getItem( 'userId' ) ) )
             .catch( error => { throw error } );
     }
